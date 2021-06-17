@@ -1,0 +1,170 @@
+﻿@model GardeningF.Models.Cliente
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="container">
+    <h2>Vamos a terminar de registrar sus datos!</h2>
+
+    @using (Html.BeginForm("Create", "Clientes", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="card">
+                            <h4 class="card-header">Datos Personales</h4>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Nombre(s):</label>
+                                            @Html.EditorFor(model => model.nombre_cliente, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.nombre_cliente, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Apellido Paterno:</label>
+                                            @Html.EditorFor(model => model.app_cliente, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.app_cliente, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Apellido Materno:</label>
+                                            @Html.EditorFor(model => model.apm_cliente, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.apm_cliente, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Teléfono</label>
+                                            @Html.EditorFor(model => model.telefono_cliente, new { htmlAttributes = new { @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.telefono_cliente, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Correo:</label>
+                                            @Html.EditorFor(model => model.correo_cliente, new { htmlAttributes = new { @class = "form-control", @Value = Session["email"], @disabled = "disabled" } })
+                                            @Html.ValidationMessageFor(model => model.correo_cliente, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="card">
+                            <h4 class="card-header">Dirección</h4>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Estado:</label>
+                                            <input type="text" class="form-control" name="estado" id="estado"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Municipio:</label>
+                                            <input type="text" class="form-control" name="municipio" id="municipio" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Calle:</label>
+                                            <input type="text" class="form-control" name="calle" id="calle" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Colonia:</label>
+                                            <input type="text" class="form-control" name="colonia" id="colonia" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Código Postal:</label>
+                                            <input type="text" class="form-control" name="cp" id="cp" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>No. Ext.</label>
+                                            <input type="text" class="form-control" name="noExt" id="noExt" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="card">
+                            <h4 class="card-header">Datos de la Tarjeta</h4>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>No. de Tarjeta:</label>
+                                            <input type="text" class="form-control" name="tarjeta" id="tarjeta" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>CVV (3 ó 4 digitos traseros):</label>
+                                            <input type="text" class="form-control" name="cvv" id="cvv" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>Fecha de vencimiento:</label>
+                                            <input type="date" class="form-control" name="fecha" id="fecha" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-check">
+                                            <input type="radio"  name="tipoT" id="tipoT1" class="form-check-input" value="Visa"/>
+                                            <span class="fa fa-lg fa-cc-visa"></span>
+                                            <label for="tipoT1" class="form-check-label">Visa</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" name="tipoT" id="tipoT2" class="form-check-input" value="Master" />
+                                            <span class="fa fa-lg fa-cc-mastercard"></span>
+                                            <label for="tipoT2" class="form-check-label">MasterCard</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" name="tipoT" id="tipoT3" class="form-check-input" value="Amex" />
+                                            <span class="fa fa-lg fa-cc-amex"></span>
+                                            <label for="tipoT3" class="form-check-label">American Express</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 text-right mt-5">
+                                        <input type="submit" class="btn boton" value="Finalizar Registro"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
