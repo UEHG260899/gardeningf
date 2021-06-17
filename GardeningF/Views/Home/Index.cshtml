@@ -1,31 +1,128 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿@using GardeningF.Models
+@{
+    ViewBag.Title = "Bienvenido a Gardening.com";
+    string imgCat = "";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+<div class="jumbotron jumbo-main">
+    <h1>
+        <span class="span-dividido">Encuentra siempre lo necesario</span>
+        <span class="span-dividido">para tu jardín</span>
+    </h1>
+    <!--Modificar para redirigir al controlador-->
+    @Html.ActionLink("Ir a tienda", "Home", "Tienda", routeValues: null, htmlAttributes: new { @class = "btn boton btn-lg" })
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+<!--Categorias-->
+<section class="section-principal">
+    <div class="col-12">
+        <h2 class="titulo-centro">Categorias</h2>
+        <div class="row">
+            @foreach (Categoria cat in ViewBag.categorias)
+            {
+                switch (cat.id_categoria)
+                {
+                    case 1:
+                        imgCat = "plantas-card.jpg";
+                        break;
+                    case 2:
+                        imgCat = "utensilios-card.jpg";
+                        break;
+                    case 3:
+                        imgCat = "cuidado-card.jpg";
+                        break;
+
+                }
+                <div class="col-sm-12 col-md-6 col-lg-4">
+                    <div class="card text-center">
+                        <img class="card-img-top imagen-card" src="~/Content/Imagenes/Home/Index/@imgCat" />
+                        <div class="card-body">
+                            <h5 class="card-title">@cat.nombre_categoria</h5>
+                            <p class="card-text">
+                                @cat.descripcion_categoria
+                            </p>
+                            @Html.ActionLink("Ir a tienda", "Categoria", "Catalogo", routeValues: new { id = cat.id_categoria }, htmlAttributes: new { @class = "btn boton" })
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+</section>
+<!--Fin categorias-->
+<hr />
+<!--Productos-->
+<section class="section-principal">
+    <div class="col-12">
+        <h2 class="titulo-centro">Productos destacados</h2>
+        <div class="row">
+            @foreach (Producto prod in ViewBag.prod)
+            {
+                <div class="col-sm-12 col-md-6 col-lg-3">
+                    <div class="card text-center">
+                        <img class="card-img-top imagen-card" src="~/Content/Imagenes/Productos/@prod.imagen_producto" />
+                        <div class="card-body">
+                            <h5 class="card-title">@prod.nombre_producto</h5>
+                            <p class="card-text">
+                                @prod.descripcion_producto
+                                <br />
+                                $@prod.precio_producto
+                            </p>
+                            <div class="row">
+                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                    <!--TODO: Cambiar a redirigir a la pagina de producto-->
+                                    @Html.ActionLink("Ver producto", "", "", routeValues: null, htmlAttributes: new { @class = "btn boton" })
+                                </div>
+                                <div class="col-sm-12 col-md-12 col-lg-6">
+                                    <!--TODO: Cambiar para agregar al carrito-->
+                                    @Html.ActionLink("Agregar al Carrito", "", "", routeValues: null, htmlAttributes: new { @class = "btn boton" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
     </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+</section>
+<!--Fin productos-->
+<hr />
+<!--Sección con imagen-->
+<section class="section-img">
+    <h2>Gran selección de productos</h2>
+</section>
+<!--Fin sección con imagen-->
+<hr />
+<!--Sección de valores-->
+<section class="section-principal">
+    <h2 class="titulo-centro">¿Que ofrecemos?</h2>
+    <div class="col-12">
+        <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="col text-center">
+                    <img src="~/Content/Imagenes/Home/Index/icono-envio.png" />
+                    <h3>Envios a todo México</h3>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="col text-center">
+                    <img src="~/Content/Imagenes/Home/Index/icono-jardin.png" />
+                    <h3>Calidad para su jardin</h3>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="col text-center">
+                    <img src="~/Content/Imagenes/Home/Index/icono-oferta.png" />
+                    <h3>Las mejores ofertas</h3>
+                </div>
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="col text-center">
+                    <img src="~/Content/Imagenes/Home/Index/icono-pago.png" />
+                    <h3>Pago Seguro</h3>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+</section>
+<!--Fin sección de valores-->

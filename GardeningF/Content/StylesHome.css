@@ -1,0 +1,85 @@
+﻿:root {
+    --color-fondo: #D5CE58;
+    --color-principal: #4A7212;
+    --color-secundario: #719F1E;
+    --color-acento: #104210;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/*Navbar*/
+.navbar-color {
+    background-color: var(--color-acento);
+}
+
+/*Fin Navbar*/
+
+/*Footer*/
+footer {
+    color: white;
+    background-color: var(--color-acento);
+}
+/*Fin Footer*/
+
+/*Estilos Index*/
+
+.jumbo-main {
+    background-image: url("Imagenes/Home/Index/banner1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    margin: 0;
+}
+
+.boton {
+    background-color: var(--color-acento);
+    color: white;
+}
+
+.span-dividido {
+    display: block;
+}
+
+    .span-dividido:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+
+.imagen-card {
+    max-height: 334.83px;
+    min-height: 334.83px;
+}
+
+.section-principal {
+    padding: 3.12rem;
+}
+
+.titulo-centro {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.section-img {
+    color: white;
+    padding: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 50vh;
+    background-image: url("Imagenes/Home/Index/jumbo-selec.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat
+}
+/*Fin estilos Index*/
+
+/*Estilos en Registro*/
+.content {
+    margin: 5%;
+    padding: 4rem 1rem 4rem 1rem;
+    box-shadow: 0 0 5px 5px rgba(0,0,0,.05);
+}
+/*Fin estilos en registro*/
