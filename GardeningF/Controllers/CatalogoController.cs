@@ -39,5 +39,34 @@ namespace GardeningF.Controllers
             ViewBag.sub = nombreSub;
             return View();
         }
+
+        public ActionResult Categoria(int id)
+        {
+
+            var query_categoria = db.Database.SqlQuery<int>(@"SELECT id_subcategoria
+	                                                                        FROM dbo.Subcategoria
+	                                                                        WHERE id_categoria = @idCat"
+                                                       , new SqlParameter("@idCat", id)).ToArray();
+
+            if (query_categoria.Length == 3)
+            {
+                var query_prod = db.Producto.SqlQuery(@"SELECT * FROM dbo.Producto WHERE id_subcategoria IN (@id1, @id2, @id3)"
+                                                        , new SqlParameter("@id1", query_categoria[0])
+                                                        , new SqlParameter("@id2", query_categoria[1])
+                                                        , new SqlParameter("@id3", query_categoria[2])).ToList();
+                ViewBag.prod = query_prod;
+            }
+            else
+            {
+                var query_prod = db.Producto.SqlQuery(@"SELECT * FROM dbo.Producto WHERE id_subcategoria IN (@id1, @id2, @id3, @id4)"
+                                                        , new SqlParameter("@id1", query_categoria[0])
+                                                        , new SqlParameter("@id2", query_categoria[1])
+                                                        , new SqlParameter("@id3", query_categoria[2])
+                                                        , new SqlParameter("@id4", query_categoria[3])).ToList();
+                ViewBag.prod = query_prod;
+            }
+
+            return View();
+        }
     }
 }
