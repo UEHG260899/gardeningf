@@ -517,6 +517,7 @@
     <Content Include="Views\Catalogo\Index.cshtml" />
     <Content Include="Views\Catalogo\Subcategoria.cshtml" />
     <Content Include="Views\Catalogo\Categoria.cshtml" />
+    <Content Include="Views\Catalogo\BuscarProducto.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

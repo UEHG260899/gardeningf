@@ -68,5 +68,18 @@ namespace GardeningF.Controllers
 
             return View();
         }
+
+        [HttpPost]
+        public ActionResult BuscarProducto(String nomBuscar)
+        {
+            ViewBag.termino = nomBuscar;
+
+            var query = (from st in db.Producto
+                         where st.nombre_producto.Contains(nomBuscar)
+                         select st).ToList();
+
+            ViewBag.listado = query;
+            return View();
+        }
     }
 }
