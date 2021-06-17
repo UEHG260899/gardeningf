@@ -1,0 +1,60 @@
+﻿@using GardeningF.Models
+@{
+    ViewBag.Title = "Catalogo - Gardening.com";
+}
+
+<section class="section-catalogo">
+    <div class="row">
+        <div class="col-sm-12 col-md-3 col-lg-3">
+            <h3 class="subtitulo-centro">Por Categoria</h3>
+            <div class="card mb-3">
+                <div class="list-group list-group-flush">
+                    @foreach (Categoria cat in ViewBag.catego)
+                    {
+                        <a class="list-group-item list-group-item-action" href="@Url.Action("Categoria", "Catalogo", routeValues: new { id = cat.id_categoria})">@cat.nombre_categoria</a>
+                    }
+                </div>
+            </div>
+            <h3 class="subtitulo-centro">Por Subcategoria</h3>
+            <div class="card">
+                <div class="list-group list-group-flush">
+                    @foreach (Subcategoria sub in ViewBag.sub)
+                    {
+                        <a class="list-group-item list-group-item-action" href="@Url.Action("Subcategoria", "Catalogo", routeValues: new { id = sub.id_subcategoria})">@sub.nombre_subcategoria</a>
+                    }
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-9 col-lg-9">
+            <div class="row text-center">
+                <h1 class="text-center">Checa nuestra gran variedad de Productos!</h1>
+            </div>
+            <div class="row">
+                @foreach (Producto prod in ViewBag.prod)
+                {
+                    <div class="col-sm-12 col-md-6 col-lg-4 mt-4">
+                        <div class="card">
+                            <img class="card-img-top imagen-card" src="~/Content/Imagenes/Productos/@prod.imagen_producto" />
+                            <div class="card-body">
+                                <h5 class="card-title">@prod.nombre_producto</h5>
+                                <p class="card-text">
+                                    @prod.descripcion_producto
+                                </p>
+                                <div class="row text-center">
+                                    <div class="col-sm-12 col-md-12 col-lg-6">
+                                        <!--TODO: Cambiar al controlador -->
+                                        @Html.ActionLink("Ver producto", "", "", routeValues: null, htmlAttributes: new { @class = "btn boton" })
+                                    </div>
+                                    <div class="col-sm-12 col-md-12 col-lg-6">
+                                        <!--TODO: Cambiar al controlador -->
+                                        @Html.ActionLink("Agregar al carrito", "", "", routeValues: null, htmlAttributes: new { @class = "btn boton" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
