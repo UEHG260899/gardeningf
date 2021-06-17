@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using GardeningF.Models;
+using System.Data.SqlClient;
 
 namespace GardeningF.Controllers
 {
@@ -19,6 +20,23 @@ namespace GardeningF.Controllers
             ViewBag.catego = catego;
             ViewBag.sub = sub;
             ViewBag.prod = productos;
+            return View();
+        }
+
+        public ActionResult Subcategoria(int id)
+        {
+            var productos = db.Producto.SqlQuery(
+                    @"SELECT *
+                        FROM dbo.Producto
+                        WHERE id_subcategoria = @idSub",
+                    new SqlParameter("@idSub", id)
+                ).ToList();
+            var subcatego = db.Subcategoria.SqlQuery(@"SELECT * FROM dbo.Subcategoria WHERE id_subcategoria = @idSub"
+                                                       , new SqlParameter("@idSub", id)).ToList();
+            Subcategoria subCatego = subcatego.FirstOrDefault<Subcategoria>();
+            string nombreSub = subCatego.nombre_subcategoria;
+            ViewBag.prod = productos;
+            ViewBag.sub = nombreSub;
             return View();
         }
     }
