@@ -28,12 +28,12 @@ namespace GardeningF.Models
         public virtual DbSet<Categoria> Categoria { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
         public virtual DbSet<Departamento> Departamento { get; set; }
-        public virtual DbSet<Direccion> Direccion { get; set; }
         public virtual DbSet<Empleado> Empleado { get; set; }
         public virtual DbSet<OrdenCliente> OrdenCliente { get; set; }
         public virtual DbSet<OrdenProducto> OrdenProducto { get; set; }
         public virtual DbSet<Paqueteria> Paqueteria { get; set; }
         public virtual DbSet<Producto> Producto { get; set; }
         public virtual DbSet<Subcategoria> Subcategoria { get; set; }
+        public virtual DbSet<Direccion> Direccion { get; set; }
     }
 }

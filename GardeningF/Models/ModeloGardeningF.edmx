@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="GardeningFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="GardeningFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="id_categoria" />
@@ -41,11 +41,11 @@
           <Property Name="id_direccion" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="id_cliente" Type="int" Nullable="false" />
           <Property Name="calle" Type="varchar" MaxLength="100" Nullable="false" />
-          <Property Name="colonia" Type="varbinary" MaxLength="100" Nullable="false" />
+          <Property Name="colonia" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="estado" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="municipio" Type="varchar" MaxLength="100" Nullable="false" />
           <Property Name="no_exterior" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="no_interior" Type="int" />
+          <Property Name="cp" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -276,8 +276,7 @@
             <End Role="Subcategoria" EntitySet="Subcategoria" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GardeningFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -303,8 +302,8 @@
           <Property Name="num_tdc" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="cvv" Type="Int32" />
           <Property Name="fecha_vencimiento" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="Direccion" Relationship="Self.FK__Direccion__id_cl__2C3393D0" FromRole="Cliente" ToRole="Direccion" />
           <NavigationProperty Name="OrdenCliente" Relationship="Self.FK__OrdenClie__id_cl__35BCFE0A" FromRole="Cliente" ToRole="OrdenCliente" />
+          <NavigationProperty Name="Direccion" Relationship="GardeningFModel.FK__Direccion__id_cl__2C3393D0" FromRole="Cliente" ToRole="Direccion" />
         </EntityType>
         <EntityType Name="Departamento">
           <Key>
@@ -313,21 +312,6 @@
           <Property Name="id_depto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_depto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__id_dep__2F10007B" FromRole="Departamento" ToRole="Empleado" />
-        </EntityType>
-        <EntityType Name="Direccion">
-          <Key>
-            <PropertyRef Name="id_direccion" />
-          </Key>
-          <Property Name="id_direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="id_cliente" Type="Int32" Nullable="false" />
-          <Property Name="calle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="colonia" Type="Binary" MaxLength="100" FixedLength="false" Nullable="false" />
-          <Property Name="estado" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="municipio" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="no_exterior" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="no_interior" Type="Int32" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__Direccion__id_cl__2C3393D0" FromRole="Direccion" ToRole="Cliente" />
-          <NavigationProperty Name="OrdenCliente" Relationship="Self.FK__OrdenClie__id_di__36B12243" FromRole="Direccion" ToRole="OrdenCliente" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
@@ -357,9 +341,9 @@
           <Property Name="fecha_envio" Type="DateTime" Precision="3" />
           <Property Name="fecha_entrega" Type="DateTime" Precision="3" />
           <NavigationProperty Name="Cliente" Relationship="Self.FK__OrdenClie__id_cl__35BCFE0A" FromRole="OrdenCliente" ToRole="Cliente" />
-          <NavigationProperty Name="Direccion" Relationship="Self.FK__OrdenClie__id_di__36B12243" FromRole="OrdenCliente" ToRole="Direccion" />
           <NavigationProperty Name="Paqueteria" Relationship="Self.FK__OrdenClie__id_pa__37A5467C" FromRole="OrdenCliente" ToRole="Paqueteria" />
           <NavigationProperty Name="OrdenProducto" Relationship="Self.FK__OrdenProd__id_or__3A81B327" FromRole="OrdenCliente" ToRole="OrdenProducto" />
+          <NavigationProperty Name="Direccion" Relationship="GardeningFModel.FK__OrdenClie__id_di__36B12243" FromRole="OrdenCliente" ToRole="Direccion" />
         </EntityType>
         <EntityType Name="OrdenProducto">
           <Key>
@@ -426,18 +410,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Direccion__id_cl__2C3393D0">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="id_cliente" />
-            </Principal>
-            <Dependent Role="Direccion">
-              <PropertyRef Name="id_cliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__OrdenClie__id_cl__35BCFE0A">
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
           <End Role="OrdenCliente" Type="Self.OrdenCliente" Multiplicity="*" />
@@ -459,18 +431,6 @@
             </Principal>
             <Dependent Role="Empleado">
               <PropertyRef Name="id_depto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OrdenClie__id_di__36B12243">
-          <End Role="Direccion" Type="Self.Direccion" Multiplicity="1" />
-          <End Role="OrdenCliente" Type="Self.OrdenCliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Direccion">
-              <PropertyRef Name="id_direccion" />
-            </Principal>
-            <Dependent Role="OrdenCliente">
-              <PropertyRef Name="id_dir_entrega" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -526,7 +486,6 @@
           <EntitySet Name="Categoria" EntityType="Self.Categoria" />
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" />
-          <EntitySet Name="Direccion" EntityType="Self.Direccion" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" />
           <EntitySet Name="OrdenCliente" EntityType="Self.OrdenCliente" />
           <EntitySet Name="OrdenProducto" EntityType="Self.OrdenProducto" />
@@ -537,10 +496,6 @@
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Subcategoria" EntitySet="Subcategoria" />
           </AssociationSet>
-          <AssociationSet Name="FK__Direccion__id_cl__2C3393D0" Association="Self.FK__Direccion__id_cl__2C3393D0">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Direccion" EntitySet="Direccion" />
-          </AssociationSet>
           <AssociationSet Name="FK__OrdenClie__id_cl__35BCFE0A" Association="Self.FK__OrdenClie__id_cl__35BCFE0A">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="OrdenCliente" EntitySet="OrdenCliente" />
@@ -548,10 +503,6 @@
           <AssociationSet Name="FK__Empleado__id_dep__2F10007B" Association="Self.FK__Empleado__id_dep__2F10007B">
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Empleado" EntitySet="Empleado" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrdenClie__id_di__36B12243" Association="Self.FK__OrdenClie__id_di__36B12243">
-            <End Role="Direccion" EntitySet="Direccion" />
-            <End Role="OrdenCliente" EntitySet="OrdenCliente" />
           </AssociationSet>
           <AssociationSet Name="FK__OrdenClie__id_pa__37A5467C" Association="Self.FK__OrdenClie__id_pa__37A5467C">
             <End Role="Paqueteria" EntitySet="Paqueteria" />
@@ -569,7 +520,55 @@
             <End Role="Subcategoria" EntitySet="Subcategoria" />
             <End Role="Producto" EntitySet="Producto" />
           </AssociationSet>
+          <EntitySet Name="Direccion" EntityType="GardeningFModel.Direccion" />
+          <AssociationSet Name="FK__Direccion__id_cl__2C3393D0" Association="GardeningFModel.FK__Direccion__id_cl__2C3393D0">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="Direccion" EntitySet="Direccion" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenClie__id_di__36B12243" Association="GardeningFModel.FK__OrdenClie__id_di__36B12243">
+            <End Role="Direccion" EntitySet="Direccion" />
+            <End Role="OrdenCliente" EntitySet="OrdenCliente" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Direccion">
+          <Key>
+            <PropertyRef Name="id_direccion" />
+          </Key>
+          <Property Name="id_direccion" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="calle" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="colonia" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="estado" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="municipio" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="no_exterior" Type="String" Nullable="false" MaxLength="5" FixedLength="false" Unicode="false" />
+          <Property Name="cp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Cliente" Relationship="GardeningFModel.FK__Direccion__id_cl__2C3393D0" FromRole="Direccion" ToRole="Cliente" />
+          <NavigationProperty Name="OrdenCliente" Relationship="GardeningFModel.FK__OrdenClie__id_di__36B12243" FromRole="Direccion" ToRole="OrdenCliente" />
+        </EntityType>
+        <Association Name="FK__Direccion__id_cl__2C3393D0">
+          <End Type="GardeningFModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="GardeningFModel.Direccion" Role="Direccion" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="Direccion">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenClie__id_di__36B12243">
+          <End Type="GardeningFModel.Direccion" Role="Direccion" Multiplicity="1" />
+          <End Type="GardeningFModel.OrdenCliente" Role="OrdenCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Direccion">
+              <PropertyRef Name="id_direccion" />
+            </Principal>
+            <Dependent Role="OrdenCliente">
+              <PropertyRef Name="id_dir_entrega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -605,20 +604,6 @@
               <MappingFragment StoreEntitySet="Departamento">
                 <ScalarProperty Name="id_depto" ColumnName="id_depto" />
                 <ScalarProperty Name="nombre_depto" ColumnName="nombre_depto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Direccion">
-            <EntityTypeMapping TypeName="GardeningFModel.Direccion">
-              <MappingFragment StoreEntitySet="Direccion">
-                <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
-                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
-                <ScalarProperty Name="calle" ColumnName="calle" />
-                <ScalarProperty Name="colonia" ColumnName="colonia" />
-                <ScalarProperty Name="estado" ColumnName="estado" />
-                <ScalarProperty Name="municipio" ColumnName="municipio" />
-                <ScalarProperty Name="no_exterior" ColumnName="no_exterior" />
-                <ScalarProperty Name="no_interior" ColumnName="no_interior" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -698,6 +683,20 @@
                 <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
                 <ScalarProperty Name="nombre_subcategoria" ColumnName="nombre_subcategoria" />
                 <ScalarProperty Name="descripcion_subcategoria" ColumnName="descripcion_subcategoria" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Direccion">
+            <EntityTypeMapping TypeName="GardeningFModel.Direccion">
+              <MappingFragment StoreEntitySet="Direccion">
+                <ScalarProperty Name="cp" ColumnName="cp" />
+                <ScalarProperty Name="no_exterior" ColumnName="no_exterior" />
+                <ScalarProperty Name="municipio" ColumnName="municipio" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="colonia" ColumnName="colonia" />
+                <ScalarProperty Name="calle" ColumnName="calle" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

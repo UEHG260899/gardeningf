@@ -23,11 +23,11 @@ namespace GardeningF.Models
         public int id_direccion { get; set; }
         public int id_cliente { get; set; }
         public string calle { get; set; }
-        public byte[] colonia { get; set; }
+        public string colonia { get; set; }
         public string estado { get; set; }
         public string municipio { get; set; }
         public string no_exterior { get; set; }
-        public Nullable<int> no_interior { get; set; }
+        public string cp { get; set; }
     
         public virtual Cliente Cliente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

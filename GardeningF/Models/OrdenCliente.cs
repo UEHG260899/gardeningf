@@ -32,9 +32,9 @@ namespace GardeningF.Models
         public Nullable<System.DateTime> fecha_entrega { get; set; }
     
         public virtual Cliente Cliente { get; set; }
-        public virtual Direccion Direccion { get; set; }
         public virtual Paqueteria Paqueteria { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrdenProducto> OrdenProducto { get; set; }
+        public virtual Direccion Direccion { get; set; }
     }
 }

@@ -55,7 +55,7 @@
                                     <div class="col-12">
                                         <div class="form-group">
                                             <label>Correo:</label>
-                                            @Html.EditorFor(model => model.correo_cliente, new { htmlAttributes = new { @class = "form-control", @Value = Session["email"], @disabled = "disabled" } })
+                                            @Html.EditorFor(model => model.correo_cliente, new { htmlAttributes = new { @class = "form-control", @Value = Session["email"], @readonly = "readonly" } })
                                             @Html.ValidationMessageFor(model => model.correo_cliente, "", new { @class = "text-danger" })
                                         </div>
                                     </div>

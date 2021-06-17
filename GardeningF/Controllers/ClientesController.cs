@@ -50,7 +50,7 @@ namespace GardeningF.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(string nombre_cliente, string app_cliente, string apm_cliente, string telefono_cliente, string correo_cliente, string estado, string municipio, string calle, string colonia, string cp, string noExt, string tarjeta, string cvv, string fecha, string tipoT)
         {
-            /*Cliente cliente = new Cliente();
+            Cliente cliente = new Cliente();
             int id = 0;
             if(!(db.Cliente.Max(c => (int?)c.id_cliente) == null))
             {
@@ -64,8 +64,58 @@ namespace GardeningF.Controllers
 
             if (tarjetaValida(tarjeta, tipoT, fecha, cvv))
             {
+                if (validaPago(nombre_cliente, calle, colonia, estado, cp, tarjeta, fecha, cvv))
+                {
+                    cliente.id_cliente = id;
+                    cliente.nombre_cliente = nombre_cliente;
+                    cliente.app_cliente = app_cliente;
+                    cliente.apm_cliente = apm_cliente;
+                    cliente.telefono_cliente = telefono_cliente;
+                    cliente.correo_cliente = correo_cliente;
+                    cliente.num_tdc = tarjeta;
+                    cliente.cvv = int.Parse(cvv);
+                    cliente.fecha_vencimiento = Convert.ToDateTime(fecha);
 
-            }*/
+                    Direccion dir_cliente = new Direccion();
+                    dir_cliente.estado = estado;
+                    dir_cliente.municipio = municipio;
+                    dir_cliente.cp = cp;
+                    dir_cliente.calle = calle;
+                    dir_cliente.no_exterior = noExt;
+                    dir_cliente.colonia = colonia;
+                    dir_cliente.id_cliente = cliente.id_cliente;
+
+                    db.Cliente.Add(cliente);
+                    db.Direccion.Add(dir_cliente);
+                    db.SaveChanges();
+
+                    string[] nombres = cliente.nombre_cliente.ToString().Split(' ');
+                    Session["name"] = nombres[0];
+                    Session["usr"] = cliente.nombre_cliente;
+
+                    if(Session["crearOrden"] != null)
+                    {
+                        if (Session["crearOrden"].Equals("pendiente"))
+                        {
+                            //TODO : Cambiar por el controlador 
+                            return RedirectToAction("CrearOrden", "Pago");
+                        }
+                    }
+                    else
+                    {
+                        return RedirectToAction("Index", "Home");
+                    }
+                }
+                else
+                {
+                    return RedirectToAction("Invalido");
+                }
+            }
+            else
+            {
+                return RedirectToAction("Invalido");
+            }
+
             return RedirectToAction("Index", "Home");
         }
 
@@ -124,6 +174,11 @@ namespace GardeningF.Controllers
             db.Cliente.Remove(cliente);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        public ActionResult Invalido()
+        {
+            return View();
         }
 
         protected override void Dispose(bool disposing)
@@ -227,6 +282,11 @@ namespace GardeningF.Controllers
 
             retorna = ((sum % 10) == 0);
             return retorna;
+        }
+
+        private bool validaPago(string nombre, string calle, string colonia, string estado, string cp, string tarjeta, string fecha, string cvv)
+        {
+            return true;
         }
     }
 }
