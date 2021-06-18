@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -412,6 +413,23 @@ namespace GardeningF.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        public async Task<ActionResult> Delete()
+        {
+            if (ModelState.IsValid)
+            {
+                string id = User.Identity.GetUserId();
+                if(id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                var user = await UserManager.FindByIdAsync(id);
+                var result = await UserManager.DeleteAsync(user);
+
+            }
+            return RedirectToAction("Register");
         }
 
         protected override void Dispose(bool disposing)

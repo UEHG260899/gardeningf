@@ -11,7 +11,7 @@ using System.Text;
 
 namespace GardeningF.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class ClientesController : Controller
     {
         private contextoGardeningF db = new contextoGardeningF();
@@ -190,7 +190,10 @@ namespace GardeningF.Controllers
             base.Dispose(disposing);
         }
 
-
+        public ActionResult BorrarUsuario()
+        {
+            return RedirectToAction("Delete", "Account");
+        }
         //Validación de fecha de tarjeta
         private bool tarjetaValida(string tarjeta, string tipoTarjeta, string fecha, string cvv)
         {
