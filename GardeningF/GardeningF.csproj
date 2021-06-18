@@ -196,6 +196,7 @@
     <Compile Include="Controllers\CarroController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -437,6 +438,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Carro\Index.cshtml" />
+    <Content Include="Views\Pago\Crearorden.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

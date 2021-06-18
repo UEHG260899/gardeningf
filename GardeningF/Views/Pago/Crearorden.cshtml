@@ -1,0 +1,90 @@
+﻿@using GardeningF.Models
+@{
+    ViewBag.Title = "Crearorden";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string c = Session["usr"].ToString();
+    string direccion = Session["dirCliente"].ToString();
+    string fechaOrden = Session["fechaOrden"].ToString();
+    string fpEntrega = Session["fpEntrega"].ToString();
+    int tTarjeta = Convert.ToInt32(Session["Ttarjeta"].ToString());
+    string icono = "";
+    string noTarjeta = Session["noTarjeta"].ToString();
+    switch (tTarjeta)
+    {
+        case 1:
+            icono = "fab fa-lg fa-cc-visa";
+            break;
+        case 2:
+            icono = "fab fa-lg fa-cc-mastercard";
+            break;
+        case 3:
+            icono = "fab fa-lg fa-cc-amex";
+            break;
+    }
+}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<h2>Su orden ha sido Completada!</h2>
+<div class="container">
+    <div class="col-md-6">
+        <h4 class="bg-info">Cliente: @c</h4>
+        <h4 class="bg-info">Dir Entrega: @direccion</h4>
+        <h4 class="bg-info">Fecha Orden: @fechaOrden</h4>
+        <h4 class="bg-info">Fecha de Entrega: @fpEntrega</h4>
+    </div>
+    <div class="col-md-8 bg-success">
+        <table class="table table-bordered table-responsive table-striped">
+            <thead>
+                <tr class="info">
+                    <th>Foto</th>
+                    <th>Nombre</th>
+                    <th>Precio</th>
+                    <th>Cantidad</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Item item in (List<Item>)Session["cart"])
+                {
+                    <tr class="info">
+                        <td>
+                            <img class="img-responsive" src="~/Content/Imagenes/Productos/@item.Product.imagen_producto" />
+                        </td>
+                        <td>@item.Product.nombre_producto</td>
+                        <td>@item.Product.precio_producto</td>
+                        <td>@item.Cantidad</td>
+                        <td>@(item.Product.precio_producto * item.Cantidad)</td>
+                    </tr>
+                }
+                <tr>
+                    <td align="right" colspan="6">Total</td>
+                    <td>
+                        @{
+                            List<Item> cart = (List<Item>)Session["cart"];
+                            var total = cart.Sum(item => item.Product.precio_producto * item.Cantidad);
+                        }
+                        @total
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-md-8">
+        <p>Elija su forma de pago haciendo click en el ícono</p>
+        <div class="row">
+            <div class="col-md-3 offset-md-2">
+                <a href="@Url.Action("Pagar", "Pago", new { tipoPago = "T"})" style="text-decoration: none;">
+                    <i class="@icono"></i>
+                    @noTarjeta
+                </a>
+            </div>
+            <div class="col-md-3">
+                <a href="@Url.Action("Pagar", "Pago", new { tipoPago = "P"})" style="text-decoration: none;">
+                    <i class="fab fa-lg fa-paypal"></i>
+                    Paypal
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -17,8 +17,8 @@ namespace GardeningF.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Cliente()
         {
-            this.Direccion = new HashSet<Direccion>();
             this.OrdenCliente = new HashSet<OrdenCliente>();
+            this.Direccion = new HashSet<Direccion>();
         }
     
         public int id_cliente { get; set; }
@@ -32,8 +32,8 @@ namespace GardeningF.Models
         public Nullable<System.DateTime> fecha_vencimiento { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Direccion> Direccion { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OrdenCliente> OrdenCliente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Direccion> Direccion { get; set; }
     }
 }
