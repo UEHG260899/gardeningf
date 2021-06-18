@@ -40,10 +40,16 @@ namespace GardeningF.Controllers
                              where d.id_cliente == cliente.id_cliente
                              select d).ToList().FirstOrDefault<Direccion>();
 
-            Session["dirCliente"] = direccion.calle + " " + direccion.colonia + " " + direccion.cp + " " + direccion.estado;
+            Session["calle"] = direccion.calle + " " + direccion.no_exterior;
+            Session["colonia"] = direccion.colonia;
+            Session["cp"] = direccion.cp;
+            Session["estado"] = direccion.estado;
             Session["fechaOrden"] = fechaCreacion;
             Session["fpEntrega"] = fechaProbEntrega;
             Session["usr"] = cliente.nombre_cliente+" "+cliente.app_cliente+" "+cliente.apm_cliente;
+            Session["correo"] = cliente.correo_cliente;
+            Session["telefono"] = cliente.telefono_cliente;
+
 
             if (cliente.num_tdc.StartsWith("4"))
             {

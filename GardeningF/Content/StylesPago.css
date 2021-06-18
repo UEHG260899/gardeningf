@@ -1,0 +1,65 @@
+﻿footer {
+    color: white;
+    background-color: var(--color-acento);
+}
+
+/* Administrador panel*/
+.link-admin {
+    color: var(--color-acento);
+}
+
+    .link-admin:hover {
+        color: var(--color-acento);
+    }
+
+.link-admin-agregar {
+    color: white;
+    background-color: var(--color-acento);
+    padding: 6px;
+}
+
+    .link-admin-agregar:hover {
+        color: white;
+    }
+
+.bg-card-admin {
+    background-color: var(--color-principal);
+}
+
+.section-catalogo {
+    margin-top: 7rem;
+}
+
+.bg-main {
+    background-color: var(--color-acento);
+    color: white;
+}
+
+.bg-principal {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+.bg-fondo {
+    background-color: var(--color-fondo);
+}
+
+.img-sm {
+    width: 80px;
+    height: 80px;
+}
+
+.info {
+    padding-left: 15px;
+    padding-right: 7px;
+}
+
+figcaption {
+    display: block;
+}
+
+.itemside {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
