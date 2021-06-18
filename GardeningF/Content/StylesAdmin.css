@@ -1,0 +1,138 @@
+﻿:root {
+    --color-fondo: #D5CE58;
+    --color-principal: #4A7212;
+    --color-secundario: #719F1E;
+    --color-acento: #104210;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+}
+
+.navbar-color {
+    background-color: var(--color-acento);
+}
+
+.jumbo-main {
+    background-image: url("Imagenes/Home/Index/banner1.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color: white;
+    margin: 0;
+}
+
+.boton {
+    background-color: var(--color-acento);
+    color: white;
+}
+
+.span-dividido {
+    display: block;
+}
+
+    .span-dividido:not(:last-child) {
+        margin-bottom: 2rem;
+    }
+
+.titulo-centro {
+    text-align: center;
+    margin-bottom: 5rem;
+}
+
+.imagen-card {
+    max-height: 334.83px;
+}
+
+.section-principal {
+    padding: 3.12rem;
+}
+
+
+
+
+.section-img {
+    color: white;
+    padding: 2rem;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    height: 50vh;
+    background-image: url("Imagenes/Home/Index/jumbo-selec.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat
+}
+
+footer {
+    color: white;
+    background-color: var(--color-acento);
+}
+
+/* Administrador panel*/
+.link-admin {
+    color: var(--color-acento);
+}
+
+    .link-admin:hover {
+        color: var(--color-acento);
+    }
+
+.bg-card-admin {
+    background-color: var(--color-principal);
+}
+
+.link-admin-agregar {
+    color: white;
+    background-color: var(--color-acento);
+    padding: 6px;
+}
+
+    .link-admin-agregar:hover {
+        color: white;
+    }
+
+.bg-card-admin {
+    background-color: var(--color-principal);
+}
+
+.section-catalogo {
+    margin-top: 7rem;
+}
+
+.bg-main {
+    background-color: var(--color-acento);
+    color: white;
+}
+
+.bg-principal {
+    background-color: var(--color-principal);
+    color: white;
+}
+
+.bg-fondo {
+    background-color: var(--color-fondo);
+}
+
+.img-sm {
+    width: 80px;
+    height: 80px;
+}
+
+.info {
+    padding-left: 15px;
+    padding-right: 7px;
+}
+
+figcaption {
+    display: block;
+}
+
+.itemside {
+    position: relative;
+    display: flex;
+    width: 100%;
+}
