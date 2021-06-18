@@ -265,6 +265,7 @@
     <Content Include="Content\Imagenes\DeptoCompras\agregar.jpg" />
     <Content Include="Content\Imagenes\DeptoCompras\edit.jpg" />
     <Content Include="Content\Imagenes\DeptoCompras\productos.png" />
+    <Content Include="Content\Imagenes\Home\Error\error_img.png" />
     <Content Include="Content\Imagenes\Home\Index\banner1.jpg" />
     <Content Include="Content\Imagenes\Home\Index\cuidado-card.jpg" />
     <Content Include="Content\Imagenes\Home\Index\icono-envio.png" />
