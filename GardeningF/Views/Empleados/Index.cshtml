@@ -111,8 +111,8 @@
                                     </td>
 
                                     <td>
-                                        @Html.ActionLink("Edit", "Edit", null, htmlAttributes: new { id = item.id_empleado, @class = "btn btn-info" })
-                                        @Html.ActionLink("Details", "Details", null, htmlAttributes: new { id = item.id_empleado, @class = "btn btn-danger" })
+                                        @Html.ActionLink("Edit", "Edit",   new { id = item.id_empleado},htmlAttributes:new { @class = "btn btn-info" })
+                                        @Html.ActionLink("Details", "Details",   new { id = item.id_empleado },htmlAttributes:new { @class = "btn btn-danger" })
 
                                     </td>
                                 </tr>
