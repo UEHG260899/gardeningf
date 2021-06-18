@@ -87,6 +87,40 @@
                             }
     <!--Fin tabla carrito-->
     <br />
+    <hr />
+    <!--Productos destacados-->
+    <h2 class="titulo-centro">Productos destacados</h2>
+    <div class="row">
+        @foreach (Producto prod in ViewBag.prod)
+            {
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card text-center" style="box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.3);">
+                    <img class="card-img-top imagen-card" src="~/Content/Imagenes/Productos/@prod.imagen_producto" />
+                    <div class="card-body">
+                        <hr />
+                        <h5 class="card-title">@prod.nombre_producto</h5>
+                        <p class="card-text">
+                            @prod.descripcion_producto
+                            <br />
+                            $@prod.precio_producto
+                        </p>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <!--TODO: Cambiar a redirigir a la pagina de producto-->
+                                @Html.ActionLink("Ver producto", "", "", routeValues: null, htmlAttributes: new { @class = "btn btn-sm boton", @style = "box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.5);" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <!--TODO: Cambiar para agregar al carrito-->
+                                @Html.ActionLink("Añadir al carrito", "Agregar", "Carro", routeValues: new { id = prod.id_producto }, htmlAttributes: new { @class = "btn boton", @style = "box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.5);" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!--Fin productos destacados-->
 </div>
 
 
