@@ -110,9 +110,9 @@
                                         @Html.DisplayFor(modelItem => item.rol_empleado)
                                     </td>
 
-                                    <td>
-                                        @Html.ActionLink("Edit", "Edit",   new { id = item.id_empleado},htmlAttributes:new { @class = "btn btn-info" })
-                                        @Html.ActionLink("Details", "Details",   new { id = item.id_empleado },htmlAttributes:new { @class = "btn btn-danger" })
+                                    <td width="200px">
+                                        @Html.ActionLink("Editar", "Edit",   new { id = item.id_empleado},htmlAttributes:new { @class = "btn btn-info" })
+                                        @Html.ActionLink("Eliminar", "Delete",   new { id = item.id_empleado },htmlAttributes:new { @class = "btn btn-danger" })
 
                                     </td>
                                 </tr>
