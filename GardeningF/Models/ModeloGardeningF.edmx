@@ -69,7 +69,7 @@
           <Property Name="total" Type="int" />
           <Property Name="id_cliente" Type="int" Nullable="false" />
           <Property Name="id_dir_entrega" Type="int" Nullable="false" />
-          <Property Name="id_paqueteria" Type="int" Nullable="false" />
+          <Property Name="id_paqueteria" Type="int" />
           <Property Name="num_guia" Type="int" />
           <Property Name="fecha_envio" Type="datetime" />
           <Property Name="fecha_entrega" Type="datetime" />
@@ -168,8 +168,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrdenClie__id_pa__37A5467C">
-          <End Role="Paqueteria" Type="Self.Paqueteria" Multiplicity="1" />
+        <Association Name="FK__OrdenClie__id_pa__47DBAE45">
+          <End Role="Paqueteria" Type="Self.Paqueteria" Multiplicity="0..1" />
           <End Role="OrdenCliente" Type="Self.OrdenCliente" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Paqueteria">
@@ -255,7 +255,7 @@
             <End Role="Direccion" EntitySet="Direccion" />
             <End Role="OrdenCliente" EntitySet="OrdenCliente" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrdenClie__id_pa__37A5467C" Association="Self.FK__OrdenClie__id_pa__37A5467C">
+          <AssociationSet Name="FK__OrdenClie__id_pa__47DBAE45" Association="Self.FK__OrdenClie__id_pa__47DBAE45">
             <End Role="Paqueteria" EntitySet="Paqueteria" />
             <End Role="OrdenCliente" EntitySet="OrdenCliente" />
           </AssociationSet>
@@ -302,8 +302,8 @@
           <Property Name="num_tdc" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="cvv" Type="Int32" />
           <Property Name="fecha_vencimiento" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="OrdenCliente" Relationship="Self.FK__OrdenClie__id_cl__35BCFE0A" FromRole="Cliente" ToRole="OrdenCliente" />
           <NavigationProperty Name="Direccion" Relationship="GardeningFModel.FK__Direccion__id_cl__2C3393D0" FromRole="Cliente" ToRole="Direccion" />
+          <NavigationProperty Name="OrdenCliente" Relationship="GardeningFModel.FK__OrdenClie__id_cl__35BCFE0A" FromRole="Cliente" ToRole="OrdenCliente" />
         </EntityType>
         <EntityType Name="Departamento">
           <Key>
@@ -326,25 +326,6 @@
           <Property Name="id_depto" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Departamento" Relationship="Self.FK__Empleado__id_dep__2F10007B" FromRole="Empleado" ToRole="Departamento" />
         </EntityType>
-        <EntityType Name="OrdenCliente">
-          <Key>
-            <PropertyRef Name="id_orden" />
-          </Key>
-          <Property Name="id_orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
-          <Property Name="num_confirmacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="total" Type="Int32" />
-          <Property Name="id_cliente" Type="Int32" Nullable="false" />
-          <Property Name="id_dir_entrega" Type="Int32" Nullable="false" />
-          <Property Name="id_paqueteria" Type="Int32" Nullable="false" />
-          <Property Name="num_guia" Type="Int32" />
-          <Property Name="fecha_envio" Type="DateTime" Precision="3" />
-          <Property Name="fecha_entrega" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Cliente" Relationship="Self.FK__OrdenClie__id_cl__35BCFE0A" FromRole="OrdenCliente" ToRole="Cliente" />
-          <NavigationProperty Name="Paqueteria" Relationship="Self.FK__OrdenClie__id_pa__37A5467C" FromRole="OrdenCliente" ToRole="Paqueteria" />
-          <NavigationProperty Name="OrdenProducto" Relationship="Self.FK__OrdenProd__id_or__3A81B327" FromRole="OrdenCliente" ToRole="OrdenProducto" />
-          <NavigationProperty Name="Direccion" Relationship="GardeningFModel.FK__OrdenClie__id_di__36B12243" FromRole="OrdenCliente" ToRole="Direccion" />
-        </EntityType>
         <EntityType Name="OrdenProducto">
           <Key>
             <PropertyRef Name="id_orden_p" />
@@ -353,8 +334,8 @@
           <Property Name="id_producto" Type="Int32" Nullable="false" />
           <Property Name="cantidad" Type="Int32" Nullable="false" />
           <Property Name="id_orden" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="OrdenCliente" Relationship="Self.FK__OrdenProd__id_or__3A81B327" FromRole="OrdenProducto" ToRole="OrdenCliente" />
           <NavigationProperty Name="Producto" Relationship="Self.FK__OrdenProd__id_pr__3C69FB99" FromRole="OrdenProducto" ToRole="Producto" />
+          <NavigationProperty Name="OrdenCliente" Relationship="GardeningFModel.FK__OrdenProd__id_or__3A81B327" FromRole="OrdenProducto" ToRole="OrdenCliente" />
         </EntityType>
         <EntityType Name="Paqueteria">
           <Key>
@@ -368,7 +349,7 @@
           <Property Name="direccion_paqueteria" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="contacto_paqueteria" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tel_contacto" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="OrdenCliente" Relationship="Self.FK__OrdenClie__id_pa__37A5467C" FromRole="Paqueteria" ToRole="OrdenCliente" />
+          <NavigationProperty Name="OrdenCliente" Relationship="GardeningFModel.FK__OrdenClie__id_pa__47DBAE45" FromRole="Paqueteria" ToRole="OrdenCliente" />
         </EntityType>
         <EntityType Name="Producto">
           <Key>
@@ -410,18 +391,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrdenClie__id_cl__35BCFE0A">
-          <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
-          <End Role="OrdenCliente" Type="Self.OrdenCliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cliente">
-              <PropertyRef Name="id_cliente" />
-            </Principal>
-            <Dependent Role="OrdenCliente">
-              <PropertyRef Name="id_cliente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Empleado__id_dep__2F10007B">
           <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
           <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
@@ -431,30 +400,6 @@
             </Principal>
             <Dependent Role="Empleado">
               <PropertyRef Name="id_depto" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OrdenClie__id_pa__37A5467C">
-          <End Role="Paqueteria" Type="Self.Paqueteria" Multiplicity="1" />
-          <End Role="OrdenCliente" Type="Self.OrdenCliente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Paqueteria">
-              <PropertyRef Name="id_paqueteria" />
-            </Principal>
-            <Dependent Role="OrdenCliente">
-              <PropertyRef Name="id_paqueteria" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__OrdenProd__id_or__3A81B327">
-          <End Role="OrdenCliente" Type="Self.OrdenCliente" Multiplicity="1" />
-          <End Role="OrdenProducto" Type="Self.OrdenProducto" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="OrdenCliente">
-              <PropertyRef Name="id_orden" />
-            </Principal>
-            <Dependent Role="OrdenProducto">
-              <PropertyRef Name="id_orden" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -487,7 +432,6 @@
           <EntitySet Name="Cliente" EntityType="Self.Cliente" />
           <EntitySet Name="Departamento" EntityType="Self.Departamento" />
           <EntitySet Name="Empleado" EntityType="Self.Empleado" />
-          <EntitySet Name="OrdenCliente" EntityType="Self.OrdenCliente" />
           <EntitySet Name="OrdenProducto" EntityType="Self.OrdenProducto" />
           <EntitySet Name="Paqueteria" EntityType="Self.Paqueteria" />
           <EntitySet Name="Producto" EntityType="Self.Producto" />
@@ -496,21 +440,9 @@
             <End Role="Categoria" EntitySet="Categoria" />
             <End Role="Subcategoria" EntitySet="Subcategoria" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrdenClie__id_cl__35BCFE0A" Association="Self.FK__OrdenClie__id_cl__35BCFE0A">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="OrdenCliente" EntitySet="OrdenCliente" />
-          </AssociationSet>
           <AssociationSet Name="FK__Empleado__id_dep__2F10007B" Association="Self.FK__Empleado__id_dep__2F10007B">
             <End Role="Departamento" EntitySet="Departamento" />
             <End Role="Empleado" EntitySet="Empleado" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrdenClie__id_pa__37A5467C" Association="Self.FK__OrdenClie__id_pa__37A5467C">
-            <End Role="Paqueteria" EntitySet="Paqueteria" />
-            <End Role="OrdenCliente" EntitySet="OrdenCliente" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrdenProd__id_or__3A81B327" Association="Self.FK__OrdenProd__id_or__3A81B327">
-            <End Role="OrdenCliente" EntitySet="OrdenCliente" />
-            <End Role="OrdenProducto" EntitySet="OrdenProducto" />
           </AssociationSet>
           <AssociationSet Name="FK__OrdenProd__id_pr__3C69FB99" Association="Self.FK__OrdenProd__id_pr__3C69FB99">
             <End Role="Producto" EntitySet="Producto" />
@@ -525,9 +457,22 @@
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Direccion" EntitySet="Direccion" />
           </AssociationSet>
+          <EntitySet Name="OrdenCliente" EntityType="GardeningFModel.OrdenCliente" />
+          <AssociationSet Name="FK__OrdenClie__id_cl__35BCFE0A" Association="GardeningFModel.FK__OrdenClie__id_cl__35BCFE0A">
+            <End Role="Cliente" EntitySet="Cliente" />
+            <End Role="OrdenCliente" EntitySet="OrdenCliente" />
+          </AssociationSet>
           <AssociationSet Name="FK__OrdenClie__id_di__36B12243" Association="GardeningFModel.FK__OrdenClie__id_di__36B12243">
             <End Role="Direccion" EntitySet="Direccion" />
             <End Role="OrdenCliente" EntitySet="OrdenCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenClie__id_pa__47DBAE45" Association="GardeningFModel.FK__OrdenClie__id_pa__47DBAE45">
+            <End Role="Paqueteria" EntitySet="Paqueteria" />
+            <End Role="OrdenCliente" EntitySet="OrdenCliente" />
+          </AssociationSet>
+          <AssociationSet Name="FK__OrdenProd__id_or__3A81B327" Association="GardeningFModel.FK__OrdenProd__id_or__3A81B327">
+            <End Role="OrdenCliente" EntitySet="OrdenCliente" />
+            <End Role="OrdenProducto" EntitySet="OrdenProducto" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Direccion">
@@ -557,6 +502,37 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="OrdenCliente">
+          <Key>
+            <PropertyRef Name="id_orden" />
+          </Key>
+          <Property Name="id_orden" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fecha_creacion" Type="DateTime" Precision="3" />
+          <Property Name="num_confirmacion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="total" Type="Int32" />
+          <Property Name="id_cliente" Type="Int32" Nullable="false" />
+          <Property Name="id_dir_entrega" Type="Int32" Nullable="false" />
+          <Property Name="id_paqueteria" Type="Int32" />
+          <Property Name="num_guia" Type="Int32" />
+          <Property Name="fecha_envio" Type="DateTime" Precision="3" />
+          <Property Name="fecha_entrega" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Cliente" Relationship="GardeningFModel.FK__OrdenClie__id_cl__35BCFE0A" FromRole="OrdenCliente" ToRole="Cliente" />
+          <NavigationProperty Name="Direccion" Relationship="GardeningFModel.FK__OrdenClie__id_di__36B12243" FromRole="OrdenCliente" ToRole="Direccion" />
+          <NavigationProperty Name="Paqueteria" Relationship="GardeningFModel.FK__OrdenClie__id_pa__47DBAE45" FromRole="OrdenCliente" ToRole="Paqueteria" />
+          <NavigationProperty Name="OrdenProducto" Relationship="GardeningFModel.FK__OrdenProd__id_or__3A81B327" FromRole="OrdenCliente" ToRole="OrdenProducto" />
+        </EntityType>
+        <Association Name="FK__OrdenClie__id_cl__35BCFE0A">
+          <End Type="GardeningFModel.Cliente" Role="Cliente" Multiplicity="1" />
+          <End Type="GardeningFModel.OrdenCliente" Role="OrdenCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cliente">
+              <PropertyRef Name="id_cliente" />
+            </Principal>
+            <Dependent Role="OrdenCliente">
+              <PropertyRef Name="id_cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__OrdenClie__id_di__36B12243">
           <End Type="GardeningFModel.Direccion" Role="Direccion" Multiplicity="1" />
           <End Type="GardeningFModel.OrdenCliente" Role="OrdenCliente" Multiplicity="*" />
@@ -566,6 +542,30 @@
             </Principal>
             <Dependent Role="OrdenCliente">
               <PropertyRef Name="id_dir_entrega" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenClie__id_pa__47DBAE45">
+          <End Type="GardeningFModel.Paqueteria" Role="Paqueteria" Multiplicity="0..1" />
+          <End Type="GardeningFModel.OrdenCliente" Role="OrdenCliente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Paqueteria">
+              <PropertyRef Name="id_paqueteria" />
+            </Principal>
+            <Dependent Role="OrdenCliente">
+              <PropertyRef Name="id_paqueteria" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__OrdenProd__id_or__3A81B327">
+          <End Type="GardeningFModel.OrdenCliente" Role="OrdenCliente" Multiplicity="1" />
+          <End Type="GardeningFModel.OrdenProducto" Role="OrdenProducto" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrdenCliente">
+              <PropertyRef Name="id_orden" />
+            </Principal>
+            <Dependent Role="OrdenProducto">
+              <PropertyRef Name="id_orden" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -617,22 +617,6 @@
                 <ScalarProperty Name="email_empleado" ColumnName="email_empleado" />
                 <ScalarProperty Name="rol_empleado" ColumnName="rol_empleado" />
                 <ScalarProperty Name="id_depto" ColumnName="id_depto" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrdenCliente">
-            <EntityTypeMapping TypeName="GardeningFModel.OrdenCliente">
-              <MappingFragment StoreEntitySet="OrdenCliente">
-                <ScalarProperty Name="id_orden" ColumnName="id_orden" />
-                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
-                <ScalarProperty Name="num_confirmacion" ColumnName="num_confirmacion" />
-                <ScalarProperty Name="total" ColumnName="total" />
-                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
-                <ScalarProperty Name="id_dir_entrega" ColumnName="id_dir_entrega" />
-                <ScalarProperty Name="id_paqueteria" ColumnName="id_paqueteria" />
-                <ScalarProperty Name="num_guia" ColumnName="num_guia" />
-                <ScalarProperty Name="fecha_envio" ColumnName="fecha_envio" />
-                <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -697,6 +681,22 @@
                 <ScalarProperty Name="calle" ColumnName="calle" />
                 <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
                 <ScalarProperty Name="id_direccion" ColumnName="id_direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrdenCliente">
+            <EntityTypeMapping TypeName="GardeningFModel.OrdenCliente">
+              <MappingFragment StoreEntitySet="OrdenCliente">
+                <ScalarProperty Name="fecha_entrega" ColumnName="fecha_entrega" />
+                <ScalarProperty Name="fecha_envio" ColumnName="fecha_envio" />
+                <ScalarProperty Name="num_guia" ColumnName="num_guia" />
+                <ScalarProperty Name="id_paqueteria" ColumnName="id_paqueteria" />
+                <ScalarProperty Name="id_dir_entrega" ColumnName="id_dir_entrega" />
+                <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="total" ColumnName="total" />
+                <ScalarProperty Name="num_confirmacion" ColumnName="num_confirmacion" />
+                <ScalarProperty Name="fecha_creacion" ColumnName="fecha_creacion" />
+                <ScalarProperty Name="id_orden" ColumnName="id_orden" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
