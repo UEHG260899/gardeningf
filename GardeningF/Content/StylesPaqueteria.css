@@ -1,0 +1,17 @@
+﻿.menuPaqueterias {
+    color: white;
+}
+
+.btnGuardar {
+    background-color: #719F1E;
+    color: white;
+    width: 100%;
+}
+
+.card-header {
+    background-color: #719F1E;
+    color: white;
+}
+
+.card {
+    border-color: #719F1E;
