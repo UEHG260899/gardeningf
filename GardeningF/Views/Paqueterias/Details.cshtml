@@ -1,0 +1,74 @@
+﻿@model GardeningF.Models.Paqueteria
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Paqueteria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_paqueteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_paqueteria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rfc_paqueteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rfc_paqueteria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.telefono_paqueteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.telefono_paqueteria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.web_paqueteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.web_paqueteria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.direccion_paqueteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.direccion_paqueteria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.contacto_paqueteria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.contacto_paqueteria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.tel_contacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tel_contacto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_paqueteria }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
