@@ -16,7 +16,7 @@
         <br>
         <br>
         <br>
-        <div class="card">
+        <div class="card" style="box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1);">
             <div class="card-header">Nueva Paquetería</div>
             <div class="card-body">
                 <div class="form-horizontal">
@@ -76,7 +76,7 @@
                         </div>
                         <div class="col-md-4 offset-md-2">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.contacto_paqueteria, "Contácto", htmlAttributes: new { @class = "control-label col-md-12" })
+                                @Html.LabelFor(model => model.contacto_paqueteria, "Contacto", htmlAttributes: new { @class = "control-label col-md-12" })
                                 <div class="col-md-12">
                                     @Html.EditorFor(model => model.contacto_paqueteria, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.contacto_paqueteria, "", new { @class = "text-danger" })
@@ -117,7 +117,7 @@
     </div>
     <div class="row">
         <div class="col-md-2 offset-md-1">
-            @Html.ActionLink("Regresar a la lista", "Index", "Envios", new { @class = "btn btnGuardar" })
+            @Html.ActionLink("Regresar a la lista", "Index", "Paqueterias", new { @class = "btn btnGuardar" })
         </div>
     </div>
 

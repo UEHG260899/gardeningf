@@ -35,35 +35,74 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.nombre_paqueteria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.rfc_paqueteria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.telefono_paqueteria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.web_paqueteria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.direccion_paqueteria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.contacto_paqueteria)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.tel_contacto)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id_paqueteria }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id_paqueteria }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id_paqueteria })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.nombre_paqueteria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.rfc_paqueteria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.telefono_paqueteria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.web_paqueteria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.direccion_paqueteria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.contacto_paqueteria)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.tel_contacto)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.id_paqueteria }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id_paqueteria }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.id_paqueteria })
+            </td>
+        </tr>
+    }
 
 </table>
+
+
+
+@section scripts{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tbEnvios').DataTable({
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ ",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+                pageLength: 5,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
+                "scrollX": true,
+                "scrollY": true
+            });
+        });
+    </script>
+}
