@@ -54,11 +54,11 @@
                                     <div class="col-md-6">
                                         <figure class="itemside  mb-4">
                                             <div class="aside">
-                                                <img class="img-responsive" src="~/Content/Imagenes/Productos/@item.Product.imagen_producto" />
+                                                <img class="img-responsive img-sm" src="~/Content/Imagenes/Productos/@item.Product.imagen_producto" />
                                             </div>
                                             <figcaption class="info">
                                                 <p>@item.Product.nombre_producto </p>
-                                                <span class="text-muted">@item.Cantidad x = $@(item.Product.precio_producto * item.Cantidad)</span>
+                                                <span class="text-muted">@item.Cantidad x $@item.Product.precio_producto = $@(item.Product.precio_producto * item.Cantidad)</span>
                                             </figcaption>
                                         </figure>
                                     </div> <!-- col.// -->
@@ -193,9 +193,7 @@
                     <!-- accordion end.// -->
                     @{
                         List<Item> cart = (List<Item>)Session["cart"];
-                        var total = Convert.ToDouble(cart.Sum(item => item.Product.precio_producto * item.Cantidad));
-                        double iva = Convert.ToDouble(cart.Sum(item => item.Product.precio_producto * item.Cantidad)) * 0.16;
-                        
+                        var total = Convert.ToDouble(cart.Sum(item => item.Product.precio_producto * item.Cantidad));                        
                     }
                 </main> <!-- col.// -->
                 <aside class="col-md-4">
@@ -204,18 +202,6 @@
                             <dl class="dlist-align">
                                 <dt>Precio Total:</dt>
                                 <dd class="text-right">$@total</dd>
-                            </dl>
-                            <dl class="dlist-align">
-                                <dt>IVA:</dt>
-                                <dd class="text-right">$@iva</dd>
-                            </dl>
-                            <dl class="dlist-align">
-                                <dt>Total:</dt>
-                                <dd class="text-right text-dark b">
-                                    <strong>
-                                        $@(total+iva)
-                                    </strong>
-                                </dd>
                             </dl>
                             <hr>
                             <p class="text-center mb-3">

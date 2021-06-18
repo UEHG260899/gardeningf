@@ -264,7 +264,6 @@
     <Content Include="Content\Imagenes\Pago\payment-card.png" />
     <Content Include="Content\Imagenes\Pago\payment-paypal.png" />
     <Content Include="Content\Imagenes\Pago\payments.png" />
-    <Content Include="Content\loginGardening.jpg" />
     <Content Include="Content\StylesCarro.css" />
     <Content Include="Content\StylesPago.css" />
     <Content Include="favicon.ico" />
