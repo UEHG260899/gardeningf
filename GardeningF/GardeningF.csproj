@@ -444,6 +444,7 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Carro\Index.cshtml" />
     <Content Include="Views\Pago\Crearorden.cshtml" />
+    <Content Include="Views\Pago\pagoAceptado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

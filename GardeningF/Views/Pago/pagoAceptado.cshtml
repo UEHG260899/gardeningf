@@ -1,0 +1,24 @@
+﻿
+@{
+    ViewBag.Title = "pagoAceptado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-header">
+            <h2>Gracias por su compra, su pago ha sido procesado, puede ver su pedido haciendo click en su nombre</h2>
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+            {
+                <div class="form-group">
+                    <div class="offset-md-2 col-md-10">
+                        <input type="submit" value="Continuar" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
