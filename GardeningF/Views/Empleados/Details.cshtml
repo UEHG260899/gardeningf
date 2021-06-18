@@ -1,0 +1,67 @@
+﻿@model GardeningF.Models.Empleado
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Empleado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.app_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.app_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apm_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apm_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rol_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rol_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Departamento.nombre_depto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Departamento.nombre_depto)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_empleado }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

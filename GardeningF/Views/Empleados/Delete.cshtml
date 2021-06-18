@@ -1,0 +1,73 @@
+﻿@model GardeningF.Models.Empleado
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Empleado</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.app_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.app_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.apm_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.apm_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.email_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.email_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.rol_empleado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.rol_empleado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Departamento.nombre_depto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Departamento.nombre_depto)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>
