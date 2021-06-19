@@ -79,21 +79,10 @@ namespace GardeningF.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    if (Session["crearOrden"] != null)
-                    {
-                         if (Session["crearOrden"].Equals("pendiente"))
-                         {
-                            Session["crearOrden"] = "";
-                            return RedirectToAction("CrearOrden", "Pago");
-                         }
-                    }
-                    else
-                    {
-                        string correo = model.Email;
-                        return RedirectToAction("Index", "Usuario", new { email = correo});
-                    }
 
-                    return RedirectToLocal(returnUrl);
+                    string correo = model.Email;
+                    return RedirectToAction("Index", "Usuario", new { email = correo});
+             
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
