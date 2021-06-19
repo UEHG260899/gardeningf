@@ -168,7 +168,7 @@ namespace GardeningF.Controllers
             db.SaveChanges();
             Session["cart"] = null;
             Session["nConfirma"] = null;
-            Session["itemTotal"] = 0;
+            Session["itemCarro"] = 0;
             return View();
         }
 

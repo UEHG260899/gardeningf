@@ -1,0 +1,214 @@
+﻿@using GardeningF.Models
+@{
+    ViewBag.Title = "verPedido";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/StylesPago.css")
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<div class="container mt-5">
+    <div class="card" style="box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.3);">
+        <div class="card-header bg-main">
+            Historial de Pedidos
+        </div>
+        <div class="card-body">
+            <table class="table table-striped" id="pedidos" width="100%">
+                <thead>
+                    <tr style="text-align:center">
+                        <th>Id pedido</th>
+                        <th>Número productos</th>
+                        <th>Fecha creación</th>
+                        <th>Fecha entrega</th>
+                        <th>Estatus</th>
+                        <th>Total</th>
+                        <th>Ver</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        foreach (PedidoCliente pedido in (List<PedidoCliente>)Session["misPedidos"])
+                        {
+                            int idOrd = pedido.Orden.id_orden;
+                            int cantidad = 0;
+                            var color = "";
+                            if (pedido.Orden.id_orden == ViewBag.idp    )
+                            {
+                                color = "background-color:#7baaab";
+
+                            }
+                             <tr style="text-align:center;@color">  
+                                    
+                            
+                                <td>@pedido.Orden.id_orden</td>
+                                @foreach (ItemPedidos item in (List<ItemPedidos>)Session["Pedido"])
+                                {
+                                    if (item.idOrd == idOrd)
+                                    {
+                                        cantidad = cantidad + @item.Cantidad;
+                                    }
+                                }
+                                <td>@cantidad</td>
+                                <td>@pedido.Fecha</td>
+
+                                @if (@pedido.Orden.fecha_entrega.HasValue)
+                                {
+                                    <td>@pedido.Orden.fecha_entrega</td>
+                                }
+                                else
+                                {
+                                    <td>--/--/--</td>
+                                }
+
+                                <td>@pedido.Status</td>
+                                <td>$@pedido.Total</td>
+                                <td>
+                                    @using (Html.BeginForm("verPedido", "Pedidos", FormMethod.Post))
+                                    {
+                                        <input type="number" class="form-control" id="idP" name="idP" value="@pedido.Orden.id_orden" hidden>
+                                        <button type="submit" class="btn btn-sm btn-success">Ver</button>
+                                    }    
+                            </td>
+
+
+
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="card mt-5" style="box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.3);">
+        <div class="card-header bg-main">
+            Datos pedido
+        </div>
+        <div class="card-body">
+            <main class="row">
+                <main class="col-md-12">
+
+                    <article class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Resumen de compra</h4>
+                            <div class="row">
+                                @foreach (ItemPedidos item in (List<ItemPedidos>)Session["Pedido"])
+                                {
+                                    if (item.idOrd == ViewBag.idp)
+                                    {
+                                        <div class="col-md-4">
+                                            <figure class="itemside  mb-4">
+                                                <div class="aside">
+                                                    <img class="img-responsive img-sm" src="~/Content/Imagenes/Productos/@item.Product.imagen_producto" />
+                                                </div>
+                                                <figcaption class="info">
+                                                    <p>@item.Product.nombre_producto </p>
+                                                    <span class="text-muted">@item.Cantidad x $@item.Product.precio_producto = $@(item.Product.precio_producto * item.Cantidad)</span>
+                                                </figcaption>
+                                            </figure>
+                                        </div> <!-- col.// -->
+                                    }
+                                }
+                            </div> <!-- row.// -->
+                        </div> <!-- card-body.// -->
+                    </article> <!-- card.// -->
+                </main>
+            </main>
+            <article class="card mb-12">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Informacion de entrega</h4>
+                    <form action="">
+                        @{ 
+                            foreach (PedidoCliente pedido in (List<PedidoCliente>)Session["misPedidos"]) {
+                                {
+                                    if (pedido.Orden.id_orden == ViewBag.idp)
+                                    {
+                        <div class="row">
+                            <div class="form-group col-sm-5">
+                                <label>Calle</label>
+                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Orden.Direccion.calle" disabled>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label>Colonia</label>
+                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Orden.Direccion.colonia" disabled>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label>Estado</label>
+                                <select name="" class="form-control col-md-12" disabled>
+                                    <option value="">@pedido.Orden.Direccion.estado</option>
+
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-2">
+                                <label>Código postal</label>
+                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Orden.Direccion.cp" disabled>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label>Fecha de orden</label>
+                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Fecha" disabled>
+                            </div>
+                            <div class="form-group col-sm-3">
+                                <label>Fecha de entrega</label>
+                                @if (@pedido.Orden.fecha_entrega.HasValue)
+                                {
+                                    <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Orden.fecha_entrega" disabled>
+                                }
+                                else
+                                {
+                                    <input type="text" placeholder="Type here" class="form-control col-md-12" value="--/--/--" disabled>
+                                }
+                            </div>
+
+                        </div> <!-- row.// -->
+                                        }
+                                    }
+                                }
+                            }
+                    </form>
+                </div> <!-- card-body.// -->
+            </article> <!-- card.// -->
+        </div>
+    </div>
+    <div class="row mt-4 text-right" >
+        <div class="col-md-12">
+            <a class="btn btn-warning" href="@Url.Action("Index", "Home")">Ir a Tienda</a>
+        </div>
+    </div>
+</div>
+
+<br />
+
+
+@section scripts{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#pedidos').DataTable({
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ ",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+                pageLength: 5,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
+                "scrollX": true,
+                "scrollY": true
+            });
+        });
+    </script>
+}
