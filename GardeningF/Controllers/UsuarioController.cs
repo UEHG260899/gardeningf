@@ -41,6 +41,7 @@ namespace GardeningF.Controllers
                         var cliente = query_cliente.FirstOrDefault<Cliente>();
                         string[] nombre = cliente.nombre_cliente.ToString().Split(' ');
                         Session["name"] = nombre[0];
+                        Session["idCliente"] = cliente.id_cliente;
                         Session["email"] = correo;
                         rol = "cliente";
                     }

@@ -127,6 +127,10 @@ namespace GardeningF.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Cliente cliente = db.Cliente.Find(id);
+            var direccion = (from dir in db.Direccion
+                         where dir.id_cliente == id
+                         select dir).ToList();
+            ViewBag.direccion = direccion;
             if (cliente == null)
             {
                 return HttpNotFound();
