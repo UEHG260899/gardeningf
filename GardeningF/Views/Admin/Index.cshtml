@@ -131,16 +131,13 @@
                     @foreach (Producto producto in ViewBag.productos)
                     {
                         <tr>
-                            <td>@producto.imagen_producto</td>
+                            <td><img width="80" height="80" src="~/Content/Imagenes/Productos/@producto.imagen_producto" /></td>
                             <td>@producto.nombre_producto</td>
                             <td>@producto.descripcion_producto</td>
 
                             <td>@producto.Subcategoria.nombre_subcategoria</td>
                             <td>@producto.cantidad_existencia</td>
                             <td>@producto.precio_producto</td>
-
-
-
                         </tr>
                     }
 
