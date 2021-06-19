@@ -1,8 +1,9 @@
 ﻿@using GardeningF.Models
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "verPedido";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+@Styles.Render("~/Content/StylesPago.css")
 <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
 <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
 <div class="container mt-5">
@@ -29,7 +30,15 @@
                         {
                             int idOrd = pedido.Orden.id_orden;
                             int cantidad = 0;
-                            <tr style="text-align:center;">
+                            var color = "";
+                            if (pedido.Orden.id_orden == ViewBag.idp    )
+                            {
+                                color = "background-color:#7baaab";
+
+                            }
+                             <tr style="text-align:center;@color">  
+                                    
+                            
                                 <td>@pedido.Orden.id_orden</td>
                                 @foreach (ItemPedidos item in (List<ItemPedidos>)Session["Pedido"])
                                 {
@@ -57,8 +66,10 @@
                                     {
                                         <input type="number" class="form-control" id="idP" name="idP" value="@pedido.Orden.id_orden" hidden>
                                         <button type="submit" class="btn btn-sm btn-success">Ver</button>
-                                    }                                   
-                                </td>
+                                    }    
+                            </td>
+
+
 
                             </tr>
                         }
@@ -81,19 +92,19 @@
                             <div class="row">
                                 @foreach (ItemPedidos item in (List<ItemPedidos>)Session["Pedido"])
                                 {
-                                    if (item.idOrd == 5)
+                                    if (item.idOrd == ViewBag.idp)
                                     {
-                                    <div class="col-md-6">
-                                        <figure class="itemside  mb-4">
-                                            <div class="aside">
-                                                <img class="img-responsive img-sm" src="~/Content/Imagenes/Productos/@item.Product.imagen_producto" />
-                                            </div>
-                                            <figcaption class="info">
-                                                <p>@item.Product.nombre_producto </p>
-                                                <span class="text-muted">@item.Cantidad x $@item.Product.precio_producto = $@(item.Product.precio_producto * item.Cantidad)</span>
-                                            </figcaption>
-                                        </figure>
-                                    </div> <!-- col.// -->
+                                        <div class="col-md-4">
+                                            <figure class="itemside  mb-4">
+                                                <div class="aside">
+                                                    <img class="img-responsive img-sm" src="~/Content/Imagenes/Productos/@item.Product.imagen_producto" />
+                                                </div>
+                                                <figcaption class="info">
+                                                    <p>@item.Product.nombre_producto </p>
+                                                    <span class="text-muted">@item.Cantidad x $@item.Product.precio_producto = $@(item.Product.precio_producto * item.Cantidad)</span>
+                                                </figcaption>
+                                            </figure>
+                                        </div> <!-- col.// -->
                                     }
                                 }
                             </div> <!-- row.// -->
@@ -105,53 +116,66 @@
                 <div class="card-body">
                     <h4 class="card-title mb-4">Informacion de entrega</h4>
                     <form action="">
-
-
+                        @{ 
+                            foreach (PedidoCliente pedido in (List<PedidoCliente>)Session["misPedidos"]) {
+                                {
+                                    if (pedido.Orden.id_orden == ViewBag.idp)
+                                    {
                         <div class="row">
                             <div class="form-group col-sm-5">
                                 <label>Calle</label>
-                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="" disabled>
+                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Orden.Direccion.calle" disabled>
                             </div>
                             <div class="form-group col-sm-4">
                                 <label>Colonia</label>
-                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="" disabled>
+                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Orden.Direccion.colonia" disabled>
                             </div>
                             <div class="form-group col-sm-3">
                                 <label>Estado</label>
                                 <select name="" class="form-control col-md-12" disabled>
-                                    <option value=""></option>
+                                    <option value="">@pedido.Orden.Direccion.estado</option>
 
                                 </select>
                             </div>
                             <div class="form-group col-sm-2">
                                 <label>Código postal</label>
-                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="" disabled>
+                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Orden.Direccion.cp" disabled>
                             </div>
-                            <div class="form-group col-sm-4">
+                            <div class="form-group col-sm-3">
                                 <label>Fecha de orden</label>
-                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="" disabled>
+                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Fecha" disabled>
                             </div>
-                            <div class="form-group col-sm-4">
+                            <div class="form-group col-sm-3">
                                 <label>Fecha de entrega</label>
-                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="" disabled>
+                                @if (@pedido.Orden.fecha_entrega.HasValue)
+                                {
+                                    <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Orden.fecha_entrega" disabled>
+                                }
+                                else
+                                {
+                                    <input type="text" placeholder="Type here" class="form-control col-md-12" value="--/--/--" disabled>
+                                }
                             </div>
 
                         </div> <!-- row.// -->
+                                        }
+                                    }
+                                }
+                            }
                     </form>
                 </div> <!-- card-body.// -->
             </article> <!-- card.// -->
         </div>
     </div>
+    <div class="row mt-4 text-right" >
+        <div class="col-md-12">
+            <a class="btn btn-warning" href="@Url.Action("Index", "Home")">Ir a Tienda</a>
+        </div>
+    </div>
 </div>
-@{ 
-<div id="prueba">
 
-</div>
-}
 <br />
-<a class="btn btn-warning" href="@Url.Action("Index", "Home")">Ir a Tienda</a>
 
-</div>
 
 @section scripts{
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
