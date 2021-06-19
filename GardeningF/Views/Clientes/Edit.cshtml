@@ -4,6 +4,7 @@
 @{
     ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_Layout.cshtml";
+    int id_direccion = 0;
     string estado = "";
     string municipio = "";
     string calle = "";
@@ -12,6 +13,7 @@
     string noExt = "";
     foreach(Direccion dir in ViewBag.direccion)
     {
+        id_direccion = dir.id_direccion;
         estado = dir.estado;
         municipio = dir.municipio;
         calle = dir.calle;
@@ -25,9 +27,10 @@
 <section class="container">
     <h2>Vamos a terminar de registrar sus datos!</h2>
 
-    @using (Html.BeginForm("Create", "Clientes", FormMethod.Post))
+    @using (Html.BeginForm("Edit", "Clientes", FormMethod.Post))
     {
         @Html.AntiForgeryToken()
+        @Html.EditorFor(model => model.id_cliente, new { htmlAttributes = new { @class = "form-control", @hidden = "hidden"} })
         <div class="row">
             @Html.ValidationSummary(true, "", new { @class = "text-danger" })
             <div class="col-12">
@@ -85,6 +88,7 @@
                             <h4 class="card-header">Dirección</h4>
                             <div class="card-body">
                                 <div class="row">
+                                    <input id="id_direccion" name="id_direccion" value="@id_direccion" hidden/>
                                     <div class="col-sm-12 col-md-6 col-lg-6">
                                         <div class="form-group">
                                             <label>Estado:</label>
