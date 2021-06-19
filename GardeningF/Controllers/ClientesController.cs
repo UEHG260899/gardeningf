@@ -227,6 +227,11 @@ namespace GardeningF.Controllers
             return View();
         }
 
+        public ActionResult IrIndex()
+        {
+            return RedirectToAction("Index", "Home");
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
