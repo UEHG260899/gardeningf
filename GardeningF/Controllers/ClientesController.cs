@@ -127,6 +127,10 @@ namespace GardeningF.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Cliente cliente = db.Cliente.Find(id);
+            var direccion = (from dir in db.Direccion
+                         where dir.id_cliente == id
+                         select dir).ToList();
+            ViewBag.direccion = direccion;
             if (cliente == null)
             {
                 return HttpNotFound();
@@ -139,17 +143,54 @@ namespace GardeningF.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_cliente,nombre_cliente,app_cliente,apm_cliente,correo_cliente,telefono_cliente,num_tdc,cvv,fecha_vencimiento")] Cliente cliente)
+        //public ActionResult Edit([Bind(Include = "id_cliente,nombre_cliente,app_cliente,apm_cliente,correo_cliente,telefono_cliente,num_tdc,cvv,fecha_vencimiento")] Cliente cliente)
+        public ActionResult Edit(string id_cliente,string nombre_cliente, string app_cliente, string apm_cliente, string telefono_cliente, string correo_cliente,string id_direccion, string estado, string municipio, string calle, string colonia, string cp, string noExt, string num_tdc, string cvv, string fecha, string tipoT)
         {
-            if (ModelState.IsValid)
+
+            if (tarjetaValida(num_tdc, tipoT, fecha, cvv))
             {
+                Cliente cliente = new Cliente();
+                cliente.id_cliente = int.Parse(id_cliente);
+                cliente.nombre_cliente = nombre_cliente;
+                cliente.app_cliente = app_cliente;
+                cliente.apm_cliente = apm_cliente;
+                cliente.telefono_cliente = telefono_cliente;
+                cliente.correo_cliente = correo_cliente;
+                cliente.num_tdc = num_tdc;
+                cliente.cvv = int.Parse(cvv);
+                cliente.fecha_vencimiento = Convert.ToDateTime(fecha);
+
+
+
+
                 db.Entry(cliente).State = EntityState.Modified;
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("ActualizaDireccion", routeValues: new { id_direccion = int.Parse(id_direccion), id_cliente = cliente.id_cliente, estado = estado, calle = calle, colonia = colonia, municipio = municipio, cp = cp, noExt = noExt });
+
             }
-            return View(cliente);
+            else
+            {
+                return RedirectToAction("InvalidoUpdate");
+            }
         }
 
+
+        public ActionResult ActualizaDireccion(int id_direccion, int id_cliente, string estado, string calle, string colonia, string municipio, string cp, string noExt)
+        {
+            Direccion dir = new Direccion();
+            dir.id_direccion = id_direccion;
+            dir.id_cliente = id_cliente;
+            dir.estado = estado;
+            dir.municipio = municipio;
+            dir.cp = cp;
+            dir.calle = calle;
+            dir.colonia = colonia;
+            dir.no_exterior = noExt;
+
+            db.Entry(dir).State = EntityState.Modified;
+            db.SaveChanges();
+            return RedirectToAction("Index", "Home");
+        }
         // GET: Clientes/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -179,6 +220,16 @@ namespace GardeningF.Controllers
         public ActionResult Invalido()
         {
             return View();
+        }
+
+        public ActionResult InvalidoUpdate()
+        {
+            return View();
+        }
+
+        public ActionResult IrIndex()
+        {
+            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)
