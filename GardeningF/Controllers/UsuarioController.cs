@@ -56,6 +56,14 @@ namespace GardeningF.Controllers
                     case "admin":
                         return RedirectToAction("Index", "Admin");
                     case "cliente":
+                        if(Session["crearOrden"] != null)
+                        {
+                            if (Session["crearOrden"].Equals("pendiente"))
+                            {
+                                Session["crearOrden"] = "";
+                                return RedirectToAction("CrearOrden", "Pago");
+                            }
+                        }
                         return RedirectToAction("Index", "Home");
                 }
             }

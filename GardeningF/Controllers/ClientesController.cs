@@ -97,8 +97,7 @@ namespace GardeningF.Controllers
                     {
                         if (Session["crearOrden"].Equals("pendiente"))
                         {
-                            //TODO : Cambiar por el controlador 
-                            return RedirectToAction("CrearOrden", "Pago");
+                            return RedirectToAction("Crearorden", "Pago");
                         }
                     }
                     else
