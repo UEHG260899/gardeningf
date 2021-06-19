@@ -122,22 +122,27 @@
                         <th>Imagen</th>
                         <th>nombre producto</th>
                         <th>Descripción</th>
-                        <th>Categoria</th>
                         <th>Sub categoria</th>
                         <th>Cantidad en existencia</th>
                         <th>Precio</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>Imagen.jpg</td>
-                        <td>Pala redonda</td>
-                        <td>Pala para jardineria</td>
-                        <td>Utencilios</td>
-                        <td>Utencilios</td>
-                        <td>12</td>
-                        <td>$349</td>
-                    </tr>
+                    @foreach (Producto producto in ViewBag.productos)
+                    {
+                        <tr>
+                            <td>@producto.imagen_producto</td>
+                            <td>@producto.nombre_producto</td>
+                            <td>@producto.descripcion_producto</td>
+
+                            <td>@producto.Subcategoria.nombre_subcategoria</td>
+                            <td>@producto.cantidad_existencia</td>
+                            <td>@producto.precio_producto</td>
+
+
+
+                        </tr>
+                    }
 
                 </tbody>
             </table>

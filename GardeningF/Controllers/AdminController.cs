@@ -15,9 +15,9 @@ namespace GardeningF.Controllers
         public ActionResult Index()
         {
             var empleado = db.Empleado.Include(e => e.Departamento);
-            var departamentos = db.Departamento.ToList();
+            var productos = db.Producto.Include(e => e.Subcategoria);
             ViewBag.empleados = empleado.ToList();
-            ViewBag.departamentos = departamentos;
+            ViewBag.productos = productos.Take(10);
             return View();
         }
     }
