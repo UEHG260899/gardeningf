@@ -6,25 +6,25 @@
     <edmx:Diagrams>
       <Diagram DiagramId="3d60529e41d94e70916aa1c44c88de91" Name="Diagram1">
         <EntityTypeShape EntityType="GardeningFModel.Categoria" Width="1.5" PointX="0.75" PointY="10" IsExpanded="true" />
-        <EntityTypeShape EntityType="GardeningFModel.Cliente" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GardeningFModel.Departamento" Width="1.5" PointX="7.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GardeningFModel.Direccion" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="GardeningFModel.Empleado" Width="1.5" PointX="10" PointY="5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GardeningFModel.OrdenCliente" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="GardeningFModel.OrdenProducto" Width="1.5" PointX="7.5" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="GardeningFModel.Paqueteria" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="GardeningFModel.Producto" Width="1.5" PointX="5.25" PointY="9.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="GardeningFModel.Subcategoria" Width="1.5" PointX="3" PointY="9.75" IsExpanded="true" />
-        <AssociationConnector Association="GardeningFModel.FK__Subcatego__id_ca__276EDEB3" ManuallyRouted="false" />
-        <AssociationConnector Association="GardeningFModel.FK__Direccion__id_cl__2C3393D0" ManuallyRouted="false" />
-        <AssociationConnector Association="GardeningFModel.FK__OrdenClie__id_cl__35BCFE0A" ManuallyRouted="false" />
-        <AssociationConnector Association="GardeningFModel.FK__Empleado__id_dep__2F10007B" ManuallyRouted="false" />
-        <AssociationConnector Association="GardeningFModel.FK__OrdenClie__id_di__36B12243" ManuallyRouted="false" />
-        <AssociationConnector Association="GardeningFModel.FK__OrdenClie__id_pa__37A5467C" ManuallyRouted="false" />
-        <AssociationConnector Association="GardeningFModel.FK__OrdenProd__id_or__3A81B327" ManuallyRouted="false" />
-        <AssociationConnector Association="GardeningFModel.FK__OrdenProd__id_pr__3C69FB99" ManuallyRouted="false" />
-        <AssociationConnector Association="GardeningFModel.FK__Producto__id_sub__31EC6D26" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="GardeningFModel.Cliente" Width="1.5" PointX="0.75" PointY="1.25" />
+        <EntityTypeShape EntityType="GardeningFModel.Departamento" Width="1.5" PointX="5.75" PointY="6.375" />
+        <EntityTypeShape EntityType="GardeningFModel.Direccion" Width="1.5" PointX="3" PointY="1.375" />
+        <EntityTypeShape EntityType="GardeningFModel.Empleado" Width="1.5" PointX="8" PointY="6" />
+        <EntityTypeShape EntityType="GardeningFModel.OrdenCliente" Width="1.5" PointX="5.25" PointY="1" />
+        <EntityTypeShape EntityType="GardeningFModel.OrdenProducto" Width="1.5" PointX="7.5" PointY="1.75" />
+        <EntityTypeShape EntityType="GardeningFModel.Paqueteria" Width="1.5" PointX="3" PointY="5.5" />
+        <EntityTypeShape EntityType="GardeningFModel.Producto" Width="1.5" PointX="5.25" PointY="13.25" />
+        <EntityTypeShape EntityType="GardeningFModel.Subcategoria" Width="1.5" PointX="3" PointY="13.75" />
+        <AssociationConnector Association="GardeningFModel.FK__Subcatego__id_ca__276EDEB3" />
+        <AssociationConnector Association="GardeningFModel.FK__Direccion__id_cl__2C3393D0" />
+        <AssociationConnector Association="GardeningFModel.FK__OrdenClie__id_cl__35BCFE0A" />
+        <AssociationConnector Association="GardeningFModel.FK__Empleado__id_dep__2F10007B" />
+        <AssociationConnector Association="GardeningFModel.FK__OrdenClie__id_di__36B12243" />
+        <AssociationConnector Association="GardeningFModel.FK__OrdenClie__id_pa__37A5467C" />
+        <AssociationConnector Association="GardeningFModel.FK__OrdenProd__id_or__3A81B327" />
+        <AssociationConnector Association="GardeningFModel.FK__OrdenProd__id_pr__3C69FB99" />
+        <AssociationConnector Association="GardeningFModel.FK__Producto__id_sub__31EC6D26" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>
