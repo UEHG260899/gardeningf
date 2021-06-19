@@ -25,7 +25,7 @@ namespace GardeningF.Controllers
         {
             if (!User.Identity.IsAuthenticated)
             {
-                Session["CrearOrden"] = "pend";
+                Session["crearOrden"] = "pendiente";
                 return RedirectToAction("Login", "Account");
             }
 
