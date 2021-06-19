@@ -45,7 +45,7 @@ namespace GardeningF.Controllers
                 string name = p.nombre_producto;
                 cart.Add(new Item { Product = carro.find(id), Cantidad = 1 });
                 Session["cart"] = cart;
-                Session["itemTotal"] = cart.Count;
+                Session["itemCarro"] = cart.Count;
             }
             else
             {
@@ -60,7 +60,7 @@ namespace GardeningF.Controllers
                     cart.Add(new Item { Product = carro.find(id), Cantidad = 1 });
                 }
                 Session["cart"] = cart;
-                Session["itemTotal"] = cart.Count;
+                Session["itemCarro"] = cart.Count;
             }
 
             return RedirectToAction("Index");
@@ -81,7 +81,7 @@ namespace GardeningF.Controllers
                     cart.Remove(itemToRemove);
                 }
                 Session["cart"] = cart;
-                Session["itemTotal"] = cart.Count;
+                Session["itemCarro"] = cart.Count;
             }
 
 
@@ -107,7 +107,7 @@ namespace GardeningF.Controllers
             int index = isExists(id);
             cart.RemoveAt(index);
             Session["cart"] = cart;
-            Session["itemTotal"] = (int)Session["itemTotal"] - 1;
+            Session["itemCarro"] = (int)Session["itemCarro"] - 1;
             return RedirectToAction("Index");
         }
     }

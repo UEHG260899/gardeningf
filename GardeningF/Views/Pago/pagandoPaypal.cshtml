@@ -10,7 +10,7 @@
     var total = cart.Sum(item => item.Product.precio_producto * item.Cantidad);
 }
 
-<div class="container">
+<div class="container mt-5">
     <div class="card">
         <div class="card-header bg-main">
             <p style="font-family: 'Lucida Sans', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
@@ -35,7 +35,7 @@
                             <td style="height: 25px; padding: 15px;"><b>$@total</b></td>
                         </tr>
                     </table>
-                    </main>
+                 
                     <div style="margin: auto;" class="text-right">
                         <a class="btn btn-info text-center" style="text-decoration: none;" href="@Url.Action("pagoAceptado", "Pago", new { idC = idClient, idDir = idDir})">Aceptar</a>
                         <a class="btn btn-danger text-center" style="text-decoration: none;" href="@Url.Action("pagoNoAceptado", "Pago")">Denegar</a>
@@ -44,7 +44,7 @@
             </div>
         </div>
     </div>
-    <main>
+ 
 
 </div>
 

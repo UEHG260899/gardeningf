@@ -4,21 +4,21 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container justify-content-md-center">
-    <div class="col-md-4">
-        <div class="card">
-            <div class="card-header">
-                Estimado @Session["usr"].ToString(), su pago fue rechazado, por favor intenete con otro medio para completar su pedido
-            </div>
-            <div class="card-body">
-                @using (Html.BeginForm("CrearOrden", "Pago", FormMethod.Get))
-                {
-                    <div class="form-group">
-                        <div class="col-md-10 offset-md-2">
-                            <input type="submit" value="Continuar" class="btn btn-success" />
+<div class="container mt-5">
+    <div class="row justify-content-md-center">
+        <div class="col-md-6">
+            <div class="card">
+                <div class="card-header bg-main">
+                    Estimado @Session["usr"].ToString(), su pago fue rechazado, por favor intenete con otro medio para completar su pedido
+                </div>
+                <div class="card-body">
+                    @using (Html.BeginForm("CrearOrden", "Pago", FormMethod.Get))
+                    {
+                        <div class="form-group text-center">
+                                <input type="submit" value="Continuar" class="btn btn-success" />
                         </div>
-                    </div>
-                }
+                    }
+                </div>
             </div>
         </div>
     </div>

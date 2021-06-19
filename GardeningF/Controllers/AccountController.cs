@@ -79,6 +79,11 @@ namespace GardeningF.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+                    if (Session["CrearOrden"].Equals("pend"))
+                    {
+                        Session["CrearOrden"] = "R";
+                        return RedirectToAction("CrearOrden", "Pago");
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
