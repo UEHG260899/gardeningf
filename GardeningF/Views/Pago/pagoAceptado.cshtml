@@ -1,0 +1,56 @@
+﻿@using GardeningF.Models
+
+@{
+    ViewBag.Title = "pagoAceptado";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-main">
+            Gracias por su compra, su pago ha sido procesado, puede ver su pedido haciendo click en su nombre
+        </div>
+
+        <div class="card-body">
+            @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+            {
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Nombre</label>
+                        <input type="text" placeholder="Type here" class="form-control col-md-12" value="@Session["usr"]" disabled>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Calle</label>
+                        <input type="text" placeholder="Type here" class="form-control col-md-12" value="@Session["calle"]" disabled>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Colonia</label>
+                        <input type="text" placeholder="Type here" class="form-control col-md-12" value="@Session["colonia"]" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Estado</label>
+                        <input type="text" placeholder="Type here" class="form-control col-md-12" value="@Session["estado"]" disabled>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Código postal</label>
+                        <input type="text" placeholder="Type here" class="form-control col-md-12" value="@Session["cp"]" disabled>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Fecha orden</label>
+                        <input type="text" placeholder="Type here" class="form-control col-md-12" value="@Session["fechaOrden"]" disabled>
+                    </div>
+                </div>
+                <div class="row text-right">
+                    <div class="col-md-12">
+                        <input type="submit" value="Continuar" class="btn btn-sm btn-success" />
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>

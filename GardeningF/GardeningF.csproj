@@ -200,6 +200,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\CarroController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -220,6 +222,7 @@
       <DependentUpon>ModeloGardeningF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Item.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModeloGardeningF.Context.cs">
       <AutoGen>True</AutoGen>
@@ -245,6 +248,7 @@
     <Compile Include="Models\Paqueteria.cs">
       <DependentUpon>ModeloGardeningF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProdCarro.cs" />
     <Compile Include="Models\Producto.cs">
       <DependentUpon>ModeloGardeningF.tt</DependentUpon>
     </Compile>
@@ -344,6 +348,12 @@
     <Content Include="Content\StylesCatalogo.css" />
     <Content Include="Content\StylesHome.css" />
     <Content Include="Content\StylesAdmin.css" />
+    <Content Include="Content\Imagenes\Pago\btn-paypal.png" />
+    <Content Include="Content\Imagenes\Pago\payment-card.png" />
+    <Content Include="Content\Imagenes\Pago\payment-paypal.png" />
+    <Content Include="Content\Imagenes\Pago\payments.png" />
+    <Content Include="Content\StylesCarro.css" />
+    <Content Include="Content\StylesPago.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -536,6 +546,12 @@
     <Content Include="Views\Empleados\Details.cshtml" />
     <Content Include="Views\Empleados\Edit.cshtml" />
     <Content Include="Views\Empleados\Index.cshtml" />
+    <Content Include="Views\Carro\Index.cshtml" />
+    <Content Include="Views\Pago\Crearorden.cshtml" />
+    <Content Include="Views\Pago\pagoAceptado.cshtml" />
+    <Content Include="Views\Pago\pagoPaypal.cshtml" />
+    <Content Include="Views\Pago\pagandoPaypal.cshtml" />
+    <Content Include="Views\Pago\pagoNoAceptado.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

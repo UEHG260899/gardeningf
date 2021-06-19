@@ -1,0 +1,219 @@
+﻿@using GardeningF.Models
+@{
+    ViewBag.Title = "Crearorden";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string c = Session["usr"].ToString();
+    string calle = Session["calle"].ToString();
+    string estado = Session["estado"].ToString();
+    string cp = Session["cp"].ToString();
+    string colonia = Session["colonia"].ToString();
+    string fechaOrden = Session["fechaOrden"].ToString();
+    string fpEntrega = Session["fpEntrega"].ToString();
+    string correo = Session["correo"].ToString();
+    string telefono = Session["telefono"].ToString();
+    string fvenci = Session["fVencimiento"].ToString();
+    string[] fecha = fvenci.Split(' ');
+    string cvv = Session["cvv"].ToString();
+    int tTarjeta = Convert.ToInt32(Session["Ttarjeta"].ToString());
+    string icono = "";
+    string noTarjeta = Session["noTarjeta"].ToString();
+    switch (tTarjeta)
+    {
+        case 1:
+            icono = "fab fa-lg fa-cc-visa";
+            break;
+        case 2:
+            icono = "fab fa-lg fa-cc-mastercard";
+            break;
+        case 3:
+            icono = "fab fa-lg fa-cc-amex";
+            break;
+    }
+}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+@Styles.Render("~/Content/StylesPago.css")
+
+<div class="container mt-5 ">
+
+    <div class="card " style="margin-top: 70px;">
+
+        <div class="card-header bg-main">
+            Pago
+        </div>
+        <div class="card-body">
+
+
+            <hr>
+            <div class="row">
+                <main class="col-md-8">
+
+                    <article class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Resumen de compra</h4>
+                            <div class="row">
+                                @foreach (Item item in (List<Item>)Session["cart"])
+                                {
+                                    <div class="col-md-6">
+                                        <figure class="itemside  mb-4">
+                                            <div class="aside">
+                                                <img class="img-responsive img-sm" src="~/Content/Imagenes/Productos/@item.Product.imagen_producto" />
+                                            </div>
+                                            <figcaption class="info">
+                                                <p>@item.Product.nombre_producto </p>
+                                                <span class="text-muted">@item.Cantidad x $@item.Product.precio_producto = $@(item.Product.precio_producto * item.Cantidad)</span>
+                                            </figcaption>
+                                        </figure>
+                                    </div> <!-- col.// -->
+                                }
+                            </div> <!-- row.// -->
+                        </div> <!-- card-body.// -->
+                    </article> <!-- card.// -->
+
+
+                    <article class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Informacion de contacto</h4>
+                            <form action="" class="form-inline">
+                                <div class="row">
+                                    <div class="form-group col-sm-12 d-flex justify-content-between">
+                                        <label>Nombre</label>
+                                        <input readonly type="text" placeholder="Type here" class="form-control col-md-5" value="@c">
+                                    </div>
+                                    <div class="form-group col-sm-12 d-flex justify-content-between">
+                                        <label>Email</label>
+                                        <input readonly type="text" placeholder="Type here" class="form-control col-md-5" value="@correo">
+                                    </div>
+                                    <div class="form-group col-sm-12 d-flex justify-content-between">
+                                        <label>Telefono</label>
+                                        <input readonly type="text" placeholder="Type here" class="form-control col-md-5" value="@telefono">
+                                    </div>
+
+
+                                </div> <!-- row.// -->
+                            </form>
+                        </div> <!-- card-body.// -->
+                    </article> <!-- card.// -->
+
+
+                    <article class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Informacion de entrega</h4>
+                            <form action="">
+
+
+                                <div class="row">
+                                    <div class="form-group col-sm-6">
+                                        <label>Estado</label>
+                                        <select name="" class="form-control" disabled>
+                                            <option value="">@estado</option>
+
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Colonia</label>
+                                        <input type="text" placeholder="Type here" class="form-control" value="@colonia" disabled>
+                                    </div>
+                                    <div class="form-group col-sm-8">
+                                        <label>Calle</label>
+                                        <input type="text" placeholder="Type here" class="form-control col-md-12" value="@calle" disabled>
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label>Código postal</label>
+                                        <input type="text" placeholder="Type here" class="form-control" value="@cp" disabled>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Fecha de orden</label>
+                                        <input type="text" placeholder="Type here" class="form-control" value="@fechaOrden" disabled>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Fecha de entrega</label>
+                                        <input type="text" placeholder="Type here" class="form-control" value="@fpEntrega" disabled>
+                                    </div>
+
+                                </div> <!-- row.// -->
+                            </form>
+                        </div> <!-- card-body.// -->
+                    </article> <!-- card.// -->
+
+
+                    <article class="accordion" id="accordion_pay">
+                        <div class="card">
+                            <header class="card-header">
+                                <img src="~/Content/Imagenes/Pago/payment-paypal.png" class="float-right" height="24">
+                                <label class="form-check collapsed" data-toggle="collapse"
+                                       data-target="#pay_paynet">
+                                    <input class="form-check-input" name="payment-option" checked type="radio"
+                                           value="option2">
+                                    <h6 class="form-check-label">
+                                        Paypal
+                                    </h6>
+                                </label>
+                            </header>
+                            <div id="pay_paynet" class="collapse show" data-parent="#accordion_pay">
+                                <div class="card-body">
+                                    <p class="text-center text-muted">Conecte su cuenta de PayPal y utilícela para pagar . Será redirigido a PayPal para generar el pago .</p>
+                                    <p class="text-center">
+                                        <a href="@Url.Action("Pagar", "Pago", new { tipoPago = "P"})" style="text-decoration: none;">
+                                            <img src="~/Content/Imagenes/Pago/btn-paypal.png" height="32">
+                                        </a>
+                                        <br><br>
+                                    </p>
+                                </div> <!-- card body .// -->
+                            </div> <!-- collapse .// -->
+                        </div> <!-- card.// -->
+                        <div class="card">
+                            <header class="card-header">
+                                <img src="~/Content/Imagenes/Pago/payment-card.png" class="float-right" height="24">
+                                <label class="form-check" data-toggle="collapse" data-target="#pay_payme">
+                                    <input class="form-check-input" name="payment-option" type="radio"
+                                           value="option2">
+                                    <h6 class="form-check-label"> Tarjeta de credito </h6>
+                                </label>
+                            </header>
+                            <div id="pay_payme" class="collapse" data-parent="#accordion_pay">
+                                <div class="card-body">
+                                    <p class="alert alert-success">Informacion de la tarjeta</p>
+                                    <form class="form-inline">
+                                        <input type="text" class="form-control mr-2"
+                                               placeholder="" name="" value="@noTarjeta" disabled>
+                                        <input type="text" class="form-control mr-2" style="width: 120px"
+                                               placeholder="dd/yy" name="" value="@fecha[0]" disabled>
+                                        <input type="text" maxlength="3" class="form-control mr-2"
+                                               style="width: 60px" placeholder="cvc" name="" value="@cvv" disabled>
+                                    </form>
+                                    <div class="text-right">
+                                        <a href="@Url.Action("Pagar", "Pago", new { tipoPago = "T"})" style="text-decoration: none;float:right">
+                                            <i class="@icono mb-4" style="color: gray;font-size: 4em;"></i>
+                                        </a>
+                                    </div>
+
+                                </div> <!-- card body .// -->
+                            </div> <!-- collapse .// -->
+                        </div> <!-- card.// -->
+
+                    </article>
+                    <!-- accordion end.// -->
+                    @{
+                        List<Item> cart = (List<Item>)Session["cart"];
+                        var total = Convert.ToDouble(cart.Sum(item => item.Product.precio_producto * item.Cantidad));                        
+                    }
+                </main> <!-- col.// -->
+                <aside class="col-md-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <dl class="dlist-align">
+                                <dt>Precio Total:</dt>
+                                <dd class="text-right">$@total</dd>
+                            </dl>
+                            <hr>
+                            <p class="text-center mb-3">
+                                <img src="~/Content/Imagenes/Pago/payments.png" height="26">
+                            </p>
+                        </div> <!-- card-body.// -->
+                    </div> <!-- card.// -->
+                </aside> <!-- col.// -->
+            </div> <!-- row.// -->
+        </div>
+    </div>
+</div>

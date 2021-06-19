@@ -25,7 +25,7 @@
           <Property Name="telefono_cliente" Type="varchar" MaxLength="10" Nullable="false" />
           <Property Name="num_tdc" Type="varchar" MaxLength="16" />
           <Property Name="cvv" Type="int" />
-          <Property Name="fecha_vencimiento" Type="date" />
+          <Property Name="fecha_vencimiento" Type="datetime" />
         </EntityType>
         <EntityType Name="Departamento">
           <Key>
@@ -105,7 +105,7 @@
           <Property Name="nombre_producto" Type="varchar" MaxLength="100" />
           <Property Name="descripcion_producto" Type="varchar" MaxLength="100" />
           <Property Name="precio_producto" Type="decimal" Precision="18" Scale="0" />
-          <Property Name="ultima_actualizacion" Type="date" />
+          <Property Name="ultima_actualizacion" Type="datetime" />
           <Property Name="imagen_producto" Type="varchar" MaxLength="50" />
           <Property Name="cantidad_existencia" Type="int" />
           <Property Name="stock" Type="int" />
@@ -360,7 +360,7 @@
           <Property Name="nombre_producto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="descripcion_producto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="precio_producto" Type="Decimal" Precision="18" Scale="0" />
-          <Property Name="ultima_actualizacion" Type="DateTime" Precision="0" />
+          <Property Name="ultima_actualizacion" Type="DateTime" Precision="3" />
           <Property Name="imagen_producto" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="cantidad_existencia" Type="Int32" />
           <Property Name="stock" Type="Int32" />
