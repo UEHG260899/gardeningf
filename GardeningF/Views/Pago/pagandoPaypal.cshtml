@@ -9,6 +9,7 @@
     List<Item> cart = (List<Item>)Session["cart"];
     var total = cart.Sum(item => item.Product.precio_producto * item.Cantidad);
 }
+@Styles.Render("~/Content/StylesPago.css")
 
 <div class="container mt-5">
     <div class="card">

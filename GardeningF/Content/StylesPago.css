@@ -31,7 +31,7 @@
 }
 
 .bg-main {
-    background-color: var(--color-acento);
+    background-color: var(--color-acento) !important;
     color: white;
 }
 

@@ -13,11 +13,12 @@
         </div>
         <div class="card-body">
             <table class="table table-striped" id="pedidos" width="100%">
-                <thead>
+                <thead class="bg-main">
                     <tr style="text-align:center">
                         <th>Id pedido</th>
                         <th>Número productos</th>
                         <th>Fecha creación</th>
+                        <th>Fecha envío</th>
                         <th>Fecha entrega</th>
                         <th>Estatus</th>
                         <th>Total</th>
@@ -49,10 +50,10 @@
                                 }
                                 <td>@cantidad</td>
                                 <td>@pedido.Fecha</td>
-
+                                <td>@pedido.Envio</td>
                                 @if (@pedido.Orden.fecha_entrega.HasValue)
                                 {
-                                    <td>@pedido.Orden.fecha_entrega</td>
+                                    <td>@pedido.Orden.fecha_entrega.GetValueOrDefault().ToShortDateString()</td>
                                 }
                                 else
                                 {
@@ -121,7 +122,7 @@
                                 {
                                     if (pedido.Orden.id_orden == ViewBag.idp)
                                     {
-                        <div class="row">
+                        <div class="row justify-content-md-center">
                             <div class="form-group col-sm-5">
                                 <label>Calle</label>
                                 <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Orden.Direccion.calle" disabled>
@@ -137,7 +138,7 @@
 
                                 </select>
                             </div>
-                            <div class="form-group col-sm-2">
+                            <div class="form-group col-sm-3">
                                 <label>Código postal</label>
                                 <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Orden.Direccion.cp" disabled>
                             </div>
@@ -146,10 +147,14 @@
                                 <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Fecha" disabled>
                             </div>
                             <div class="form-group col-sm-3">
+                                <label>Fecha de envío</label>
+                                <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Envio" disabled>
+                            </div>
+                            <div class="form-group col-sm-3">
                                 <label>Fecha de entrega</label>
                                 @if (@pedido.Orden.fecha_entrega.HasValue)
                                 {
-                                    <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Orden.fecha_entrega" disabled>
+                                    <input type="text" placeholder="Type here" class="form-control col-md-12" value="@pedido.Orden.fecha_entrega.GetValueOrDefault().ToShortDateString()" disabled>
                                 }
                                 else
                                 {
