@@ -2,73 +2,129 @@
 
 @{
     ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Index</h2>
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nombre_paqueteria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.rfc_paqueteria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.telefono_paqueteria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.web_paqueteria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.direccion_paqueteria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.contacto_paqueteria)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.tel_contacto)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nombre_paqueteria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.rfc_paqueteria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.telefono_paqueteria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.web_paqueteria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.direccion_paqueteria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.contacto_paqueteria)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.tel_contacto)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id_paqueteria }) |
-                @Html.ActionLink("Details", "Details", new { id = item.id_paqueteria }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.id_paqueteria })
-            </td>
-        </tr>
+<style>
+    .card > img {
+        height: 230px;
     }
 
-</table>
+    .bg-card-admin, thead {
+        background-color: var(--color-principal) !important;
+        color: white;
+    }
 
+    .page-item.active .page-link, .btnGreen {
+        background-color: var(--color-principal) !important;
+        border-color: var(--color-principal) !important;
+        color: white !important;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+<!--Counts de productos, categorias y subcategorias-->
+
+<div class="container-fluid">
+    <br><br>
+    <h2>Paqueterías</h2>
+    <br>
+    <p>
+        @Html.ActionLink("Crear", "Create", "Paqueterias", new { @class = "btn btnGreen" })
+    </p>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table" id="tbPaqueterias">
+                <colgroup>
+                    <col span="1" style="width: 3%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 15%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 5%;">
+                    <col span="1" style="width: 5%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>
+                            Id
+                        </th>
+                        <th>
+                            Nombre
+                        </th>
+                        <th>
+                            RFC
+                        </th>
+                        <th>
+                            Telefono
+                        </th>
+                        <th>
+                            Web
+                        </th>
+                        <th>
+                            Dirección
+                        </th>
+                        <th>
+                            Contacto
+                        </th>
+                        <th>
+                            Tel. Contacto
+                        </th>
+                        <th>
+                            Editar
+                        </th>
+                        <th>
+                            Eliminar
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+            {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.id_paqueteria)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.nombre_paqueteria)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.rfc_paqueteria)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.telefono_paqueteria)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.web_paqueteria)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.direccion_paqueteria)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.contacto_paqueteria)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.tel_contacto)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.id_paqueteria }, new { @class = "btn btnGreen" })
+                            </td>
+                            <td>
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.id_paqueteria }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <br>
+</div>
 
 
 @section scripts{
@@ -77,7 +133,7 @@
 
     <script>
         $(document).ready(function () {
-            $('#tbEnvios').DataTable({
+            $('#tbPaqueterias').DataTable({
                 language: {
                     "decimal": "",
                     "emptyTable": "No hay información",
@@ -100,7 +156,7 @@
                 },
                 pageLength: 5,
                 lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
-                "scrollX": true,
+                "scrollX": false,
                 "scrollY": true
             });
         });
