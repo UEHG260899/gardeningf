@@ -1,0 +1,45 @@
+﻿@using GardeningF.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Historial de Pedidos</h2>
+
+<table class="table table-bordered table-responsive table-striped">
+    @{
+        if (Session["misPedidos"] != null)
+        {
+            foreach (PedidoCliente pedido in (List<PedidoCliente>)Session["misPedidos"])
+            {
+                int idOrd = pedido.Orden.id_orden;
+                <tr>
+                    <td>Fecha: @pedido.Fecha</td>
+                    <td>Envio: @pedido.Envio</td>
+                    <td>Entrega: @pedido.Status</td>
+                    <td>Cantidad</td>
+                    <td>SubTotal</td>
+                </tr>
+                foreach (ItemPedidos item in (List<ItemPedidos>)Session["Pedido"])
+                {
+                    if (item.idOrd == idOrd)
+                    {
+                        <tr>
+                            <td>@item.Product.nombre_producto</td>
+                            <td><img class="img-responsive" src="~/Content/Imagenes/Productos/@item.Product.imagen_producto" width="80"/></td>
+                            <td>@item.Product.precio_producto</td>
+                            <td>@item.Cantidad</td>
+                            <td>@(item.Product.precio_producto * item.Cantidad)</td>
+                        </tr>
+                    }
+                }
+                <tr>
+                    <td align="right" colspan="4">Total</td>
+                    <td>@pedido.Total</td>
+                </tr>
+            }
+        }
+    }
+</table>
+<br />
+<a class="btn btn-warning" href="@Url.Action("Index", "Home")">Ir a Tienda</a>
+

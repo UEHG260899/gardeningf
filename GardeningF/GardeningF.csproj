@@ -197,6 +197,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
+    <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -218,6 +219,7 @@
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ItemPedidos.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModeloGardeningF.Context.cs">
       <AutoGen>True</AutoGen>
@@ -243,6 +245,7 @@
     <Compile Include="Models\Paqueteria.cs">
       <DependentUpon>ModeloGardeningF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PedidoCliente.cs" />
     <Compile Include="Models\ProdCarro.cs" />
     <Compile Include="Models\Producto.cs">
       <DependentUpon>ModeloGardeningF.tt</DependentUpon>
@@ -448,6 +451,7 @@
     <Content Include="Views\Pago\pagoPaypal.cshtml" />
     <Content Include="Views\Pago\pagandoPaypal.cshtml" />
     <Content Include="Views\Pago\pagoNoAceptado.cshtml" />
+    <Content Include="Views\Pedidos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
