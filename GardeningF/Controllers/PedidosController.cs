@@ -47,7 +47,7 @@ namespace GardeningF.Controllers
                 }
                 if (o.fecha_entrega.HasValue)
                 {
-                    pedido.Status = o.fecha_entrega.GetValueOrDefault().ToShortDateString();
+                    pedido.Status = "Entregado";
                 }
                 else
                 {
@@ -110,7 +110,7 @@ namespace GardeningF.Controllers
                 }
                 if (o.fecha_entrega.HasValue)
                 {
-                    pedido.Status = o.fecha_entrega.GetValueOrDefault().ToShortDateString();
+                    pedido.Status = "Entregado";
                 }
                 else
                 {
