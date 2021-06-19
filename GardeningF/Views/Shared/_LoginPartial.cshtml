@@ -8,7 +8,7 @@
         <ul class="nav navbar-nav ml-auto">
             <li>
                 <!--TODO: Redireccionar al carrito-->
-                <a class="btn" href="#">
+                <a class="btn" href="@Url.Action("Index", "Carro")">
                     <i class="fa fa-shopping-cart" style="font-size: 24px; color: lightgreen"></i>
                     <span class="badge" style="color:lightgreen">@Session["itemCarro"]</span>
                 </a>
@@ -19,7 +19,7 @@
                 </a>
                 <ul class="dropdown-menu" role="menu" id="dropdown">
                     <!--TODO: Cambiar a controlador de pedidos-->
-                    <li>@Html.ActionLink("Mis pedidos", "", "", null, new { id = "add" })</li>
+                    <li>@Html.ActionLink("Mis pedidos", "Index", "Pedidos", null, new { id = "add" })</li>
                     <li>@Html.ActionLink("Editar mis datos", "Edit", "Clientes", routeValues: new { id = (int)Session["idCliente"]}, htmlAttributes: null)</li>
                 </ul>
             </li>
@@ -31,8 +31,7 @@ else
 {
     <ul class="nav navbar-nav ml-auto">
         <li>
-            <!--TODO: Redireccionar al carrito-->
-            <a class="btn" href="#">
+            <a class="btn" href="@Url.Action("Index", "Carro")">
                 <i class="fa fa-shopping-cart" style="font-size: 24px; color: lightgreen"></i>
                 <span class="badge" style="color: lightgreen">@Session["itemCarro"]</span>
             </a>

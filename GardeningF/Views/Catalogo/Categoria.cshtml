@@ -22,7 +22,7 @@
                                     @Html.ActionLink("Ver producto", "", "", routeValues: null, htmlAttributes: new { @class = "btn boton" })
                                 </div>
                                 <div class="col-sm-12 col-md-6 col-lg-6">
-                                    @Html.ActionLink("Ver producto", "", "", routeValues: null, htmlAttributes: new { @class = "btn boton" })
+                                    @Html.ActionLink("Agregar al carrito", "Agregar", "Carro", routeValues: new { id = @prod.id_producto }, htmlAttributes: new { @class = "btn boton" })
                                 </div>
                             </div>
                         </p>
