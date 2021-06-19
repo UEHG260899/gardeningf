@@ -2,79 +2,167 @@
 
 @{
     ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Delete</h2>
-
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Paqueteria</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre_paqueteria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nombre_paqueteria)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.rfc_paqueteria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.rfc_paqueteria)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.telefono_paqueteria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.telefono_paqueteria)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.web_paqueteria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.web_paqueteria)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.direccion_paqueteria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.direccion_paqueteria)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.contacto_paqueteria)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.contacto_paqueteria)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.tel_contacto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.tel_contacto)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
+<style>
+    .card > img {
+        height: 230px;
     }
+
+    .bg-card-admin, thead {
+        background-color: var(--color-principal) !important;
+        color: white;
+    }
+
+    .page-item.active .page-link, .btn, .card-header {
+        background-color: var(--color-principal) !important;
+        border-color: var(--color-principal) !important;
+        color: white !important;
+    }
+</style>
+
+
+@using (Html.BeginForm("Delete", "Paqueterias", FormMethod.Get))
+{
+
+    <div class="container">
+        <div class="row mt-5">
+
+            <div class="col-md-4 ">
+
+                <div class="form-group">
+                    <label for="id">Id Paquetería:</label>
+                    <input type="number" class="form-control" id="id" name="id">
+                </div>
+            </div>
+            <div class="col-md-2 ">
+                <input type="submit" class="btn btnGuardar" style="margin-top:30px !important" value="Buscar">
+            </div>
+            <div class="col-md-5 offset-md-1">
+                <img class="card-img-top" height="200px" width="100px" src="~/Content/Imagenes/Paqueterias/deletePqt.png" alt="Producto">
+            </div>
+
+        </div>
+    </div>
+}
+
+<div class="container">
+
+    <div class="card">
+        <div class="card-header">Datos a eliminar</div>
+        <div class="card-body">
+
+
+            <div class="form-horizontal">
+
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                @Html.HiddenFor(model => model.id_paqueteria)
+                <div class="row">
+                    <div class="col-md-4 offset-md-1">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.nombre_paqueteria, "Nombre", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.nombre_paqueteria, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.nombre_paqueteria, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 offset-md-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.rfc_paqueteria, "RFC", htmlAttributes: new { @class = "control-label col-md-12 " })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.rfc_paqueteria, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.rfc_paqueteria, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-1">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.telefono_paqueteria, "Telefono Paquetería", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.telefono_paqueteria, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.telefono_paqueteria, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 offset-md-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.web_paqueteria, "Web", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.web_paqueteria, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.web_paqueteria, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-1">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.direccion_paqueteria, "Dirección", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.direccion_paqueteria, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.direccion_paqueteria, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 offset-md-2">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.contacto_paqueteria, "Contacto", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.contacto_paqueteria, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.contacto_paqueteria, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4 offset-md-1">
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.tel_contacto, "Tel. Contacto", htmlAttributes: new { @class = "control-label col-md-12" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.tel_contacto, new { htmlAttributes = new { @class = "form-control", @disabled = "disabled" } })
+                                @Html.ValidationMessageFor(model => model.tel_contacto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br>
+                <div class="row">
+                    <div class="col-md-4 offset-md-7">
+                        <div class="form-group">
+                            <div class="col-md-12">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-actions no-color">
+                                        <input type="submit" value="Eliminar" class="btn btn-default" />
+
+                                    </div>
+                                }
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="row mt-5">
+    <div class="col-md-2 offset-md-1">
+        @Html.ActionLink("Regresar a la lista", "Index", "Paqueterias", new { @class = "btn btnGuardar" })
+    </div>
+
+</div>
+
+
+
