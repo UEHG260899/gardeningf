@@ -89,6 +89,21 @@ namespace GardeningF.Controllers
             return View(paqueteria);
         }
 
+        [HttpPost]
+        public ActionResult EditPaqueteria(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Paqueteria paqueteria = db.Paqueteria.Find(id);
+            if (paqueteria == null)
+            {
+                return HttpNotFound();
+            }
+            return View(paqueteria);
+        }
+
         // GET: Paqueterias/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -113,6 +128,21 @@ namespace GardeningF.Controllers
             db.Paqueteria.Remove(paqueteria);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        public ActionResult DeletePaqueteria(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Paqueteria paqueteria = db.Paqueteria.Find(id);
+            if (paqueteria == null)
+            {
+                return HttpNotFound();
+            }
+            return View(paqueteria);
         }
 
         protected override void Dispose(bool disposing)

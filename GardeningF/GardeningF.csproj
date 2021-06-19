@@ -442,6 +442,8 @@
     <Content Include="Views\Paqueterias\Details.cshtml" />
     <Content Include="Views\Paqueterias\Edit.cshtml" />
     <Content Include="Views\Paqueterias\Index.cshtml" />
+    <Content Include="Views\Paqueterias\EditPaqueteria.cshtml" />
+    <Content Include="Views\Paqueterias\DeletePaqueteria.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
