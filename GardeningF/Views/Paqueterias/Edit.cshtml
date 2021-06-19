@@ -21,29 +21,43 @@
         color: white !important;
     }
 </style>
+
+
+
+@using (Html.BeginForm("Edit", "Paqueterias", FormMethod.Get))
+{
+    <br><br>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-4 ">
+
+                <div class="form-group">
+                    <label for="id">Id Paquetería:</label>
+                    <input type="number" class="form-control" id="id" name="id">
+                </div>
+            </div>
+            <div class="col-md-2 ">
+                <input type="submit" class="btn btnGuardar" style="margin-top:30px !important" value="Buscar">
+            </div>
+            <div class="col-md-5 offset-md-1">
+                <img class="card-img-top" height="200px" width="100px" src="~/Content/Imagenes/Paqueterias/updatePqt.png" alt="Producto">
+            </div>
+
+        </div>
+    </div>
+}
+
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
 
     <div class="container">
-        <br>
-        <br>
-        <br>
+
         <div class="card">
-            <div class="card-header">Eliminación Paquetería</div>
+            <div class="card-header">Editar</div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4 offset-md-1">
-                        <div class="form-group">
-                            <label for="idPaqueteria">Id Paquetería:</label>
-                            <input type="text" class="form-control" id="idPaqueteria">
-                        </div>
-                    </div>
-                    <div class="col-md-2 ">
-                        <input type="submit" value="Buscar" style="margin-top:30px !important" class="btn btnGuardar" />
-                    </div>
-                </div>
-                <hr>
+
 
                 <div class="form-horizontal">
 
@@ -52,9 +66,9 @@
                     <div class="row">
                         <div class="col-md-4 offset-md-1">
                             <div class="form-group">
-                                @Html.LabelFor(model => model.nombre_paqueteria, htmlAttributes: new { @class = "control-label col-md-12" })
+                                @Html.LabelFor(model => model.nombre_paqueteria, "Nombre", htmlAttributes: new { @class = "control-label col-md-12" })
                                 <div class="col-md-12">
-                                    @Html.EditorFor(model => model.nombre_paqueteria, "Nombre", new { htmlAttributes = new { @class = "form-control" } })
+                                    @Html.EditorFor(model => model.nombre_paqueteria, new { htmlAttributes = new { @class = "form-control" } })
                                     @Html.ValidationMessageFor(model => model.nombre_paqueteria, "", new { @class = "text-danger" })
                                 </div>
                             </div>
