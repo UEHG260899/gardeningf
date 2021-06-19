@@ -27,11 +27,21 @@
 
 <div class="container-fluid">
     <br><br>
-    <h2>Paqueterías</h2>
-    <br>
-    <p>
-        @Html.ActionLink("Crear", "Create", "Paqueterias", new { @class = "btn btnGreen" })
-    </p>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Paqueterías</h2>
+            <br>
+            <br>
+            <br>
+            <p>
+                @Html.ActionLink("Crear", "Create", "Paqueterias", new { @class = "btn btnGreen" })
+            </p>
+        </div>
+        <div class="col-md-6">
+            <img class="card-img-top" height="200" width="200" src="~/Content/Imagenes/Paqueterias/cajas.png" alt="Producto">
+        </div>
+    </div>
+
     <div class="row">
         <div class="col-md-12">
             <table class="table" id="tbPaqueterias">
