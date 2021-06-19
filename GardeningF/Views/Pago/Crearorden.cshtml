@@ -11,6 +11,9 @@
     string fpEntrega = Session["fpEntrega"].ToString();
     string correo = Session["correo"].ToString();
     string telefono = Session["telefono"].ToString();
+    string fvenci = Session["fVencimiento"].ToString();
+    string[] fecha = fvenci.Split(' ');
+    string cvv = Session["cvv"].ToString();
     int tTarjeta = Convert.ToInt32(Session["Ttarjeta"].ToString());
     string icono = "";
     string noTarjeta = Session["noTarjeta"].ToString();
@@ -173,11 +176,11 @@
                                     <p class="alert alert-success">Informacion de la tarjeta</p>
                                     <form class="form-inline">
                                         <input type="text" class="form-control mr-2"
-                                               placeholder="@noTarjeta" name="" disabled>
-                                        <input type="text" class="form-control mr-2" style="width: 100px"
-                                               placeholder="dd/yy" name="" value="03/23" disabled>
-                                        <input type="number" maxlength="3" class="form-control mr-2"
-                                               style="width: 100px" placeholder="cvc" name="" value="502" disabled>
+                                               placeholder="" name="" value="@noTarjeta" disabled>
+                                        <input type="text" class="form-control mr-2" style="width: 120px"
+                                               placeholder="dd/yy" name="" value="@fecha[0]" disabled>
+                                        <input type="text" maxlength="3" class="form-control mr-2"
+                                               style="width: 60px" placeholder="cvc" name="" value="@cvv" disabled>
                                     </form>
                                     <div class="text-right">
                                         <a href="@Url.Action("Pagar", "Pago", new { tipoPago = "T"})" style="text-decoration: none;float:right">

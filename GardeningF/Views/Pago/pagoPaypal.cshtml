@@ -1,0 +1,50 @@
+﻿
+@{
+    ViewBag.Title = "pagoPaypal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int idCliente = Convert.ToInt32(Session["idClient"].ToString());
+    int idDir = Convert.ToInt32(Session["idDir"].ToString());
+}
+
+<div class="container">
+    <div class="card">
+        <div class="card-header bg-main">
+            Inicie sesión en su cuenta de paypal
+        </div>
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 text-center">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.webspotting.de%2Fwp-content%2Fuploads%2F2020%2F01%2FPayPal-Logo.png&f=1&nofb=1" style="margin: auto;" width="350" />
+                </div>
+                <div class="col-md-6">
+                    <form>
+                        <div class="col-md-12">
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="email">Email:</label>
+                                    <input type="email" class="form-control" id="email" placeholder="Introduzca el correo" name="email" />
+                                </div>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="form-group">
+                                    <label for="pwd">Password:</label>
+                                    <input type="password" class="form-control" id="pwd" name="pwd" />
+                                </div>
+                                <div class="checkbox text-right">
+                                    <label for="recuerda">Recuerdame</label>
+                                    <input type="checkbox" name="recuerda" />
+                                </div>
+                                <div class="col-md-12 text-center">
+                                    <a style="text-decoration: none;" class="btn btn-sm btn-success text-center" href="@Url.Action("pagandoPaypal", "Pago", new { idC = idCliente, idDir = idDir})">Ingresar</a>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
+

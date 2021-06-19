@@ -49,7 +49,8 @@ namespace GardeningF.Controllers
             Session["usr"] = cliente.nombre_cliente+" "+cliente.app_cliente+" "+cliente.apm_cliente;
             Session["correo"] = cliente.correo_cliente;
             Session["telefono"] = cliente.telefono_cliente;
-
+            Session["fVencimiento"] = cliente.fecha_vencimiento;
+            Session["cvv"] = cliente.cvv;
 
             if (cliente.num_tdc.StartsWith("4"))
             {
@@ -106,6 +107,27 @@ namespace GardeningF.Controllers
             }
             return View();
         }
+
+
+        public ActionResult pagoNoAceptado()
+        {
+            return View();
+        }
+
+        public ActionResult pagoPaypal(int idC, int idDir)
+        {
+            Session["idDir"] = idDir;
+            Session["idClient"] = idC;
+            return View();
+        }
+
+        public ActionResult pagandoPaypal(int idC, int idDir)
+        {
+            Session["idDir"] = idDir;
+            Session["idClient"] = idC;
+            return View();
+        }
+
 
         public ActionResult pagoAceptado(int idC, int idDir)
         {
