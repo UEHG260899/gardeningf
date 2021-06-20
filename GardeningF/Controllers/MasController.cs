@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using GardeningF.Models;
 
 namespace GardeningF.Controllers
 {
@@ -48,6 +49,15 @@ namespace GardeningF.Controllers
         }
         public ActionResult Confirmar()
         {
+            return View();
+        }
+        [AllowAnonymous]
+        public ActionResult Empresas()
+        {
+
+            var productos = db.Producto;
+            ViewBag.productos = productos.ToList().Take(4);
+
             return View();
         }
     }
