@@ -10,6 +10,7 @@ using GardeningF.Models;
 
 namespace GardeningF.Controllers
 {
+    [Authorize]
     public class ProductosController : Controller
     {
         private contextoGardeningF db = new contextoGardeningF();

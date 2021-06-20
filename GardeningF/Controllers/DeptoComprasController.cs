@@ -9,7 +9,8 @@ using GardeningF.Models;
 
 namespace Gardening.Controllers
 {
-    
+
+    [Authorize]
     public class DeptoComprasController : Controller
     {
         private contextoGardeningF db = new contextoGardeningF();
