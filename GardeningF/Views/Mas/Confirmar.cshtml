@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Confirmar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string fpEntrega = Session["fpEntrega"].ToString();
+}
+
+<div class="container text-center">
+    <h1 class="font-weight-bold" style="color:dimgray;">Su tarjeta ha sido solocitada</h1>
+    <h2 class="font-weight-light" style="color:var(--color-principal);"> Y se enviara lo antes posible</h2>
+    <img src="https://res.cloudinary.com/du17vjpcn/image/upload/v1624218896/ecommerce/undraw_season_change_f99v_xmddjc.png" width="500" />
+    <h2 class="font-weight-light"> Entrega estimada:</h2>
+    <h2 class="font-weight-bold" style="color:var(--color-principal);">@fpEntrega </h2>
+</div>
