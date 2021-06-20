@@ -18,10 +18,15 @@ namespace GardeningF.Controllers
             var productos = db.Producto.Include(e => e.Subcategoria);
             var categorias = db.Categoria.ToList();
             var subcategorias = db.Subcategoria.Include(e => e.Categoria);
+            ViewBag.totalEmpleados = empleado.Count();
+            ViewBag.totalProductos = productos.Count();
+            ViewBag.totalCategorias = categorias.Count();
+            ViewBag.totalSubcategorias = subcategorias.Count();
             ViewBag.empleados = empleado.ToList();
             ViewBag.productos = productos.Take(10);
             ViewBag.categorias = categorias;
             ViewBag.subcategorias = subcategorias.ToList();
+            
             return View();
         }
     }
