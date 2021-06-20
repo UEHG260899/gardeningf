@@ -81,7 +81,8 @@
                 <div style="display:flex;flex-direction:column; justify-content:center;">
                     <h1 class="title">Tarjeta de compra</h1>
                     <h2 class="subtitle">Más que un medio de pago,<br /> más que una tarjeta.</h2>
-                     <a href="#" class="btn bg-fondo mt-3" > Solicitar ahora</a>
+                   
+                    @Html.ActionLink("Solicitar ahora", "Solicitar", "Mas", null, htmlAttributes: new { @class = "btn bg-fondo  mt-3", @style = "box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.5);" })
                 </div>
                 
                 <img src="https://res.cloudinary.com/du17vjpcn/image/upload/v1624172509/ecommerce/tarjeta_lcfaea.png" class="img_banner" width="500px" />
