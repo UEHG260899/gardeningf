@@ -2,31 +2,66 @@
 
 @{
     ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Delete</h2>
+<div class="container mt-5 ">
+    <div class="row mb-3" style="margin-top: 70px;">
+        <div class="col-3">
+            @Html.ActionLink("Regresar", "Index", null, htmlAttributes: new { @class = "btn btn-success bg-principal" })
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Departamento</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.nombre_depto)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.nombre_depto)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
         </div>
-    }
+    </div>
+    <div class="card ">
+
+        <div class="card-header bg-main">
+            Eliminar Departamento
+        </div>
+        <div class="card-body">
+
+            <div class="row mt-4 ">
+                <div class="col-8 mx-auto">
+                    <article class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Departamento</h4>
+
+                            <div class="row">
+                                <div class="d-flex col-sm-12 mt-2">
+                                    <div class="col-4">
+                                        <label> Nombre:</label>
+                                    </div>
+                                    <div class="col-8">
+                                        <input type="text" placeholder="Escribe aqui." class="form-control"
+                                               value="@Html.DisplayFor(model => model.nombre_depto)" readonly>
+                                    </div>
+                                </div>
+                                
+                              
+
+
+
+                            </div> <!-- row.// -->
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+                                <div class="row">
+                                    <div class="col-md-12 col-sm-12 col-lg-12 mt-3 ">
+                                        <label style="font-size: small;">*Esta operación es irreversible</label>
+                                        <button type="submit" value="Delete" class="btn btn-danger" style="width: 100% !important;">Eliminar </button>
+
+                                    </div>
+                                </div>
+                            }
+
+
+                        </div> <!-- card-body.// -->
+                    </article> <!-- card.// -->
+                </div>
+
+            </div>
+        </div>
+    </div>
 </div>
+
+
+
