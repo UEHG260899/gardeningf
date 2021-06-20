@@ -195,6 +195,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrdenController.cs" />
     <Compile Include="Controllers\PaqueteriasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -444,6 +445,12 @@
     <Content Include="Views\Paqueterias\Index.cshtml" />
     <Content Include="Views\Paqueterias\EditPaqueteria.cshtml" />
     <Content Include="Views\Paqueterias\DeletePaqueteria.cshtml" />
+    <Content Include="Views\Shared\_LayoutEnvios.cshtml" />
+    <Content Include="Views\Orden\Create.cshtml" />
+    <Content Include="Views\Orden\Delete.cshtml" />
+    <Content Include="Views\Orden\Details.cshtml" />
+    <Content Include="Views\Orden\Edit.cshtml" />
+    <Content Include="Views\Orden\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
