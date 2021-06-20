@@ -204,6 +204,7 @@
     <Compile Include="Controllers\CarroController.cs" />
     <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
+    <Compile Include="Controllers\MasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -561,6 +562,7 @@
     <Content Include="Views\Pedidos\verPedido.cshtml" />
     <Content Include="Views\Clientes\InvalidoUpdate.cshtml" />
     <Content Include="Views\Shared\_LoginPartialAdmin.cshtml" />
+    <Content Include="Views\Mas\Tarjeta.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
