@@ -1,0 +1,298 @@
+﻿@model GardeningF.Models.Cliente
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="container">
+    <h2>Vamos a terminar de registrar sus datos!</h2>
+
+    @using (Html.BeginForm("Create", "Clientes", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <div class="row">
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="card">
+                            <h4 class="card-header">Datos Personales</h4>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Nombre(s):</label>
+                                            @Html.EditorFor(model => model.nombre_cliente, new { htmlAttributes = new { @class = "form-control validar" } })
+                                            @Html.ValidationMessageFor(model => model.nombre_cliente, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Apellido Paterno:</label>
+                                            @Html.EditorFor(model => model.app_cliente, new { htmlAttributes = new { @class = "form-control validar" } })
+                                            @Html.ValidationMessageFor(model => model.app_cliente, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Apellido Materno:</label>
+                                            @Html.EditorFor(model => model.apm_cliente, new { htmlAttributes = new { @class = "form-control validar" } })
+                                            @Html.ValidationMessageFor(model => model.apm_cliente, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Teléfono</label>
+                                            @Html.EditorFor(model => model.telefono_cliente, new { htmlAttributes = new { @class = "form-control validar" } })
+                                            @Html.ValidationMessageFor(model => model.telefono_cliente, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="form-group">
+                                            <label>Correo:</label>
+                                            @Html.EditorFor(model => model.correo_cliente, new { htmlAttributes = new { @class = "form-control", @Value = Session["email"], @readonly = "readonly" } })
+                                            @Html.ValidationMessageFor(model => model.correo_cliente, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <div class="card">
+                            <h4 class="card-header">Dirección</h4>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Estado:</label>
+                                            <input type="text" class="form-control validar" name="estado" id="estado"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Municipio:</label>
+                                            <input type="text" class="form-control validar" name="municipio" id="municipio" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Calle:</label>
+                                            <input type="text" class="form-control validar" name="calle" id="calle" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Colonia:</label>
+                                            <input type="text" class="form-control validar" name="colonia" id="colonia" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>Código Postal:</label>
+                                            <input type="text" class="form-control validar" name="cp" id="cp" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-group">
+                                            <label>No. Ext.</label>
+                                            <input type="text" class="form-control validar" name="noExt" id="noExt" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <div class="card">
+                            <h4 class="card-header">Datos de la Tarjeta</h4>
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>No. de Tarjeta:</label>
+                                            <input type="text" class="form-control validar" name="tarjeta" id="tarjeta" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>CVV (3 ó 4 digitos traseros):</label>
+                                            <input type="text" class="form-control validar" name="cvv" id="cvv" />
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-4 col-lg-4">
+                                        <div class="form-group">
+                                            <label>Fecha de vencimiento:</label>
+                                            <input type="date" class="form-control validar" name="fecha" id="fecha" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-6 col-lg-6">
+                                        <div class="form-check">
+                                            <input type="radio"  name="tipoT" id="tipoT1" class="form-check-input" value="Visa"/>
+                                            <span class="fa fa-lg fa-cc-visa"></span>
+                                            <label for="tipoT1" class="form-check-label">Visa</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" name="tipoT" id="tipoT2" class="form-check-input" value="Master" />
+                                            <span class="fa fa-lg fa-cc-mastercard"></span>
+                                            <label for="tipoT2" class="form-check-label">MasterCard</label>
+                                        </div>
+                                        <div class="form-check">
+                                            <input type="radio" name="tipoT" id="tipoT3" class="form-check-input" value="Amex" />
+                                            <span class="fa fa-lg fa-cc-amex"></span>
+                                            <label for="tipoT3" class="form-check-label">American Express</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12 col-md-6 col-lg-6 text-right mt-5">
+                                        <input type="submit" class="btn boton" value="Finalizar Registro"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</section>
+
+
+<!--Modal de validacions-->
+<div class="modal" id="modalValidaciones">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Errores de Validación</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>Existen los siguientes errores de validación, para poder continuar por favor acate las intrucciones:</p>
+                <p id="erroresModal"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn boton" type="button" data-dismiss="modal" data-target="#modalValidaciones">Aceptar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Fin modal-->
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    let errores = "";
+
+    $(this).submit(function (event) {
+        event.preventDefault();
+        if (!validaciones($(".validar"))) {
+            $("#modalValidaciones").modal("show");
+            $("#erroresModal").html(errores);
+        } else {
+            $("form").submit();
+        }
+    });
+
+
+
+    const validaciones = (formData) => {
+        errores = "";
+        let control = true;
+        let regExpNom = new RegExp("^[a-zA-ZáéíóúÁÉÍÓÚ ]{2,30}$");
+        let regExpCalle = new RegExp("^[a-zA-ZáéíóúÁÉÍÓÚ0-9 ]{2,50}$");
+        let regExpTel = new RegExp("^[0-9]{10}$");
+        let regExpCP = new RegExp("^[0-9]{5}$");
+        let regExpCVV = new RegExp("^[0-9]{3}$");
+        let regExpTarj = new RegExp("^[0-9]{16}$");
+
+        $.each(formData, function (index, element) {
+
+            let value = $(element).val();
+            let id = $(element).prop("id");
+
+            switch (id) {
+                case "nombre_cliente":
+                    if (!regExpNom.test(value)) {
+                        errores += "<li>Error en el campo Nombre, solo se aceptan letras</li>";
+                        control = false;
+                    }
+                    break;
+                case "app_cliente":
+                    if (!regExpNom.test(value)) {
+                        errores += "<li>Error en el campo Apellido Paterno, solo se aceptan letras</li>";
+                        control = false;
+                    }
+                    break;
+                case "apm_cliente":
+                    if (!regExpNom.test(value)) {
+                        errores += "<li>Error en el campo Apellido Materno, solo se aceptan letras</li>";
+                        control = false;
+                    }
+                    break;
+                case "telefono_cliente":
+                    if (!regExpTel.test(value)) {
+                        errores += "<li>Error en el campo Teléfono, solo se aceptan números</li>";
+                        control = false;
+                    }
+                    break;
+                case "estado":
+                    if (!regExpNom.test(value)) {
+                        errores += "<li>Error en el campo Estado, solo se aceptan letras</li>";
+                        control = false;
+                    }
+                    break;
+                case "municipio":
+                    if (!regExpNom.test(value)) {
+                        errores += "<li>Error en el campo Municipio, solo se aceptan letras</li>";
+                        control = false;
+                    }
+                    break;
+                case "calle":
+                    if (!regExpCalle.test(value)) {
+                        errores += "<li>Error en el campo Calle, solo se aceptan letras y números</li>";
+                        control = false;
+                    }
+                    break;
+                case "colonia":
+                    if (!regExpCalle.test(value)) {
+                        errores += "<li>Error en el campo colonia, solo se aceptan letras y números</li>";
+                        control = false;
+                    }
+                    break;
+                case "cp":
+                    if (!regExpCP.test(value)) {
+                        errores += "<li>Error en el campo Código Postal, solo se aceptan 5 números</li>";
+                        control = false;
+                    }
+                    break;
+                case "tarjeta":
+                    if (!regExpTarj.test(value)) {
+                        errores += "<li>Error en el campo Tarjeta, solo se aceptan 16 números</li>";
+                        control = false;
+                    }
+                    break;
+                case "cvv":
+                    if (!regExpCVV.test(value)) {
+                        errores += "<li>Error en el campo CVV, solo se aceptan 3 números</li>";
+                        control = false;
+                    }
+                    break;
+            }
+        });
+
+        return control;
+    }
+</script>

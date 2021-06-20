@@ -1,0 +1,126 @@
+﻿@using GardeningF.Models
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Styles.Render("~/Content/StylesCarro.css")
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+<div class="container mt-5">
+    <h2 style="text-align:center">Carrito de compras</h2>
+    <br>
+    <!--Tabla carrito-->
+
+    @if ((Session["itemCarro"] == null) || ((int)Session["itemCarro"] == 0))
+    {
+
+
+        <div class="row">
+            <div class="col-md-2 col-sm-4 col-8 offset-md-5 offset-sm-4">
+                <img class="img-responsive" widht="250" height="250" src="~/Content/Imagenes/Carrito/carritoPlantas.jpg" />
+            </div>
+        </div>
+
+        <br>
+        <h4 style="text-align:center">Su carrito se encuentra vacío</h4>
+        <br>
+        <div class="row">
+            <div class="col-md-4 col-sm-8 col-12 offset-md-5 offset-sm-2">
+                @Html.ActionLink("Ir a sección de productos", "CrearOrden", "Pago", new { area = "" }, new { @class = "btn btn-success" })
+            </div>
+        </div>
+
+    }
+    else
+    {
+        <table class="table table-striped" id="carrito" width="100%" style="box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.3);">
+            <thead>
+                <tr style="text-align:center">
+                    <th>Producto</th>
+                    <th>Precio unitario</th>
+                    <th>cantidad</th>
+                    <th>Imagen</th>
+                    <th>Sub Total</th>
+                    <th></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Item item in (List<Item>)Session["cart"])
+                {
+                    <tr style="text-align:center">
+                        <td>@item.Product.nombre_producto</td>
+                        <td>@item.Product.precio_producto</td>
+                        <td>
+                            <a class="btn fas fa-minus" style="font-size:20px;color:red" href='@Url.Action("Restar", "Carro", new { id = @item.Product.id_producto}, null)'></a>
+                            @item.Cantidad <a class="btn fas fa-plus" style="font-size:20px;color:green" href='@Url.Action("Agregar", "Carro", new { id = @item.Product.id_producto}, null)'></a>
+                        </td>
+                        <td><img class="img-responsive" widht="80" height="80" src="~/Content/Imagenes/Productos/@item.Product.imagen_producto" /></td>
+                        <td>$@(item.Product.precio_producto * item.Cantidad)</td>
+                        <td style="text-align:center">
+                            <a class="" href='@Url.Action("Quitar", "Carro", new { id = @item.Product.id_producto}, null)'><li class="fas fa-trash" style="color:red; font-size:20px"></li></a>
+                        </td>
+                    </tr>
+                }
+                <tr>
+                    <td colspan="4" align="right">Total: </td>
+                    <td colspan="1" style="text-align:center">
+                        @{
+                            List<Item> carro = (List<Item>)Session["cart"];
+                            double total = (double)carro.Sum(item => item.Product.precio_producto * item.Cantidad);
+                        }
+                        $@total
+                    </td>
+                    <td colspan="1" align="right"></td>
+                </tr>
+            </tbody>
+        </table>
+        <br />
+        <div class="col-md-12" style="text-align:right">
+            @Html.ActionLink("Continuar comprando", "Index", "Catalogo", new { area = "" }, new { @class = "btn btn-primary", @style = "margin-right: 5px " })
+
+            @Html.ActionLink("Confirmar Orden", "CrearOrden", "Pago", new { area = "" }, new { @class = "btn b btn-success" })
+        </div>
+
+
+                            }
+    <!--Fin tabla carrito-->
+    <br />
+    <hr />
+    <!--Productos destacados-->
+    <h2 class="titulo-centro">Productos destacados</h2>
+    <div class="row">
+        @foreach (Producto prod in ViewBag.prod)
+            {
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card text-center" style="box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.3);">
+                    <img class="card-img-top imagen-card" src="~/Content/Imagenes/Productos/@prod.imagen_producto" />
+                    <div class="card-body">
+                        <hr />
+                        <h5 class="card-title">@prod.nombre_producto</h5>
+                        <p class="card-text">
+                            @prod.descripcion_producto
+                            <br />
+                            $@prod.precio_producto
+                        </p>
+                        <hr />
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <!--TODO: Cambiar a redirigir a la pagina de producto-->
+                                @Html.ActionLink("Ver producto", "", "", routeValues: null, htmlAttributes: new { @class = "btn btn-sm boton", @style = "box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.5);" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <!--TODO: Cambiar para agregar al carrito-->
+                                @Html.ActionLink("Añadir al carrito", "Agregar", "Carro", routeValues: new { id = prod.id_producto }, htmlAttributes: new { @class = "btn boton", @style = "box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.5);" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <!--Fin productos destacados-->
+</div>
+
+

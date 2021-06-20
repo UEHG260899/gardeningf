@@ -5,6 +5,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Net;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
@@ -79,7 +80,10 @@ namespace GardeningF.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+
+                    string correo = model.Email;
+                    return RedirectToAction("Index", "Usuario", new { email = correo});
+             
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -156,14 +160,25 @@ namespace GardeningF.Controllers
                 if (result.Succeeded)
                 {
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Enviar correo electrónico con este vínculo
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
                     // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
                     // await UserManager.SendEmailAsync(user.Id, "Confirmar cuenta", "Para confirmar la cuenta, haga clic <a href=\"" + callbackUrl + "\">aquí</a>");
+                    bool dominio = user.Email.ToString().Contains("@gardening.com");
 
-                    return RedirectToAction("Index", "Home");
+                    if (dominio)
+                    {
+                        string correo = model.Email;
+                        return RedirectToAction("Index", "Usuario", routeValues: new { email = correo });
+                    }
+                    else
+                    {
+                        Session["email"] = model.Email;
+                        return RedirectToAction("Create", "Clientes");
+                    }
+
                 }
                 AddErrors(result);
             }
@@ -401,6 +416,23 @@ namespace GardeningF.Controllers
         public ActionResult ExternalLoginFailure()
         {
             return View();
+        }
+
+        public async Task<ActionResult> Delete()
+        {
+            if (ModelState.IsValid)
+            {
+                string id = User.Identity.GetUserId();
+                if(id == null)
+                {
+                    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                }
+                AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+                var user = await UserManager.FindByIdAsync(id);
+                var result = await UserManager.DeleteAsync(user);
+
+            }
+            return RedirectToAction("Register");
         }
 
         protected override void Dispose(bool disposing)

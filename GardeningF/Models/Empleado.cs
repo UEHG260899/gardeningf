@@ -11,15 +11,32 @@ namespace GardeningF.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Empleado
     {
         public int id_empleado { get; set; }
+        [StringLength(60, MinimumLength = 2)]
+        [Required(ErrorMessage = "El nombre de usuario debe ser entre 2 y 60 caracteres")]
+        [Display(Name ="Nombre del usuario")]
         public string nombre_empleado { get; set; }
+        [StringLength(60, MinimumLength = 2)]
+        [Required(ErrorMessage = "El Apellido Paterno debe ser entre 2 y 60 caracteres")]
+        [Display(Name = "Apellido Paterno")]
         public string app_empleado { get; set; }
+        [StringLength(60, MinimumLength = 2)]
+        [Required(ErrorMessage = "El Apellido Materno debe ser entre 2 y 60 caracteres")]
+        [Display(Name = "Apellido Materno")]
         public string apm_empleado { get; set; }
+        [EmailAddress(ErrorMessage = "Debe de ingresar un correo electrónico válido")]
+        [Required(ErrorMessage = "Debe de ingresar un correo electrónico válido")]
+        [Display(Name = "Correo electrónico")]
         public string email_empleado { get; set; }
+        [Required(ErrorMessage = "Debe ingresar un rol al usuario")]
+        [Display(Name = "Rol")]
         public string rol_empleado { get; set; }
+        [Required(ErrorMessage = "Debe seleccionar un departamento")]
+        [Display(Name = "Departamento")]
         public int id_depto { get; set; }
     
         public virtual Departamento Departamento { get; set; }

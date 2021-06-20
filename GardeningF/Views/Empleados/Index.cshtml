@@ -1,0 +1,131 @@
+﻿@model IEnumerable<GardeningF.Models.Empleado>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+<div class="container mt-5 ">
+    <div class="card " style="margin-top: 70px ;">
+        <div class="card-header bg-main">
+            Administración de empleados
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">
+                En este panel, usted podra visualizar, crear empleados asignando roles y
+                departamentos, además puede editar y eliminar registros
+            </h5>
+
+            <!-- Card statics-->
+            <div class="row">
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header bg-card-admin text-white text-center">
+                            Total de empleados
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text text-center">20</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card ">
+                        <div class="card-header bg-card-admin text-white text-center">
+                            Departamento Ventas
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text text-center">12</p>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4">
+                    <div class="card">
+                        <div class="card-header bg-card-admin text-white text-center">
+                            Departamento Compras
+                        </div>
+                        <div class="card-body">
+
+                            <p class="card-text text-center">8</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- end Card statics-->
+
+            <hr>
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="d-flex flex-row-reverse">
+                        @Html.ActionLink("Agregar nuevo", "Create", null, htmlAttributes: new { @class = "link-admin-agregar" })
+
+                    </div>
+                </div>
+            </div>
+            <!-- Tabla empleados -->
+            <div class="row">
+                <div class="col-12">
+                    <div style="display:flex; flex-direction:column;">
+                        <h3 class="my-2">Lista de Empleados</h3>
+                    </div>
+
+                    <table class="table">
+                        <thead class="bg-principal">
+                            <tr>
+                                <th scope="col">@Html.DisplayNameFor(model => model.nombre_empleado)</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.app_empleado)</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.apm_empleado)</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.email_empleado)</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.id_depto)</th>
+                                <th scope="col">@Html.DisplayNameFor(model => model.rol_empleado)</th>
+                                <th scope="col">Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody style="background-color: rgba(169, 169, 169, 0.207);">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.nombre_empleado)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.app_empleado)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.apm_empleado)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.email_empleado)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Departamento.nombre_depto)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.rol_empleado)
+                                    </td>
+
+                                    <td width="200px">
+                                        @Html.ActionLink("Editar", "Edit",   new { id = item.id_empleado},htmlAttributes:new { @class = "btn btn-info" })
+                                        @Html.ActionLink("Eliminar", "Delete",   new { id = item.id_empleado },htmlAttributes:new { @class = "btn btn-danger" })
+
+                                    </td>
+                                </tr>
+                            }
+
+
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <!-- end tabla empleados -->
+        </div>
+    </div>
+</div>

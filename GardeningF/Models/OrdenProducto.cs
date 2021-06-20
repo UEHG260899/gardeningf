@@ -19,7 +19,7 @@ namespace GardeningF.Models
         public int cantidad { get; set; }
         public int id_orden { get; set; }
     
-        public virtual OrdenCliente OrdenCliente { get; set; }
         public virtual Producto Producto { get; set; }
+        public virtual OrdenCliente OrdenCliente { get; set; }
     }
 }

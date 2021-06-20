@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Invalido";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section>
+    <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <img src="~/Content/Imagenes/Home/Error/error_img.png" alt="Imagen Error" class="img-fluid"/>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6 mt-5">
+            <div class="row">
+                <div class="col-12">
+                    <h1>Vaya! Parece que algunos de los datos no son correctos.</h1>
+                    <p>
+                        Nuestros servicios de validación de pago no han podido verificar su tarjeta de crédito/débito. <br />
+
+                        Entre los errores más comunes se encuentran haber ingresado algun numero de tarjeta que sea invalido o que la fecha de vencimiento es anterior a la fecha actual.
+                        <br />
+
+                        Por su propia seguridad, al dar click en continuar eliminaremos los datos de su registro por lo que tendra que volver a registrarse.
+                    </p>
+                    @Html.ActionLink("Continuar", "BorrarUsuario", "Clientes", htmlAttributes: new { @class = "btn boton"})
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

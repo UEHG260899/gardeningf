@@ -1,0 +1,34 @@
+﻿@using GardeningF.Models
+@{
+    ViewBag.Title = "Busqueda por Categoria";
+}
+
+<section class="section-catalogo">
+    <h2>Categoria</h2>
+
+    <div class="row">
+        @foreach (Producto prod in ViewBag.prod)
+        {
+            <div class="col-sm-12 col-md-6 col-lg-4">
+                <div class="card mt-3">
+                    <img class="card-img-top imagen-card" src="~/Content/Imagenes/Productos/@prod.imagen_producto" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@prod.nombre_producto</h5>
+                        <p class="card-text">
+                            @prod.descripcion_producto
+                            $@prod.precio_producto
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    @Html.ActionLink("Ver producto", "", "", routeValues: null, htmlAttributes: new { @class = "btn boton" })
+                                </div>
+                                <div class="col-sm-12 col-md-6 col-lg-6">
+                                    @Html.ActionLink("Agregar al carrito", "Agregar", "Carro", routeValues: new { id = @prod.id_producto }, htmlAttributes: new { @class = "btn boton" })
+                                </div>
+                            </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</section>

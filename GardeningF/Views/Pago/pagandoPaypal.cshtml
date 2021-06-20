@@ -1,0 +1,53 @@
+﻿@using GardeningF.Models
+
+@{
+    ViewBag.Title = "pagandoPaypal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int idClient = Convert.ToInt32(Session["idClient"].ToString());
+    int idDir = Convert.ToInt32(Session["idDir"].ToString());
+    string nombre = Session["usr"].ToString();
+    List<Item> cart = (List<Item>)Session["cart"];
+    var total = cart.Sum(item => item.Product.precio_producto * item.Cantidad);
+}
+@Styles.Render("~/Content/StylesPago.css")
+
+<div class="container mt-5">
+    <div class="card">
+        <div class="card-header bg-main">
+            <p style="font-family: 'Lucida Sans', 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;">
+                <b>Bienvenido: @nombre</b>
+            </p>
+        </div>
+        <div class="card-body">
+            <div class="row">
+            <div class="col-md-4 text-center">
+                    <img src="https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.webspotting.de%2Fwp-content%2Fuploads%2F2020%2F01%2FPayPal-Logo.png&f=1&nofb=1" width="300" />
+            </div>
+                <div class="col-md-8">
+                    <caption>Acepta el pago de:</caption>
+                    <table class="table table-bordered" table-hover>
+                        <tr>
+                            <td colspan="2" style="height: 50px; padding: 15px;">
+                                <b>GARDENING, Todo para su jardin</b>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="info" style="height: 25px; padding: 15px">Importe en pesos:</td>
+                            <td style="height: 25px; padding: 15px;"><b>$@total</b></td>
+                        </tr>
+                    </table>
+                 
+                    <div style="margin: auto;" class="text-right">
+                        <a class="btn btn-info text-center" style="text-decoration: none;" href="@Url.Action("pagoAceptado", "Pago", new { idC = idClient, idDir = idDir})">Aceptar</a>
+                        <a class="btn btn-danger text-center" style="text-decoration: none;" href="@Url.Action("pagoNoAceptado", "Pago")">Denegar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ 
+
+</div>
+
+
+

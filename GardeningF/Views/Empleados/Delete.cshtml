@@ -1,0 +1,94 @@
+﻿@model GardeningF.Models.Empleado
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+
+
+    <div class="container mt-5 ">
+        <div class="row mb-3" style="margin-top: 70px;">
+            <div class="col-3">
+                @Html.ActionLink("Regresar", "Index", null, htmlAttributes: new { @class = "btn btn-success bg-principal" })
+
+            </div>
+        </div>
+        <div class="card ">
+
+            <div class="card-header bg-main">
+                Eliminar Empleado
+            </div>
+            <div class="card-body">
+
+                <div class="row mt-4 ">
+                    <div class="col-8 mx-auto">
+                        <article class="card mb-4">
+                            <div class="card-body">
+                                <h4 class="card-title mb-4">Empleado</h4>
+
+                                <div class="row">
+                                    <div class="d-flex col-sm-12 mt-2">
+                                        <div class="col-4">
+                                            <label> Nombre:</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <input type="text" placeholder="Escribe aqui." class="form-control"
+                                                   value="@Html.DisplayFor(model => model.nombre_empleado)" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex col-sm-12 mt-4">
+                                        <div class="col-4">
+                                            <label> Email:</label>
+                                        </div>
+                                        <div class="col-8">
+
+                                            @Html.DisplayFor(model => model.email_empleado)
+                                        </div>
+                                    </div>
+                                    <div class="d-flex col-sm-12 mt-4">
+                                        <div class="col-4">
+                                            <label> Rol:</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <input type="text" placeholder="Escribe aqui." class="form-control"
+                                                   value=" @Html.DisplayFor(model => model.rol_empleado)" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex col-sm-12 mt-4">
+                                        <div class="col-4">
+                                            <label> Departamento:</label>
+                                        </div>
+                                        <div class="col-8">
+                                            <input type="text" placeholder="Escribe aqui." class="form-control"
+                                                   value=" @Html.DisplayFor(model => model.Departamento.nombre_depto)" readonly>
+                                        </div>
+                                    </div>
+
+
+
+                                </div> <!-- row.// -->
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <div class="row">
+                                        <div class="col-md-12 col-sm-12 col-lg-12 mt-3 ">
+                                            <label style="font-size: small;">*Esta operación es irreversible</label>
+                                            <button type="submit" value="Delete" class="btn btn-danger" style="width: 100% !important;">Eliminar </button>
+
+                                        </div>
+                                    </div>
+                                }
+
+
+                            </div> <!-- card-body.// -->
+                        </article> <!-- card.// -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+

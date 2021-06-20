@@ -27,6 +27,7 @@
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
     <TypeScriptToolsVersion>2.1</TypeScriptToolsVersion>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -193,9 +194,19 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CatalogoController.cs" />
+    <Compile Include="Controllers\ClientesController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
+    <Compile Include="Controllers\DepartamentosController.cs" />
+    <Compile Include="Controllers\EmpleadosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PaqueteriasController.cs" />
+    <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\CarroController.cs" />
+    <Compile Include="Controllers\PagoController.cs" />
+    <Compile Include="Controllers\PedidosController.cs" />
+    <Compile Include="Controllers\MasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -216,6 +227,8 @@
       <DependentUpon>ModeloGardeningF.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\ItemPedidos.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ModeloGardeningF.Context.cs">
       <AutoGen>True</AutoGen>
@@ -241,6 +254,8 @@
     <Compile Include="Models\Paqueteria.cs">
       <DependentUpon>ModeloGardeningF.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\PedidoCliente.cs" />
+    <Compile Include="Models\ProdCarro.cs" />
     <Compile Include="Models\Producto.cs">
       <DependentUpon>ModeloGardeningF.tt</DependentUpon>
     </Compile>
@@ -261,6 +276,95 @@
     <Content Include="Content\Imagenes\Paqueterias\deletePqt.png" />
     <Content Include="Content\Imagenes\Paqueterias\updatePqt.png" />
     <Content Include="Content\StylesPaqueteria.css" />
+    <Content Include="Content\Imagenes\Carrito\carritoPlantas.jpg" />
+    <Content Include="Content\Imagenes\DeptoCompras\agregar.jpg" />
+    <Content Include="Content\Imagenes\DeptoCompras\edit.jpg" />
+    <Content Include="Content\Imagenes\DeptoCompras\productos.png" />
+    <Content Include="Content\Imagenes\Home\Error\error_img.png" />
+    <Content Include="Content\Imagenes\Home\Index\banner1.jpg" />
+    <Content Include="Content\Imagenes\Home\Index\cuidado-card.jpg" />
+    <Content Include="Content\Imagenes\Home\Index\icono-envio.png" />
+    <Content Include="Content\Imagenes\Home\Index\icono-fb.png" />
+    <Content Include="Content\Imagenes\Home\Index\icono-gmail.png" />
+    <Content Include="Content\Imagenes\Home\Index\icono-jardin.png" />
+    <Content Include="Content\Imagenes\Home\Index\icono-oferta.png" />
+    <Content Include="Content\Imagenes\Home\Index\icono-pago.png" />
+    <Content Include="Content\Imagenes\Home\Index\icono-twitter.png" />
+    <Content Include="Content\Imagenes\Home\Index\jumbo-selec.jpg" />
+    <Content Include="Content\Imagenes\Home\Index\loginGardening.jpg" />
+    <Content Include="Content\Imagenes\Home\Index\plantas-card.jpg" />
+    <Content Include="Content\Imagenes\Home\Index\signUpG.jpg" />
+    <Content Include="Content\Imagenes\Home\Index\utensilios-card.jpg" />
+    <Content Include="Content\Imagenes\Productos\abono-art-1.jpg" />
+    <Content Include="Content\Imagenes\Productos\abono-art-2.jpg" />
+    <Content Include="Content\Imagenes\Productos\abono-art-3.png" />
+    <Content Include="Content\Imagenes\Productos\abono-art-4.jpg" />
+    <Content Include="Content\Imagenes\Productos\abono-art-5.jpg" />
+    <Content Include="Content\Imagenes\Productos\abono-art-6.jpg" />
+    <Content Include="Content\Imagenes\Productos\abono-nat-1.png" />
+    <Content Include="Content\Imagenes\Productos\abono-nat-2.png" />
+    <Content Include="Content\Imagenes\Productos\abono-nat-3.png" />
+    <Content Include="Content\Imagenes\Productos\abono-nat-4.png" />
+    <Content Include="Content\Imagenes\Productos\abono-nat-5.png" />
+    <Content Include="Content\Imagenes\Productos\abono-nat-6.png" />
+    <Content Include="Content\Imagenes\Productos\decoracion-1.jpeg" />
+    <Content Include="Content\Imagenes\Productos\decoracion-2.jpeg" />
+    <Content Include="Content\Imagenes\Productos\decoracion-3.jpeg" />
+    <Content Include="Content\Imagenes\Productos\decoracion-4.jpeg" />
+    <Content Include="Content\Imagenes\Productos\decoracion-5.jpeg" />
+    <Content Include="Content\Imagenes\Productos\decoracion-6.jpeg" />
+    <Content Include="Content\Imagenes\Productos\decorativa1.jpg" />
+    <Content Include="Content\Imagenes\Productos\decorativa2.jpg" />
+    <Content Include="Content\Imagenes\Productos\decorativa3.jpg" />
+    <Content Include="Content\Imagenes\Productos\decorativa4.jpg" />
+    <Content Include="Content\Imagenes\Productos\decorativa5.jpg" />
+    <Content Include="Content\Imagenes\Productos\decorativa6.jpg" />
+    <Content Include="Content\Imagenes\Productos\floral1.jpg" />
+    <Content Include="Content\Imagenes\Productos\floral2.jpg" />
+    <Content Include="Content\Imagenes\Productos\floral3.jpg" />
+    <Content Include="Content\Imagenes\Productos\floral4.jpg" />
+    <Content Include="Content\Imagenes\Productos\floral5.jpg" />
+    <Content Include="Content\Imagenes\Productos\floral6.jpg" />
+    <Content Include="Content\Imagenes\Productos\frutal1.jpg" />
+    <Content Include="Content\Imagenes\Productos\frutal2.jpg" />
+    <Content Include="Content\Imagenes\Productos\frutal3.jpg" />
+    <Content Include="Content\Imagenes\Productos\frutal4.jpg" />
+    <Content Include="Content\Imagenes\Productos\frutal5.jpg" />
+    <Content Include="Content\Imagenes\Productos\frutal6.jpg" />
+    <Content Include="Content\Imagenes\Productos\herram-1.jpeg" />
+    <Content Include="Content\Imagenes\Productos\herram-2.jpeg" />
+    <Content Include="Content\Imagenes\Productos\herram-3.jpeg" />
+    <Content Include="Content\Imagenes\Productos\herram-4.jpeg" />
+    <Content Include="Content\Imagenes\Productos\herram-5.jpeg" />
+    <Content Include="Content\Imagenes\Productos\herram-6.jpeg" />
+    <Content Include="Content\Imagenes\Productos\herram-7.jpeg" />
+    <Content Include="Content\Imagenes\Productos\macetas-1.jpeg" />
+    <Content Include="Content\Imagenes\Productos\macetas-2.jpeg" />
+    <Content Include="Content\Imagenes\Productos\macetas-3.jpeg" />
+    <Content Include="Content\Imagenes\Productos\macetas-4.jpeg" />
+    <Content Include="Content\Imagenes\Productos\macetas-5.jpeg" />
+    <Content Include="Content\Imagenes\Productos\macetas-6.jpeg" />
+    <Content Include="Content\Imagenes\Productos\pesticida-1.png" />
+    <Content Include="Content\Imagenes\Productos\pesticida-2.png" />
+    <Content Include="Content\Imagenes\Productos\pesticida-3.png" />
+    <Content Include="Content\Imagenes\Productos\pesticida-4.png" />
+    <Content Include="Content\Imagenes\Productos\pesticida-5.png" />
+    <Content Include="Content\Imagenes\Productos\pesticida-6.png" />
+    <Content Include="Content\Imagenes\Productos\riego-1.jpg" />
+    <Content Include="Content\Imagenes\Productos\riego-2.jpg" />
+    <Content Include="Content\Imagenes\Productos\riego-3.jpg" />
+    <Content Include="Content\Imagenes\Productos\riego-4.jpg" />
+    <Content Include="Content\Imagenes\Productos\riego-5.jpg" />
+    <Content Include="Content\Imagenes\Productos\riego-6.jpg" />
+    <Content Include="Content\StylesCatalogo.css" />
+    <Content Include="Content\StylesHome.css" />
+    <Content Include="Content\StylesAdmin.css" />
+    <Content Include="Content\Imagenes\Pago\btn-paypal.png" />
+    <Content Include="Content\Imagenes\Pago\payment-card.png" />
+    <Content Include="Content\Imagenes\Pago\payment-paypal.png" />
+    <Content Include="Content\Imagenes\Pago\payments.png" />
+    <Content Include="Content\StylesCarro.css" />
+    <Content Include="Content\StylesPago.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -444,9 +548,43 @@
     <Content Include="Views\Paqueterias\Index.cshtml" />
     <Content Include="Views\Paqueterias\EditPaqueteria.cshtml" />
     <Content Include="Views\Paqueterias\DeletePaqueteria.cshtml" />
+    <Content Include="Views\Catalogo\Index.cshtml" />
+    <Content Include="Views\Catalogo\Subcategoria.cshtml" />
+    <Content Include="Views\Catalogo\Categoria.cshtml" />
+    <Content Include="Views\Catalogo\BuscarProducto.cshtml" />
+    <Content Include="Views\Clientes\Create.cshtml" />
+    <Content Include="Views\Clientes\Delete.cshtml" />
+    <Content Include="Views\Clientes\Details.cshtml" />
+    <Content Include="Views\Clientes\Edit.cshtml" />
+    <Content Include="Views\Clientes\Index.cshtml" />
+    <Content Include="Views\Clientes\Invalido.cshtml" />
+    <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
+    <Content Include="Views\Empleados\Create.cshtml" />
+    <Content Include="Views\Empleados\Delete.cshtml" />
+    <Content Include="Views\Empleados\Details.cshtml" />
+    <Content Include="Views\Empleados\Edit.cshtml" />
+    <Content Include="Views\Empleados\Index.cshtml" />
+    <Content Include="Views\Carro\Index.cshtml" />
+    <Content Include="Views\Pago\Crearorden.cshtml" />
+    <Content Include="Views\Pago\pagoAceptado.cshtml" />
+    <Content Include="Views\Pago\pagoPaypal.cshtml" />
+    <Content Include="Views\Pago\pagandoPaypal.cshtml" />
+    <Content Include="Views\Pago\pagoNoAceptado.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Pedidos\Index.cshtml" />
+    <Content Include="Views\Pedidos\verPedido.cshtml" />
+    <Content Include="Views\Clientes\InvalidoUpdate.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialAdmin.cshtml" />
+    <Content Include="Views\Mas\Tarjeta.cshtml" />
+    <Content Include="Views\Departamentos\Create.cshtml" />
+    <Content Include="Views\Departamentos\Delete.cshtml" />
+    <Content Include="Views\Departamentos\Details.cshtml" />
+    <Content Include="Views\Departamentos\Edit.cshtml" />
+    <Content Include="Views\Departamentos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Usuario\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
