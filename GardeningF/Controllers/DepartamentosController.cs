@@ -17,6 +17,8 @@ namespace GardeningF.Controllers
         // GET: Departamentos
         public ActionResult Index()
         {
+            var empleado = db.Empleado.Include(e => e.Departamento);
+            ViewBag.empleados = empleado.ToList();
             return View(db.Departamento.ToList());
         }
 
