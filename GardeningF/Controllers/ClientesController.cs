@@ -92,6 +92,7 @@ namespace GardeningF.Controllers
                     string[] nombres = cliente.nombre_cliente.ToString().Split(' ');
                     Session["name"] = nombres[0];
                     Session["usr"] = cliente.nombre_cliente;
+                    Session["idCliente"] = cliente.id_cliente;
 
                     if(Session["crearOrden"] != null)
                     {
