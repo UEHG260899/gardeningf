@@ -17,8 +17,14 @@ namespace GardeningF.Controllers
         // GET: Orden
         public ActionResult Index()
         {
-            var ordenCliente = db.OrdenCliente.Include(o => o.Cliente).Include(o => o.Direccion).Include(o => o.Paqueteria);
-            return View(ordenCliente.ToList());
+            var orden_cliente = db.OrdenCliente.Where(o => o.fecha_envio == null).OrderByDescending(o => o.fecha_creacion).Include(o => o.Cliente).Include(o => o.Paqueteria);
+            return View(orden_cliente.ToList());
+        }
+
+        public ActionResult Index1()
+        {
+            var orden = db.OrdenCliente.Where(o => o.fecha_entrega == null && o.fecha_envio != null).OrderByDescending(o => o.fecha_creacion).Include(o => o.cliente).Include(o => o.paqueteria);
+            return View(orden.ToList());
         }
 
         // GET: Orden/Details/5
