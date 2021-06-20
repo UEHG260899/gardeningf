@@ -1,0 +1,133 @@
+﻿@model GardeningF.Models.Producto
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_LayoutCompras.cshtml";
+}
+
+<style>
+    textarea {
+        min-width: 100%;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="container mt-5">
+        <h2>Crear Producto</h2>
+        <div class="card">
+            <h5 class="card-header">Datos nuevo Producto</h5>
+            <div class="card-body">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.nombre_producto, "Nombre producto", htmlAttributes: new { @class = "control-label" })
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa fa-dollar-sign"></i></span>
+                                @Html.EditorFor(model => model.nombre_producto, new { htmlAttributes = new { type = "text", @class = "form-control", placeholder = "Ingrese Nombre del producto." , disabled="true"  } })
+                                @Html.ValidationMessageFor(model => model.nombre_producto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.precio_producto, "Precio del producto", htmlAttributes: new { @class = "control-label" })
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa fa-dollar-sign"></i></span>
+                                @Html.EditorFor(model => model.precio_producto, new { htmlAttributes = new { type = "number", @class = "form-control", placeholder = "Ingrese precio del producto." , disabled="true"  } })
+                                @Html.ValidationMessageFor(model => model.precio_producto, "", new { @class = "text-danger" })
+                            </div>
+                            <small class="form-text text-muted">El precio ingresado debe de ser por unidad.</small>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.imagen_producto, "Imagen del producto", htmlAttributes: new { @class = "control-label" })
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa fa-image"></i></span>
+                                @Html.EditorFor(model => model.imagen_producto, new { htmlAttributes = new { type = "text", @class = "form-control", placeholder = "Ingrese nombre de imagen" , disabled="true"  } })
+                                @Html.ValidationMessageFor(model => model.imagen_producto, "", new { @class = "text-danger" })
+                            </div>
+                            <small class="form-text text-muted">El nombre de la imagen debe de contener su extension, ejemplo: "imagen1.jpg."</small>
+                        </div>
+                    </div>
+
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-8">
+                            <div class="input-group">
+                                @Html.LabelFor(model => model.descripcion_producto, "Descripción del producto", htmlAttributes: new { @class = "control -label" })
+                            </div>
+                            @Html.TextAreaFor(model => model.descripcion_producto, new { htmlAttributes = new { @class = "form-control" , disabled="true"  } })
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.id_subcategoria, "Nombre de subcategoria", htmlAttributes: new { @class = "control-label" })
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa fa-address-book"></i></span>
+                                @Html.EditorFor(model => model.id_subcategoria, new { htmlAttributes = new { type = "text", @class = "form-control", @Value = @Html.DisplayFor(model => model.Subcategoria.nombre_subcategoria) , disabled="true"  } })
+                                @Html.ValidationMessageFor(model => model.id_subcategoria, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+                    <div class="form-row">
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.cantidad_existencia, "Cantidad en existencia", htmlAttributes: new { @class = "control-label" })
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa fa-clipboard-check"></i></span>
+                                @Html.EditorFor(model => model.cantidad_existencia, new { htmlAttributes = new { type = "number", @class = "form-control", placeholder = "Ingrese Cantidad en existencia" , disabled="true"  } })
+                                @Html.ValidationMessageFor(model => model.cantidad_existencia, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.stock, "Stock", htmlAttributes: new { @class = "control-label" })
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa fa-clipboard-list"></i></span>
+                                @Html.EditorFor(model => model.stock, new { htmlAttributes = new { type = "number", @class = "form-control", placeholder = "Ingrese Stock" , disabled="true"  } })
+                                @Html.ValidationMessageFor(model => model.stock, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            @Html.LabelFor(model => model.descuento, htmlAttributes: new { @class = "control-label" })
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa fa-percentage"></i></span>
+                                @Html.EditorFor(model => model.descuento, new { htmlAttributes = new { type = "text", @class = "form-control", placeholder = "Ingrese descuento" , disabled="true"  } })
+                                @Html.ValidationMessageFor(model => model.stock, "", new { @class = "text-danger" })
+
+                            </div>
+                            <small class="form-text text-muted">El descuento que sea ingresado estara en porcentaje.</small>
+                        </div>
+                    </div>
+
+                </div>
+
+
+                <input type="submit" value="Guardar" class="btn boton float-right" />
+
+
+            </div>
+        </div>
+
+        <br />
+        <button type="button" class="btn boton" onclick="location.href='@Url.Action("Index", "Productos")'">Regresar a productos</button>
+    </div>
+
+}
+
+
+
+@section scripts{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+    <script>
+        $(document).ready(function () {
+            $(".form-control").prop("disabled", true);
+            $("#descripcion_producto").prop("disabled", true);
+        });
+    </script>
+
+}

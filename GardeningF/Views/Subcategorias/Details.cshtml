@@ -1,0 +1,43 @@
+﻿@model GardeningF.Models.Subcategoria
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_LayoutCompras.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Subcategoria</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.nombre_subcategoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nombre_subcategoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.descripcion_subcategoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.descripcion_subcategoria)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Categoria.nombre_categoria)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Categoria.nombre_categoria)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id_subcategoria }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
