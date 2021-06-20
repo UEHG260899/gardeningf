@@ -1,0 +1,361 @@
+﻿@using GardeningF.Models
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutCompras.cshtml";
+
+}
+<style>
+    .card > img {
+        height: 230px;
+    }
+
+    .bg-card-admin, thead {
+        background-color: var(--color-principal) !important;
+        color: white;
+    }
+
+    .page-item.active .page-link, .btn {
+        background-color: var(--color-principal) !important;
+        border-color: var(--color-principal) !important;
+        color: white !important;
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+        background: none;
+        color: black !important;
+        border-radius: 4px;
+        border: 1px solid var(--color-principal);
+    }
+
+    .dataTables_wrapper .dataTables_paginate .paginate_button:active {
+        background: none;
+        color: black !important;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+
+<!--Counts de productos, categorias y subcategorias-->
+<div class="container">
+
+    <div class=" col-md-12" style="margin-top:50px; margin-bottom:60px">
+        <br />
+        <h2>Departamento de compras</h2>
+        <br />
+        <div class="row justify-content-md-center">
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header bg-card-admin text-white">
+                        Total productos
+                    </div>
+                    <div class="card-body">
+
+                        <p class="card-text text-center">@ViewBag.productosLen</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header bg-card-admin text-white">
+                        Total de Categorías
+                    </div>
+                    <div class="card-body">
+
+                        <p class="card-text text-center">@ViewBag.categoriasLen</p>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="card">
+                    <div class="card-header bg-card-admin text-white">
+                        Total de Subcategorías
+                    </div>
+                    <div class="card-body">
+
+                        <p class="card-text text-center">@ViewBag.subcategoriasLen</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--Fin counts-->
+        <!--Cards de opciones departamento de compras-->
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="~/Content/Imagenes/DeptoCompras/productos.png" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Crear productos o Actualizarlos</h4>
+                        <p class="card-text">Podrás crear nuevos productos y actualizarlos</p>
+                        @Html.ActionLink("Productos", "Index", "Productos", null, htmlAttributes: new { @class = " btn btn-sm" })
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="~/Content/Imagenes/DeptoCompras/agregar.jpg" alt="Card image" style="width:100%;">
+                    <div class="card-body">
+                        <h4 class="card-title">Crear categorías o agregar Subcategorías</h4>
+                        <p class="card-text">Crea nuevas categorías o Subcategorías y has crecer el inventario</p>
+                        @Html.ActionLink("Categorías", "Create", "Categorias", null, htmlAttributes: new { @class = " btn btn-sm" })
+                        @Html.ActionLink("Subcategorías", "Create", "Subcategorias", null, htmlAttributes: new { @class = " btn btn-sm" })
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                    <img class="card-img-top" src="~/Content/Imagenes/DeptoCompras/edit.jpg" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">Actualizar categorías o  Subcategorías</h4>
+                        <p class="card-text">Actualiza categorías o Subcategorías y mantén un inventario actualizado </p>
+                        @Html.ActionLink("Categorías", "Index", "Categorias", null, htmlAttributes: new { @class = " btn btn-sm" })
+                        @Html.ActionLink("Subcategorías", "Index", "Subcategorias", null, htmlAttributes: new { @class = " btn btn-sm" })
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <!--Fin de Cards de opciones-->
+
+        <hr />
+        <!--Tabla productos-->
+        <div class="row">
+            <div style="display:flex; flex-direction:column;">
+                <h3 class="my-5">Productos</h3>
+                <p>
+                    @Html.ActionLink("Opciones", "Index", "Productos", null, htmlAttributes: new { @class = " btn btn-sm" })
+                </p>
+            </div>
+            <div class="col-md-12">
+
+                <table id="productos" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr class="navbar-color text-white-50">
+                            <th>
+                                Nombre
+                            </th>
+                            <th>
+                                Imagen
+                            </th>
+                            <th>
+                                Precio
+                            </th>
+                            <th>
+                                Existencia
+                            </th>
+                            <th>
+                                Stock
+                            </th>
+                            <th>
+                                Descuento
+                            </th>
+                            <th>
+                                Subcategoria
+                            </th>
+                            <th>
+                                Ultima actualización
+                            </th>
+                            <th>
+                                Descripción
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.productos)
+                        {
+
+                            <tr>
+                                <td>
+                                    @item.nombre_producto
+                                </td>
+                                <td>
+                                    <center><img src="~/Content/Imagenes/Productos/@item.imagen_producto" height="100px" width="100px" /></center>
+                                </td>
+                                <td>
+                                    @item.precio_producto
+                                </td>
+                                <td>
+                                    @item.cantidad_existencia
+                                </td>
+                                <td>
+                                    @item.stock
+                                </td>
+                                <td>
+                                    @item.descuento
+                                </td>
+                                <td>
+                                    @item.Subcategoria.nombre_subcategoria
+                                </td>
+                                <td>
+                                    @item.ultima_actualizacion
+                                </td>
+                                <td>
+                                    @item.descripcion_producto
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <!--Fin Tabla productos-->
+
+        <hr />
+        <!--Tabla Categorias-->
+
+        <div class="row">
+            <div style="display:flex; flex-direction:column;">
+                <h3 class="my-5">Categorías</h3>
+                <p>
+                    @Html.ActionLink("Opciones", "Index", "Categorias", null, htmlAttributes: new { @class = " btn btn-sm" })
+                </p>
+            </div>
+            <div class="col-md-12">
+
+                <table id="categorias" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+
+                        <tr class="navbar-color text-white-50">
+                            <th>
+                                Id Categoría
+                            </th>
+                            <th>
+                                Nombre Categoría
+                            </th>
+                            <th>
+                                Descripcion Categoría
+                            </th>
+                        </tr>
+                    </thead>
+
+
+                    <tbody>
+
+                        @foreach (var item in ViewBag.categorias)
+                        {
+                            <tr>
+                                <td>
+                                    @item.id_categoria
+                                </td>
+                                <td>
+                                    @item.nombre_categoria
+                                </td>
+                                <td>
+                                    @item.descripcion_categoria
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <!--Fin Tabla Categorias-->
+
+        <hr />
+        <!--Tabla Subcategorias-->
+
+        <div class="row">
+            <div style="display:flex; flex-direction:column;">
+                <h3 class="my-5">Subcategorías</h3>
+                <p>
+                    @Html.ActionLink("Opciones", "Index", "Subcategorias", null, htmlAttributes: new { @class = " btn btn-sm" })
+                </p>
+            </div>
+            <div class="col-md-12">
+
+                <table id="subcategorias" class="table table-striped table-bordered" style="width:100%">
+                    <thead>
+                        <tr class="navbar-color text-white-50">
+                            <th>
+                                Id Categoría
+                            </th>
+                            <th>
+                                Id Subcategoría
+                            </th>
+                            <th>
+                                Nombre Subcategoría
+                            </th>
+                            <th>
+                                Descripción
+                            </th>
+                            <th>
+                                Nombre Categoría
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in ViewBag.subcategorias)
+                        {
+
+                            <tr>
+                                <td>
+                                    @item.id_categoria
+                                </td>
+                                <td>
+                                    @item.id_subcategoria
+                                </td>
+                                <td>
+                                    @item.nombre_subcategoria
+                                </td>
+                                <td>
+                                    @item.descripcion_subcategoria
+                                </td>
+                                <td>
+                                    @item.Categoria.nombre_categoria
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--Fin Tabla Subcategorias-->
+
+
+@section scripts{
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#categorias').DataTable({
+                "bInfo": false,
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
+                },
+                pageLength: 5,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']]
+            });
+        });
+        $(document).ready(function () {
+            $('#subcategorias').DataTable({
+                "bInfo": false,
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
+                },
+                pageLength: 5,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']]
+            });
+        });
+        $(document).ready(function () {
+            $('#productos').DataTable({
+                "bInfo": false,
+                language: {
+                    url: "//cdn.datatables.net/plug-ins/1.10.24/i18n/Spanish.json"
+                },
+                pageLength: 5,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']]
+            });
+        });
+    </script>
+}
