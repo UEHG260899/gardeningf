@@ -18,6 +18,11 @@ namespace GardeningF.Controllers
         public ActionResult Index()
         {
             var empleado = db.Empleado.Include(e => e.Departamento);
+            ViewBag.totalEmpleados = empleado.Count();
+            var compras = db.Empleado.Include(e => e.Departamento).Where(e => e.Departamento.nombre_depto == "compras");
+            var ventas = db.Empleado.Include(e => e.Departamento).Where(e => e.Departamento.nombre_depto == "ventas");
+            ViewBag.totalCompras = compras.Count();
+            ViewBag.totalVentas = ventas.Count();
             return View(empleado.ToList());
         }
 
