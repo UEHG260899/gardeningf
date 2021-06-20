@@ -454,6 +454,7 @@
     <Content Include="Views\Departamentos\Index.cshtml" />
     <Content Include="Views\Mas\Solicitar.cshtml" />
     <Content Include="Views\Mas\Confirmar.cshtml" />
+    <Content Include="Views\Mas\Empresas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
