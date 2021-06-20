@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="GardeningFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="GardeningFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Categoria">
           <Key>
             <PropertyRef Name="id_categoria" />
@@ -276,7 +276,8 @@
             <End Role="Subcategoria" EntitySet="Subcategoria" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="GardeningFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -287,66 +288,18 @@
           <Property Name="id_categoria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre_categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="descripcion_categoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Subcategoria" Relationship="GardeningFModel.FK__Subcatego__id_ca__276EDEB3" FromRole="Categoria" ToRole="Subcategoria" />
+          <NavigationProperty Name="Subcategoria" Relationship="Self.FK__Subcatego__id_ca__276EDEB3" FromRole="Categoria" ToRole="Subcategoria" />
         </EntityType>
-        <EntityContainer Name="contextoGardeningF" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Categoria" EntityType="Self.Categoria" />
-          <EntitySet Name="Cliente" EntityType="GardeningFModel.Cliente" />
-          <EntitySet Name="Departamento" EntityType="GardeningFModel.Departamento" />
-          <EntitySet Name="Direccion" EntityType="GardeningFModel.Direccion" />
-          <EntitySet Name="Empleado" EntityType="GardeningFModel.Empleado" />
-          <EntitySet Name="OrdenCliente" EntityType="GardeningFModel.OrdenCliente" />
-          <EntitySet Name="OrdenProducto" EntityType="GardeningFModel.OrdenProducto" />
-          <EntitySet Name="Paqueteria" EntityType="GardeningFModel.Paqueteria" />
-          <EntitySet Name="Producto" EntityType="GardeningFModel.Producto" />
-          <EntitySet Name="Subcategoria" EntityType="GardeningFModel.Subcategoria" />
-          <AssociationSet Name="FK__Subcatego__id_ca__276EDEB3" Association="GardeningFModel.FK__Subcatego__id_ca__276EDEB3">
-            <End Role="Categoria" EntitySet="Categoria" />
-            <End Role="Subcategoria" EntitySet="Subcategoria" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Direccion__id_cl__2C3393D0" Association="GardeningFModel.FK__Direccion__id_cl__2C3393D0">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="Direccion" EntitySet="Direccion" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrdenClie__id_cl__35BCFE0A" Association="GardeningFModel.FK__OrdenClie__id_cl__35BCFE0A">
-            <End Role="Cliente" EntitySet="Cliente" />
-            <End Role="OrdenCliente" EntitySet="OrdenCliente" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Empleado__id_dep__2F10007B" Association="GardeningFModel.FK__Empleado__id_dep__2F10007B">
-            <End Role="Departamento" EntitySet="Departamento" />
-            <End Role="Empleado" EntitySet="Empleado" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrdenClie__id_di__36B12243" Association="GardeningFModel.FK__OrdenClie__id_di__36B12243">
-            <End Role="Direccion" EntitySet="Direccion" />
-            <End Role="OrdenCliente" EntitySet="OrdenCliente" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrdenClie__id_pa__37A5467C" Association="GardeningFModel.FK__OrdenClie__id_pa__37A5467C">
-            <End Role="Paqueteria" EntitySet="Paqueteria" />
-            <End Role="OrdenCliente" EntitySet="OrdenCliente" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrdenProd__id_or__3A81B327" Association="GardeningFModel.FK__OrdenProd__id_or__3A81B327">
-            <End Role="OrdenCliente" EntitySet="OrdenCliente" />
-            <End Role="OrdenProducto" EntitySet="OrdenProducto" />
-          </AssociationSet>
-          <AssociationSet Name="FK__OrdenProd__id_pr__3C69FB99" Association="GardeningFModel.FK__OrdenProd__id_pr__3C69FB99">
-            <End Role="Producto" EntitySet="Producto" />
-            <End Role="OrdenProducto" EntitySet="OrdenProducto" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Producto__id_sub__31EC6D26" Association="GardeningFModel.FK__Producto__id_sub__31EC6D26">
-            <End Role="Subcategoria" EntitySet="Subcategoria" />
-            <End Role="Producto" EntitySet="Producto" />
-          </AssociationSet>
-          </EntityContainer>
         <EntityType Name="Cliente">
           <Key>
             <PropertyRef Name="id_cliente" />
           </Key>
           <Property Name="id_cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre_cliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="app_cliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="apm_cliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="correo_cliente" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="telefono_cliente" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="app_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apm_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="correo_cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono_cliente" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="num_tdc" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="cvv" Type="Int32" />
           <Property Name="fecha_vencimiento" Type="DateTime" Precision="0" />
@@ -358,21 +311,21 @@
             <PropertyRef Name="id_depto" />
           </Key>
           <Property Name="id_depto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre_depto" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Empleado" Relationship="GardeningFModel.FK__Empleado__id_dep__2F10007B" FromRole="Departamento" ToRole="Empleado" />
+          <Property Name="nombre_depto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Empleado" Relationship="Self.FK__Empleado__id_dep__2F10007B" FromRole="Departamento" ToRole="Empleado" />
         </EntityType>
         <EntityType Name="Empleado">
           <Key>
             <PropertyRef Name="id_empleado" />
           </Key>
           <Property Name="id_empleado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre_empleado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="app_empleado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="apm_empleado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="email_empleado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="rol_empleado" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nombre_empleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="app_empleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="apm_empleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="email_empleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rol_empleado" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="id_depto" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Departamento" Relationship="GardeningFModel.FK__Empleado__id_dep__2F10007B" FromRole="Empleado" ToRole="Departamento" />
+          <NavigationProperty Name="Departamento" Relationship="Self.FK__Empleado__id_dep__2F10007B" FromRole="Empleado" ToRole="Departamento" />
         </EntityType>
         <EntityType Name="OrdenProducto">
           <Key>
@@ -390,12 +343,12 @@
             <PropertyRef Name="id_paqueteria" />
           </Key>
           <Property Name="id_paqueteria" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nombre_paqueteria" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="rfc_paqueteria" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="nombre_paqueteria" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rfc_paqueteria" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
           <Property Name="telefono_paqueteria" Type="Int64" Nullable="false" />
-          <Property Name="web_paqueteria" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="direccion_paqueteria" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-          <Property Name="contacto_paqueteria" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="web_paqueteria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="direccion_paqueteria" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="contacto_paqueteria" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tel_contacto" Type="Int64" Nullable="false" />
           <NavigationProperty Name="OrdenCliente" Relationship="GardeningFModel.FK__OrdenClie__id_pa__47DBAE45" FromRole="Paqueteria" ToRole="OrdenCliente" />
         </EntityType>
@@ -413,8 +366,8 @@
           <Property Name="cantidad_existencia" Type="Int32" />
           <Property Name="stock" Type="Int32" />
           <Property Name="descuento" Type="Int32" />
-          <NavigationProperty Name="OrdenProducto" Relationship="GardeningFModel.FK__OrdenProd__id_pr__3C69FB99" FromRole="Producto" ToRole="OrdenProducto" />
-          <NavigationProperty Name="Subcategoria" Relationship="GardeningFModel.FK__Producto__id_sub__31EC6D26" FromRole="Producto" ToRole="Subcategoria" />
+          <NavigationProperty Name="OrdenProducto" Relationship="Self.FK__OrdenProd__id_pr__3C69FB99" FromRole="Producto" ToRole="OrdenProducto" />
+          <NavigationProperty Name="Subcategoria" Relationship="Self.FK__Producto__id_sub__31EC6D26" FromRole="Producto" ToRole="Subcategoria" />
         </EntityType>
         <EntityType Name="Subcategoria">
           <Key>
@@ -424,12 +377,12 @@
           <Property Name="id_categoria" Type="Int32" Nullable="false" />
           <Property Name="nombre_subcategoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="descripcion_subcategoria" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <NavigationProperty Name="Categoria" Relationship="GardeningFModel.FK__Subcatego__id_ca__276EDEB3" FromRole="Subcategoria" ToRole="Categoria" />
-          <NavigationProperty Name="Producto" Relationship="GardeningFModel.FK__Producto__id_sub__31EC6D26" FromRole="Subcategoria" ToRole="Producto" />
+          <NavigationProperty Name="Categoria" Relationship="Self.FK__Subcatego__id_ca__276EDEB3" FromRole="Subcategoria" ToRole="Categoria" />
+          <NavigationProperty Name="Producto" Relationship="Self.FK__Producto__id_sub__31EC6D26" FromRole="Subcategoria" ToRole="Producto" />
         </EntityType>
         <Association Name="FK__Subcatego__id_ca__276EDEB3">
-          <End Type="GardeningFModel.Categoria" Role="Categoria" Multiplicity="1" />
-          <End Type="GardeningFModel.Subcategoria" Role="Subcategoria" Multiplicity="*" />
+          <End Role="Categoria" Type="Self.Categoria" Multiplicity="1" />
+          <End Role="Subcategoria" Type="Self.Subcategoria" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Categoria">
               <PropertyRef Name="id_categoria" />
@@ -440,8 +393,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Empleado__id_dep__2F10007B">
-          <End Type="GardeningFModel.Departamento" Role="Departamento" Multiplicity="1" />
-          <End Type="GardeningFModel.Empleado" Role="Empleado" Multiplicity="*" />
+          <End Role="Departamento" Type="Self.Departamento" Multiplicity="1" />
+          <End Role="Empleado" Type="Self.Empleado" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Departamento">
               <PropertyRef Name="id_depto" />
@@ -452,8 +405,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__OrdenProd__id_pr__3C69FB99">
-          <End Type="GardeningFModel.Producto" Role="Producto" Multiplicity="1" />
-          <End Type="GardeningFModel.OrdenProducto" Role="OrdenProducto" Multiplicity="*" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="1" />
+          <End Role="OrdenProducto" Type="Self.OrdenProducto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Producto">
               <PropertyRef Name="id_producto" />
@@ -464,8 +417,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Producto__id_sub__31EC6D26">
-          <End Type="GardeningFModel.Subcategoria" Role="Subcategoria" Multiplicity="1" />
-          <End Type="GardeningFModel.Producto" Role="Producto" Multiplicity="*" />
+          <End Role="Subcategoria" Type="Self.Subcategoria" Multiplicity="1" />
+          <End Role="Producto" Type="Self.Producto" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Subcategoria">
               <PropertyRef Name="id_subcategoria" />
@@ -635,86 +588,86 @@
           <EntitySetMapping Name="Cliente">
             <EntityTypeMapping TypeName="GardeningFModel.Cliente">
               <MappingFragment StoreEntitySet="Cliente">
-                <ScalarProperty Name="fecha_vencimiento" ColumnName="fecha_vencimiento" />
-                <ScalarProperty Name="cvv" ColumnName="cvv" />
-                <ScalarProperty Name="num_tdc" ColumnName="num_tdc" />
-                <ScalarProperty Name="telefono_cliente" ColumnName="telefono_cliente" />
-                <ScalarProperty Name="correo_cliente" ColumnName="correo_cliente" />
-                <ScalarProperty Name="apm_cliente" ColumnName="apm_cliente" />
-                <ScalarProperty Name="app_cliente" ColumnName="app_cliente" />
-                <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
                 <ScalarProperty Name="id_cliente" ColumnName="id_cliente" />
+                <ScalarProperty Name="nombre_cliente" ColumnName="nombre_cliente" />
+                <ScalarProperty Name="app_cliente" ColumnName="app_cliente" />
+                <ScalarProperty Name="apm_cliente" ColumnName="apm_cliente" />
+                <ScalarProperty Name="correo_cliente" ColumnName="correo_cliente" />
+                <ScalarProperty Name="telefono_cliente" ColumnName="telefono_cliente" />
+                <ScalarProperty Name="num_tdc" ColumnName="num_tdc" />
+                <ScalarProperty Name="cvv" ColumnName="cvv" />
+                <ScalarProperty Name="fecha_vencimiento" ColumnName="fecha_vencimiento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departamento">
             <EntityTypeMapping TypeName="GardeningFModel.Departamento">
               <MappingFragment StoreEntitySet="Departamento">
-                <ScalarProperty Name="nombre_depto" ColumnName="nombre_depto" />
                 <ScalarProperty Name="id_depto" ColumnName="id_depto" />
+                <ScalarProperty Name="nombre_depto" ColumnName="nombre_depto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Empleado">
             <EntityTypeMapping TypeName="GardeningFModel.Empleado">
               <MappingFragment StoreEntitySet="Empleado">
-                <ScalarProperty Name="id_depto" ColumnName="id_depto" />
-                <ScalarProperty Name="rol_empleado" ColumnName="rol_empleado" />
-                <ScalarProperty Name="email_empleado" ColumnName="email_empleado" />
-                <ScalarProperty Name="apm_empleado" ColumnName="apm_empleado" />
-                <ScalarProperty Name="app_empleado" ColumnName="app_empleado" />
-                <ScalarProperty Name="nombre_empleado" ColumnName="nombre_empleado" />
                 <ScalarProperty Name="id_empleado" ColumnName="id_empleado" />
+                <ScalarProperty Name="nombre_empleado" ColumnName="nombre_empleado" />
+                <ScalarProperty Name="app_empleado" ColumnName="app_empleado" />
+                <ScalarProperty Name="apm_empleado" ColumnName="apm_empleado" />
+                <ScalarProperty Name="email_empleado" ColumnName="email_empleado" />
+                <ScalarProperty Name="rol_empleado" ColumnName="rol_empleado" />
+                <ScalarProperty Name="id_depto" ColumnName="id_depto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="OrdenProducto">
             <EntityTypeMapping TypeName="GardeningFModel.OrdenProducto">
               <MappingFragment StoreEntitySet="OrdenProducto">
-                <ScalarProperty Name="id_orden" ColumnName="id_orden" />
-                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
-                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
                 <ScalarProperty Name="id_orden_p" ColumnName="id_orden_p" />
+                <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="cantidad" ColumnName="cantidad" />
+                <ScalarProperty Name="id_orden" ColumnName="id_orden" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Paqueteria">
             <EntityTypeMapping TypeName="GardeningFModel.Paqueteria">
               <MappingFragment StoreEntitySet="Paqueteria">
-                <ScalarProperty Name="tel_contacto" ColumnName="tel_contacto" />
-                <ScalarProperty Name="contacto_paqueteria" ColumnName="contacto_paqueteria" />
-                <ScalarProperty Name="direccion_paqueteria" ColumnName="direccion_paqueteria" />
-                <ScalarProperty Name="web_paqueteria" ColumnName="web_paqueteria" />
-                <ScalarProperty Name="telefono_paqueteria" ColumnName="telefono_paqueteria" />
-                <ScalarProperty Name="rfc_paqueteria" ColumnName="rfc_paqueteria" />
-                <ScalarProperty Name="nombre_paqueteria" ColumnName="nombre_paqueteria" />
                 <ScalarProperty Name="id_paqueteria" ColumnName="id_paqueteria" />
+                <ScalarProperty Name="nombre_paqueteria" ColumnName="nombre_paqueteria" />
+                <ScalarProperty Name="rfc_paqueteria" ColumnName="rfc_paqueteria" />
+                <ScalarProperty Name="telefono_paqueteria" ColumnName="telefono_paqueteria" />
+                <ScalarProperty Name="web_paqueteria" ColumnName="web_paqueteria" />
+                <ScalarProperty Name="direccion_paqueteria" ColumnName="direccion_paqueteria" />
+                <ScalarProperty Name="contacto_paqueteria" ColumnName="contacto_paqueteria" />
+                <ScalarProperty Name="tel_contacto" ColumnName="tel_contacto" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Producto">
             <EntityTypeMapping TypeName="GardeningFModel.Producto">
               <MappingFragment StoreEntitySet="Producto">
-                <ScalarProperty Name="descuento" ColumnName="descuento" />
-                <ScalarProperty Name="stock" ColumnName="stock" />
-                <ScalarProperty Name="cantidad_existencia" ColumnName="cantidad_existencia" />
-                <ScalarProperty Name="imagen_producto" ColumnName="imagen_producto" />
-                <ScalarProperty Name="ultima_actualizacion" ColumnName="ultima_actualizacion" />
-                <ScalarProperty Name="precio_producto" ColumnName="precio_producto" />
-                <ScalarProperty Name="descripcion_producto" ColumnName="descripcion_producto" />
-                <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
-                <ScalarProperty Name="id_subcategoria" ColumnName="id_subcategoria" />
                 <ScalarProperty Name="id_producto" ColumnName="id_producto" />
+                <ScalarProperty Name="id_subcategoria" ColumnName="id_subcategoria" />
+                <ScalarProperty Name="nombre_producto" ColumnName="nombre_producto" />
+                <ScalarProperty Name="descripcion_producto" ColumnName="descripcion_producto" />
+                <ScalarProperty Name="precio_producto" ColumnName="precio_producto" />
+                <ScalarProperty Name="ultima_actualizacion" ColumnName="ultima_actualizacion" />
+                <ScalarProperty Name="imagen_producto" ColumnName="imagen_producto" />
+                <ScalarProperty Name="cantidad_existencia" ColumnName="cantidad_existencia" />
+                <ScalarProperty Name="stock" ColumnName="stock" />
+                <ScalarProperty Name="descuento" ColumnName="descuento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Subcategoria">
             <EntityTypeMapping TypeName="GardeningFModel.Subcategoria">
               <MappingFragment StoreEntitySet="Subcategoria">
-                <ScalarProperty Name="descripcion_subcategoria" ColumnName="descripcion_subcategoria" />
-                <ScalarProperty Name="nombre_subcategoria" ColumnName="nombre_subcategoria" />
-                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
                 <ScalarProperty Name="id_subcategoria" ColumnName="id_subcategoria" />
+                <ScalarProperty Name="id_categoria" ColumnName="id_categoria" />
+                <ScalarProperty Name="nombre_subcategoria" ColumnName="nombre_subcategoria" />
+                <ScalarProperty Name="descripcion_subcategoria" ColumnName="descripcion_subcategoria" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
