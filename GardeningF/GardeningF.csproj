@@ -560,6 +560,7 @@
     <Content Include="Views\Pedidos\Index.cshtml" />
     <Content Include="Views\Pedidos\verPedido.cshtml" />
     <Content Include="Views\Clientes\InvalidoUpdate.cshtml" />
+    <Content Include="Views\Shared\_LoginPartialAdmin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
