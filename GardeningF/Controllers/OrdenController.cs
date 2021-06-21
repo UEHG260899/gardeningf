@@ -94,7 +94,7 @@ namespace GardeningF.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_orden,fecha_creacion,num_confirmacion,total,id_cliente,id_dir_entrega,id_paqueteria,num_guia,fecha_envio,fecha_entrega")] OrdenCliente ordenCliente)
+        public ActionResult Edit([Bind(Include = "id_orden,id_paqueteria,num_guia,fecha_envio")] OrdenCliente ordenCliente)
         {
             if (ModelState.IsValid)
             {
@@ -102,9 +102,9 @@ namespace GardeningF.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.id_cliente = new SelectList(db.Cliente, "id_cliente", "nombre_cliente", ordenCliente.id_cliente);
-            ViewBag.id_dir_entrega = new SelectList(db.Direccion, "id_direccion", "calle", ordenCliente.id_dir_entrega);
-            ViewBag.id_paqueteria = new SelectList(db.Paqueteria, "id_paqueteria", "nombre_paqueteria", ordenCliente.id_paqueteria);
+            ViewBag.id_cliente = new SelectList(db.Cliente, "Id", "nombre", ordenCliente.id_cliente);
+            ViewBag.id_dir_entrega = new SelectList(db.Direccion, "Id", "calle", ordenCliente.id_dir_entrega);
+            ViewBag.id_paqueteria = new SelectList(db.Paqueteria, "Id", "Nombre", ordenCliente.id_paqueteria);
             return View(ordenCliente);
         }
 
