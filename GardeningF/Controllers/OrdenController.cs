@@ -108,6 +108,26 @@ namespace GardeningF.Controllers
             return View(ordenCliente);
         }
 
+        // POST: OrdenClientes/Edit/5
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
+        // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit1([Bind(Include = "id_orden,fecha_creacion,num_confirmacion,total,id_cliente,id_dir_entrega,id_paqueteria,num_guia,fecha_envio,fecha_entrega")] OrdenCliente ordenCliente)
+        {
+            if (ModelState.IsValid)
+            {
+                OrdenCliente o = db.OrdenCliente.Find(ordenCliente.id_orden);
+                o.fecha_entrega = ordenCliente.fecha_entrega;
+                db.SaveChanges();
+                return RedirectToAction("Index1");
+            }
+
+            ViewBag.id_cliente = new SelectList(db.Cliente, "Id", "nombre", ordenCliente.id_cliente);
+            ViewBag.id_paqueteria = new SelectList(db.Paqueteria, "Id", "nombre", ordenCliente.id_paqueteria);
+            return View(ordenCliente);
+        }
+
         // GET: Orden/Delete/5
         public ActionResult Delete(int? id)
         {
