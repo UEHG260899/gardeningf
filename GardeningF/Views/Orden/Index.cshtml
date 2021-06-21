@@ -59,8 +59,8 @@
                 Fecha Envío
             </th>
 
-
-            <th></th>
+            <th>Editar</th>
+            <th>Eliminar</th>
         </tr>
     </thead>
     <tbody>
@@ -96,10 +96,11 @@
                 <td>
                     @Html.TextBoxFor(modelItem => item.fecha_envio, new { @class = "form-control", @value = @val, @readonly = "readonly" })
                 </td>
-
                 <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id_orden }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id_orden })
+                    @Html.ActionLink("Editar", "Edit", new { id = item.id_orden }, new { @class = "btn btnGreen" })
+                </td>
+                <td>
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id_orden }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }

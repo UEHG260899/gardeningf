@@ -6,7 +6,26 @@
 }
 
 
+<style>
+    .card > img {
+        height: 230px;
+    }
+
+    .bg-card-admin, thead {
+        background-color: var(--color-principal) !important;
+        color: white;
+    }
+
+    .page-item.active .page-link, .btnGreen {
+        background-color: var(--color-principal) !important;
+        border-color: var(--color-principal) !important;
+        color: white !important;
+    }
+</style>
+
+<br><br>
 <h2>Actualizar fecha de entrega</h2>
+<hr /><br>
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
@@ -153,7 +172,7 @@
 
         <div class="form-group">
             <div class="offset-md-2 col-md-10">
-                <input id="guardar" type="submit" value="Guardar" class="btn btn-info" />
+                <input id="guardar" type="submit" value="Guardar" class="btn btnGreen" />
             </div>
         </div>
 
@@ -164,12 +183,12 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h3 class="modal-title">Error en fecha</h3>
+                <span><i class="fade fa-times-circle"></i></span><h4 class="modal-title">Error en las fechas</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
             <div class="modal-body">
                 <div style="padding: 5px;">
-                    <div style="background-color: khaki; padding-left: 15px;">
+                    <div style="padding-left: 15px;">
                         <span id="1"></span> <span id="2"></span>
                     </div>
                     <br />
@@ -180,7 +199,7 @@
 </div>
 
 <div>
-    @Html.ActionLink("Back to List", "Index1");
+    @Html.ActionLink("Regresar a la lista", "Index", "Orden", new { @class = "btn btnGreen" })
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script>
