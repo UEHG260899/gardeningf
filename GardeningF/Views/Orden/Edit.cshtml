@@ -5,14 +5,14 @@
     Layout = "~/Views/Shared/_LayoutEnvios.cshtml";
 }
 
-<h2>Edit</h2>
+<h2>Actualizar fecha de envio, paqueteria y numero de guia</h2>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
-        <h4>OrdenCliente</h4>
+        <h4>orden</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.HiddenFor(model => model.id_orden)
@@ -20,7 +20,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fecha_creacion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha_creacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.fecha_creacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.fecha_creacion, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.num_confirmacion, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.num_confirmacion, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.num_confirmacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.num_confirmacion, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -36,24 +36,43 @@
         <div class="form-group">
             @Html.LabelFor(model => model.total, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.total, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.total, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
                 @Html.ValidationMessageFor(model => model.total, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.id_cliente, "id_cliente", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Cliente.nombre_cliente, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("id_cliente", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.id_cliente, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Cliente.nombre_cliente, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly" } })
+                @Html.ValidationMessageFor(model => model.total, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.id_dir_entrega, "id_dir_entrega", htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.EditorFor(model => model.id_cliente, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @hidden = "hidden" } })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.id_dir_entrega, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @hidden = "hidden" } })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.fecha_creacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @hidden = "hidden" } })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.num_confirmacion, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @hidden = "hidden" } })
+        </div>
+        <div class="form-group">
+            @Html.EditorFor(model => model.total, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @hidden = "hidden" } })
+        </div>
+
+        <div class="form-group">
+            @Html.Label("Dirección entrega", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownList("id_dir_entrega", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.id_dir_entrega, "", new { @class = "text-danger" })
+                <div class="form-control" readonly>
+                    @Html.DisplayFor(model => model.Direccion.calle),
+                    @Html.DisplayFor(model => model.Direccion.colonia),
+                    @Html.DisplayFor(model => model.Direccion.estado),
+                </div>
             </div>
         </div>
 
@@ -76,18 +95,11 @@
         <div class="form-group">
             @Html.LabelFor(model => model.fecha_envio, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha_envio, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.fecha_envio, new { htmlAttributes = new { @class = "form-control datepicker", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.fecha_envio, "", new { @class = "text-danger" })
             </div>
         </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.fecha_entrega, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.fecha_entrega, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.fecha_entrega, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
