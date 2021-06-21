@@ -19,14 +19,14 @@
     body {
     }
 
-    
-    
 
 
 
-    
-    
-    
+
+
+
+
+
     .bg-main {
         background-color: var(--color-acento);
         color: white;
@@ -60,110 +60,129 @@
         display: flex;
         width: 100%;
     }
-    .title{
+
+    .title {
         color: dimgray;
     }
-    .subtitle{
-        font-size:18px;
+
+    .subtitle {
+        font-size: 18px;
         color: var(--color-principal)
     }
+
     .feature-title {
         font-size: 26px;
         color: var(--color-principal)
     }
+
+    .feature-img {
+        width: 80px;
+        height: 80px;
+    }
 </style>
 
 
-    
-    <div class="container">
-        <div class="row">
-            <div class="col-12 d-flex justify-content-between">
-                <div style="display:flex;flex-direction:column; justify-content:center;">
-                    <h1 class="title">Tarjeta de compra</h1>
-                    <h2 class="subtitle">Más que un medio de pago,<br /> más que una tarjeta.</h2>
-                     <a href="#" class="btn bg-fondo mt-3" > Solicitar ahora</a>
-                </div>
-                
-                <img src="https://res.cloudinary.com/du17vjpcn/image/upload/v1624172509/ecommerce/tarjeta_lcfaea.png" class="img_banner" width="500px" />
 
+<div class="container">
+    <div class="row">
+        <div class="col-12 d-flex justify-content-between">
+            <div style="display:flex;flex-direction:column; justify-content:center;">
+                <h1 class="title">Tarjeta de compra <strong>Gardening</strong></h1>
+                <h2 class="subtitle">Más que un medio de pago,<br /> más que una tarjeta.</h2>
+
+                @Html.ActionLink("Solicitar ahora", "Solicitar", "Mas", null, htmlAttributes: new { @class = "btn bg-fondo  mt-3", @style = "box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.5);" })
             </div>
-            
+
+            <img src="https://res.cloudinary.com/du17vjpcn/image/upload/v1624172509/ecommerce/tarjeta_lcfaea.png" class="img_banner" width="500px" />
+
         </div>
-        <hr class="my-3" />
-        <!--features-->
-        <div class="row ">
-            <h2 class="title">Ventajas con tu Tarjeta de Compra Gardening.</h2>
-            <br />
-            <h4 class="subtitle mb-3">Disfruta de la Tarjeta que te da acceso a un sinfín de privilegios.</h4>
-            <div class="col-8 mx-auto">
-                <div class="row mt-3">
-                    <div class="col-4 text-center">
-                        <div class="font-weight-light feature-title">Gratis</div>
-                        <div class="card ">
-                            <div class="card-body font-italic">
-                                Consíguela, sin ningún coste de emisión ni mantenimiento, y disfruta siempre de tu tarjeta
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 text-center">
-                        <div class="font-weight-light feature-title">Paga  cuando recibas</div>
-                        <div class="card">
-                            <div class="card-body font-italic">
-                                En tus pedidos, el pago se carga en tu cuenta solo cuando lo recibes. Más seguro y práctico para ti.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 text-center">
-                        <div class="font-weight-light feature-title"> 100% segura</div>
-                        <div class="card">
-                            <div class="card-body font-italic">
 
-                                <ul>
-                                    <li>Extracto mensual de las compras.</li>
-                                    <li>Recuperación de tickets perdidos.</li>
-                                    <li>Reposición inmediata y sin coste en caso de robo o extravío.</li>
-                                </ul>
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--Row 2-->
-                <div class="row mt-3">
-                    <div class="col-4 text-center">
-                        <div class="font-weight-light feature-title"> Ventajas Financieras</div>
-                        <div class="card ">
-                            <div class="card-body font-italic">
-                                Disfruta de nuevas ventajas para hacer tu economía de compras más inteligente.
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 text-center">
-                        <div class="font-weight-light feature-title"> A tu servicio</div>
-                        <div class="card">
-                            <div class="card-body font-italic">
-
-                                El Servicio de Atención al Cliente al 729 105 6896
-                                Lunes a domingo, de 9 a 22 h.
-
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-4 text-center">
-                        <div class="font-weight-light feature-title">Solicítala online</div>
-                        <div class="card">
-                            <div class="card-body font-italic">
-
-                                Hazlo ahora directamente desde nuestra App Tarjeta de Compra Gardening o pulsa aquí y consíquela al momento.
-
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!--row2-->
-            </div>
-        </div>
-        
     </div>
+    <hr class="my-3" />
+    <!--features-->
+    <div class="row ">
+        <h2 class="title">Ventajas con tu Tarjeta de Compra Gardening.</h2>
+        <br />
+        <h4 class="subtitle mb-3">Disfruta de la Tarjeta que te da acceso a un sinfín de privilegios.</h4>
+        <div class="col-8 mx-auto">
+            <div class="row mt-3">
+                <div class="col-4 text-center">
+                    <div class="font-weight-light feature-title">Gratis</div>
+                    <img class="feature-img" src="https://res.cloudinary.com/du17vjpcn/image/upload/v1624221386/ecommerce/iconfinder_3319627_banking_coin_dollar_money_transfer_icon_256px_h3fj6e.png" />
+                    <div class="card ">
+                        <div class="card-body font-italic">
+                            Consíguela, sin ningún coste de emisión ni mantenimiento, y disfruta siempre de tu tarjeta
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 text-center">
+                    <div class="font-weight-light feature-title">Paga  cuando recibas</div>
+                    <img class="feature-img" src="https://res.cloudinary.com/du17vjpcn/image/upload/v1624221386/ecommerce/iconfinder_3319626_coin_dollar_house_investment_icon_256px_bquror.png" />
+                    <div class="card">
+                        <div class="card-body font-italic">
+                            En tus pedidos, el pago se carga en tu cuenta solo cuando lo recibes. Más seguro y práctico para ti.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 text-center">
+                    <div class="font-weight-light feature-title"> 100% segura</div>
+                    <img class="feature-img" src="https://res.cloudinary.com/du17vjpcn/image/upload/v1624221386/ecommerce/iconfinder_3440902_card_creditcard_ecommerce_payment_secure_icon_256px_xy8mrz.png" />
+                    <div class="card">
+                        <div class="card-body font-italic">
+
+                            <ul>
+                                <li>Extracto mensual de las compras.</li>
+                                <li>Recuperación de tickets perdidos.</li>
+                                <li>Reposición inmediata y sin coste en caso de robo o extravío.</li>
+                            </ul>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Row 2-->
+            <div class="row mt-3">
+                <div class="col-4 text-center">
+                    <div class="font-weight-light feature-title"> Ventajas Financieras</div>
+                    <img class="feature-img" src="https://res.cloudinary.com/du17vjpcn/image/upload/v1624221386/ecommerce/iconfinder_669954_report_chart_doc_document_invoice_icon_256px_lehcoc.png" />
+                    <div class="card ">
+                        <div class="card-body font-italic">
+                            Disfruta de nuevas ventajas para hacer tu economía de compras más inteligente.
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 text-center">
+                    <div class="font-weight-light feature-title"> A tu servicio</div>
+                    <img class="feature-img" src="https://res.cloudinary.com/du17vjpcn/image/upload/v1624221386/ecommerce/iconfinder_1562693_computer_phone_responsive_design_icon_256px_jciufq.png" />
+                    <div class="card">
+                        <div class="card-body font-italic">
+
+                            El Servicio de Atención al Cliente al 729 105 6896
+                            Lunes a domingo, de 9 a 22 h.
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-4 text-center">
+                    <div class="font-weight-light feature-title">Solicítala online</div>
+                    <img class="feature-img" src="https://res.cloudinary.com/du17vjpcn/image/upload/v1624221386/ecommerce/iconfinder_299053_computer_icon_256px_qcfwju.png" />
+                    <div class="card">
+                        <div class="card-body font-italic">
+
+                            Hazlo ahora directamente desde nuestra App Tarjeta de Compra Gardening o pulsa aquí y consíquela al momento.
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center">
+
+                @Html.ActionLink("Solicitar ahora", "Solicitar", "Mas", null, htmlAttributes: new { @class = "btn bg-fondo  mt-3", @style = "box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.5);" })
+            </div>
+            <!--row2-->
+        </div>
+    </div>
+
+</div>
 
 

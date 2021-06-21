@@ -52,7 +52,7 @@ namespace GardeningF.Controllers
                     case "comprador":
                         return RedirectToAction("Index", "Compras");
                     case "enviador":
-                        return RedirectToAction("Index", "Envios");
+                        return RedirectToAction("Index", "Paqueterias");
                     case "admin":
                         return RedirectToAction("Index", "Admin");
                     case "cliente":

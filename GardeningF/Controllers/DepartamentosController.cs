@@ -19,6 +19,13 @@ namespace GardeningF.Controllers
         {
             var empleado = db.Empleado.Include(e => e.Departamento);
             ViewBag.empleados = empleado.ToList();
+            ViewBag.totalEmpleados = empleado.Count();
+            var compras = db.Empleado.Include(e => e.Departamento).Where(e => e.Departamento.nombre_depto == "compras");
+            var ventas = db.Empleado.Include(e => e.Departamento).Where(e => e.Departamento.nombre_depto == "ventas");
+            ViewBag.compras = compras.ToList();
+            ViewBag.ventas = ventas.ToList();
+            ViewBag.totalCompras = compras.Count();
+            ViewBag.totalVentas = ventas.Count();
             return View(db.Departamento.ToList());
         }
 

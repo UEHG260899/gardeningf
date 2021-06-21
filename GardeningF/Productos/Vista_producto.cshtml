@@ -1,0 +1,143 @@
+﻿@using GardeningF.Models;
+@using System.Data.SqlClient;
+@model GardeningF.Models.Producto
+
+@{
+    ViewBag.Title = Model.nombre_producto;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string img = Model.imagen_producto;
+
+
+    contextoGardeningF db = new contextoGardeningF();
+
+    Subcategoria subcategoria = db.Subcategoria.Find(Model.id_subcategoria);
+    Categoria categoria = db.Categoria.Find(subcategoria.id_categoria);
+
+
+
+    Random ran = new Random();
+
+    int num = GetSomeString(ran.Next(1, 18));
+    int num2 = GetSomeString(ran.Next(1, 18));
+    int num3 = GetSomeString(ran.Next(1, 18));
+    int num4 = GetSomeString(ran.Next(1, 18));
+    int[] nums = { num, num2, num3, num4 };
+    nums = nums.Distinct().ToArray();
+    var producto = db.Producto.SqlQuery(
+        @"  select *
+            from dbo.Producto
+            inner join dbo.Subcategoria as sub on (dbo.Producto.id_subcategoria = sub.id_subcategoria)
+            inner join dbo.Categoria as cat on (sub.id_categoria = cat.id_categoria)
+            where cat.id_categoria=1 and dbo.Producto.id_producto IN (@id1,@id2,@id3,@id4);",
+        new SqlParameter("@id1", num), new SqlParameter("@id2", num2), new SqlParameter("@id3", num3), new SqlParameter("@id4", num4)).ToList();
+
+    var categorias = db.Categoria.ToList();
+
+}
+
+@functions{
+    public int GetSomeString(int randomNum)
+    {
+        while (randomNum == Model.id_producto)
+        {
+            Random ran = new Random();
+            randomNum = ran.Next(1, 18);
+        }
+        return randomNum;
+    }
+}
+
+
+<div class="container mt-5 mb-5">
+
+    <div class="row">
+
+        <div class="col-3">
+            <center><img class="img-fluid" src="~/Content/Imagenes/Productos/@img" /></center>
+        </div>
+
+
+        <div class="col-9">
+
+            <div class="card">
+                <h3 class="card-header text-white text-center" style="background-color: var(--color-principal);">@Html.DisplayFor(model => model.nombre_producto), @Html.DisplayFor(model => categoria.nombre_categoria), @Html.DisplayFor(model => subcategoria.nombre_subcategoria)</h3>
+                <div class="card-body">
+
+                    <label class="font-weight-bold">Nombre: </label>
+                    @Html.DisplayFor(model => model.nombre_producto)
+
+                    <br />
+
+
+                    <label class="font-weight-bold">Precio: </label>
+                    @Html.DisplayFor(model => model.precio_producto)
+
+                    <br />
+
+
+                    <label class="font-weight-bold">Existencia: </label>
+                    @Html.DisplayFor(model => model.cantidad_existencia)
+
+                    <br />
+
+
+                    <label class="font-weight-bold">Stock: </label>
+                    @Html.DisplayFor(model => model.stock)
+
+                    <br />
+
+
+                    <label class="font-weight-bold">Última actualización: </label>
+                    @Html.DisplayFor(model => model.ultima_actualizacion)
+
+                    <br />
+
+
+                    @Html.ActionLink("Añadir al carrito", "Agregar", "Carro", routeValues: new { id = Model.id_producto }, htmlAttributes: new { @class = "btn boton float-right", @style = "box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.5);" })
+
+
+                    @Html.ActionLink("Ir a catalogo", "Index", "Catalogo", routeValues: new { }, htmlAttributes: new { @class = "btn boton float-right", @style = "box-shadow: 0 3px 10px 0 rgba(0, 0, 0, 0.5); margin-right: 20px;" })
+
+
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+<div class="container mt-5">
+    <h4><b>Articulos relacionados</b></h4>
+    <div class="row">
+        @foreach (Producto prod in producto)
+            {
+            <div class="col-sm-12 col-md-6 col-lg-3">
+                <div class="card text-center">
+                    <img class="card-img-top imagen-card" src="~/Content/Imagenes/Productos/@prod.imagen_producto" />
+                    <div class="card-body">
+                        <h5 class="card-title">@prod.nombre_producto</h5>
+                        <p class="card-text">
+                            @prod.descripcion_producto
+                            <br />
+                            $@prod.precio_producto
+                        </p>
+                        <div class="row">
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                <!--TODO: Cambiar a redirigir a la pagina de producto-->
+                                @Html.ActionLink("Ver producto", "Vista_producto", "Productos", routeValues: new { id = @prod.id_producto }, htmlAttributes: new { @class = "btn boton" })
+                            </div>
+                            <div class="col-sm-12 col-md-12 col-lg-6">
+                                @Html.ActionLink("Agregar al carrito", "Agregar", "Carro", routeValues: new { id = @prod.id_producto }, htmlAttributes: new { @class = "btn boton" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+</div>
+

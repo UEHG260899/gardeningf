@@ -1,0 +1,88 @@
+﻿@model GardeningF.Models.Categoria
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutCompras.cshtml";
+}
+
+<style>
+    textarea {
+        min-width: 100%;
+    }
+
+    .btn, p > a {
+        text-decoration: none;
+        padding: 7px;
+        font-size: 15px;
+        color: #ffffff;
+        background-color: #1883ba;
+        border-radius: 6px;
+        text-decoration: none;
+        background-color: var(--color-principal) !important;
+        border-color: var(--color-principal) !important;
+    }
+
+        .btn:hover, p > a:hover {
+            color: #ffffff;
+            text-decoration: none;
+        }
+</style>
+
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="container" style="margin-top:50px">
+        <br>
+        <h2>Actualizar categoría</h2>
+
+        <div class=" card">
+            <div class="card-header">
+                <h4>Categoria</h4>
+
+            </div>
+            <div class="card-body" style="height: 300px">
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.id_categoria)
+                <div class="form-group">
+                    <div class="row justify-content-start" style="height:150px">
+                        <div class="col-md-4">
+                            @Html.LabelFor(model => model.nombre_categoria, "Nombre de categoría", htmlAttributes: new { @class = "control-label col-md-12", @style = "padding-left: 0px" })
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                                @Html.EditorFor(model => model.nombre_categoria, new { htmlAttributes = new { @class = "form-control " } })
+                                @Html.ValidationMessageFor(model => model.nombre_categoria, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="col-md-8">
+                            @Html.LabelFor(model => model.descripcion_categoria, "Descripción de categoría", htmlAttributes: new { @class = "control-label col-md-12", @style = "padding-left: 0px" })
+                            @Html.TextAreaFor(model => model.descripcion_categoria, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.descripcion_categoria, "", new { @class = "text-danger" })
+
+                        </div>
+                    </div>
+                    <div class="row justify-content-end" style="right">
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-12" style="right; margin-top: 20px">
+                                <input type="submit" value="Actualizar" class="btn" />
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <br />
+        <p>
+            @Html.ActionLink("Tabla Categorías", "Index")
+        </p>
+    </div>
+
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

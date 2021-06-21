@@ -17,11 +17,17 @@
                 <a class="dropdown-toggle nav-link" role="button" aria-expanded="false" href="#" data-toggle="dropdown">
                     Hola @User.Identity.GetUserName()!
                 </a>
-                <ul class="dropdown-menu" role="menu" id="dropdown">
-                    <!--TODO: Cambiar a controlador de pedidos-->
-                    <li>@Html.ActionLink("Mis pedidos", "Index", "Pedidos", null, new { id = "add" })</li>
-                    <li>@Html.ActionLink("Editar mis datos", "Edit", "Clientes", routeValues: new { id = (int)Session["idCliente"]}, htmlAttributes: null)</li>
-                </ul>
+                @{
+                    if (Session["idCliente"] != null)
+                    {
+                        <ul class="dropdown-menu" role="menu" id="dropdown">
+                            <!--TODO: Cambiar a controlador de pedidos-->
+                            <li>@Html.ActionLink("Mis pedidos", "Index", "Pedidos", null, new { @id = "add", @class = "dropdown-item"})</li>
+                            <li>@Html.ActionLink("Editar mis datos", "Edit", "Clientes", routeValues: new { id = (int)Session["idCliente"] }, htmlAttributes: new { @class = "dropdown-item"})</li>
+                        </ul>
+                    }
+                }
+                
             </li>
             <li><a class="nav-link" href="javascript:document.getElementById('logoutForm').submit()">Cerrar sesión</a></li>
         </ul>

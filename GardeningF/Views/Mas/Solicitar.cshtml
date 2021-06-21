@@ -1,0 +1,89 @@
+﻿@using GardeningF.Models
+@{
+    ViewBag.Title = "Solicitar";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string c = Session["usr"].ToString();
+    string calle = Session["calle"].ToString();
+    string estado = Session["estado"].ToString();
+    string cp = Session["cp"].ToString();
+    string colonia = Session["colonia"].ToString();
+    string fechaOrden = Session["fechaOrden"].ToString();
+    string fpEntrega = Session["fpEntrega"].ToString();
+    string correo = Session["correo"].ToString();
+    string telefono = Session["telefono"].ToString();
+    string icono = "";
+
+}
+
+
+<div class="container mt-5 ">
+
+    <div class="card ">
+
+        <div class="card-header bg-main">
+            Solicitar tarjeta Gardening
+        </div>
+        <div class="card-body">
+
+
+            <hr>
+            <div class="row mt-4 ">
+                <div class="col-8 mx-auto">
+                    <article class="card mb-4">
+                        <div class="card-body">
+                            <h4 class="card-title mb-4">Confirmar información de entrega</h4>
+
+                            @using (Html.BeginForm())
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <div class="row">
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <div class="form-group col-sm-6">
+                                        <label>Calle</label>
+                                        <input value="@calle" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Estado</label>
+                                        <input value="@estado" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Colonia</label>
+                                        <input value="@colonia" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Código Postal</label>
+                                        <input value="@cp" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Entrega aproximada</label>
+                                        <input value="@fpEntrega" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Correo</label>
+                                        <input value="@correo" class="form-control" />
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label>Telefono</label>
+                                        <input value="@telefono" class="form-control" />
+                                    </div>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 mt-3">
+                                        <a class="btn btn-success bg-principal" href="@Url.Action("Confirmar", "Mas", null)"
+                                           style="width: 100% ;">
+                                            Solicitar ahora
+                                        </a>
+                                    </div>
+                                </div>
+                            }
+
+                        </div> <!-- card-body.// -->
+                    </article> <!-- card.// -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

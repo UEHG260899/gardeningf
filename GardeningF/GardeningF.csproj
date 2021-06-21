@@ -207,6 +207,10 @@
     <Compile Include="Controllers\PagoController.cs" />
     <Compile Include="Controllers\PedidosController.cs" />
     <Compile Include="Controllers\MasController.cs" />
+    <Compile Include="Controllers\CategoriasController.cs" />
+    <Compile Include="Controllers\DeptoComprasController.cs" />
+    <Compile Include="Controllers\ProductosController.cs" />
+    <Compile Include="Controllers\SubcategoriasController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -581,10 +585,34 @@
     <Content Include="Views\Departamentos\Details.cshtml" />
     <Content Include="Views\Departamentos\Edit.cshtml" />
     <Content Include="Views\Departamentos\Index.cshtml" />
+    <Content Include="Views\Mas\Solicitar.cshtml" />
+    <Content Include="Views\Mas\Confirmar.cshtml" />
+    <Content Include="Views\Mas\Empresas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views\Usuario\" />
+    <Content Include="Views\Shared\_LayoutCompras.cshtml" />
+    <Content Include="Views\Productos\Create.cshtml" />
+    <Content Include="Views\Productos\Delete.cshtml" />
+    <Content Include="Views\Productos\Details.cshtml" />
+    <Content Include="Views\Productos\Edit.cshtml" />
+    <Content Include="Views\Productos\Index.cshtml" />
+    <Content Include="Views\Productos\Vista_producto.cshtml" />
+    <Content Include="Views\Categorias\Create.cshtml" />
+    <Content Include="Views\Categorias\Delete.cshtml" />
+    <Content Include="Views\Categorias\Details.cshtml" />
+    <Content Include="Views\Categorias\Edit.cshtml" />
+    <Content Include="Views\Categorias\Index.cshtml" />
+    <Content Include="Views\Subcategorias\Create.cshtml" />
+    <Content Include="Views\Subcategorias\Delete.cshtml" />
+    <Content Include="Views\Subcategorias\Details.cshtml" />
+    <Content Include="Views\Subcategorias\Edit.cshtml" />
+    <Content Include="Views\Subcategorias\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Views\DeptoCompras\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
