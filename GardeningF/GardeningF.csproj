@@ -199,8 +199,10 @@
     <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\DepartamentosController.cs" />
     <Compile Include="Controllers\EmpleadosController.cs" />
+    <Compile Include="Controllers\EnviosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrdenController.cs" />
     <Compile Include="Controllers\PaqueteriasController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Controllers\CarroController.cs" />
@@ -276,8 +278,11 @@
     <Content Include="Content\bootstrap-reboot.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Imagenes\Paqueterias\adminPqt.png" />
     <Content Include="Content\Imagenes\Paqueterias\cajas.png" />
     <Content Include="Content\Imagenes\Paqueterias\deletePqt.png" />
+    <Content Include="Content\Imagenes\Paqueterias\entrega.png" />
+    <Content Include="Content\Imagenes\Paqueterias\envPend.png" />
     <Content Include="Content\Imagenes\Paqueterias\updatePqt.png" />
     <Content Include="Content\StylesPaqueteria.css" />
     <Content Include="Content\Imagenes\Carrito\carritoPlantas.jpg" />
@@ -588,6 +593,16 @@
     <Content Include="Views\Mas\Solicitar.cshtml" />
     <Content Include="Views\Mas\Confirmar.cshtml" />
     <Content Include="Views\Mas\Empresas.cshtml" />
+    <Content Include="Views\Shared\_LayoutEnvios.cshtml" />
+    <Content Include="Views\Orden\Create.cshtml" />
+    <Content Include="Views\Orden\Delete.cshtml" />
+    <Content Include="Views\Orden\Details.cshtml" />
+    <Content Include="Views\Orden\Edit.cshtml" />
+    <Content Include="Views\Orden\Index.cshtml" />
+    <Content Include="Views\Envios\Index.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial1.cshtml" />
+    <Content Include="Views\Orden\Index1.cshtml" />
+    <Content Include="Views\Orden\Edit1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

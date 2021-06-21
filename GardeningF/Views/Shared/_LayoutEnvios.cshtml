@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/StylesAdmin.css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top navbar-color">
+        <!--Marca-->
+        <a class="navbar-brand" href="#">Gardening.com</a>
+
+        <!-- Logo del menu -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="nav navbar-nav">
+                <li class="dropdown">
+                    <a class="dropdown-toggle nav-link" role="button" aria-expanded="false" data-toggle="dropdown">Paqueterias</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-item">@Html.ActionLink("Agregar", "Create", "Paqueterias", null, new { id = "add" })</li>
+                        <li class="dropdown-item">@Html.ActionLink("Actualizar", "Index", "Paqueterias", null, new { id = "add" })</li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle nav-link" role="button" aria-expanded="false" data-toggle="dropdown">Ordenes Pendientes</a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li class="dropdown-item">@Html.ActionLink("Fecha de Envio", "Index", "Orden", null, new { id = "list" })</li>
+                        <li class="dropdown-item">@Html.ActionLink("Fecha de Entrega", "Index1", "Orden", null, new { id = "list" })</li>
+                    </ul>
+                </li>
+            </ul>
+            @Html.Partial("_LoginPartial1")
+        </div>
+    </nav>
+    <div class="">
+        @RenderBody()
+        <hr />
+        <footer>
+            <div class="col-12">
+                <div class="row text-center">
+                    <div class="col-sm-12 col-md-6 col-lg-6">
+                        <h4>Nuestras redes sociales:</h4>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-sm-4 col-lg-4">
+                                    <img src="~/Content/Imagenes/Home/Index/icono-fb.png" />
+                                </div>
+                                <div class="col-sm-4 col-lg-4">
+                                    <img src="~/Content/Imagenes/Home/Index/icono-twitter.png" />
+                                </div>
+                                <div class="col-sm-4 col-lg-4">
+                                    <img src="~/Content/Imagenes/Home/Index/icono-gmail.png" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-12 col-md-12 col-lg-6 text-center">
+                        <h4>&copy; @DateTime.Now.Year - Gardening.com</h4>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

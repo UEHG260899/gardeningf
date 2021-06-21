@@ -1,0 +1,146 @@
+﻿@model IEnumerable<GardeningF.Models.OrdenCliente>
+@{
+    ViewBag.Title = "Index1";
+    Layout = "~/Views/Shared/_LayoutEnvios.cshtml";
+}
+
+<style>
+    .card > img {
+        height: 230px;
+    }
+
+    .bg-card-admin, thead {
+        background-color: var(--color-principal) !important;
+        color: white;
+    }
+
+    .page-item.active .page-link, .btnGreen {
+        background-color: var(--color-principal) !important;
+        border-color: var(--color-principal) !important;
+        color: white !important;
+    }
+</style>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.css">
+
+<div class="row ml-3 mt-5 mb-5">
+    <div class="col-md-6">
+        <h2>Fecha de entrega pendiente</h2>
+        <br>
+        <br>
+    </div>
+    <div class="col-md-6">
+        <img class="card-img-top" height="200" width="250" src="~/Content/Imagenes/Paqueterias/entrega.png" alt="Producto">
+    </div>
+</div>
+
+<table class="table" id="tbPaqueterias">
+    <thead>
+        <tr>
+            <th>
+                Id
+            </th>
+            <th>
+                Fecha Creación
+            </th>
+            <th>
+                Num. Confirmación
+            </th>
+            <th>
+                Total
+            </th>
+            <th>
+                Dirección de Entrega
+            </th>
+
+            <th>
+                Fecha Envío
+            </th>
+
+            <th>Editar</th>
+            <th>Eliminar</th>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            string val;
+            if (item.fecha_entrega.HasValue)
+            {
+                val = item.fecha_envio.GetValueOrDefault().ToShortDateString();
+            }
+            else
+            {
+                val = "";
+            }
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.id_orden)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha_creacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.num_confirmacion)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.total)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Direccion.calle),
+                    @Html.DisplayFor(modelItem => item.Direccion.colonia),
+                    @Html.DisplayFor(modelItem => item.Direccion.estado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.fecha_envio, new { @class = "form-control", @value = @val, @readonly = "readonly" })
+                </td>
+                <td>
+                    @Html.ActionLink("Editar", "Edit1", new { id = item.id_orden }, new { @class = "btn btnGreen" })
+                </td>
+                <td>
+                    @Html.ActionLink("Eliminar", "Delete", new { id = item.id_orden }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts{
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.24/js/dataTables.bootstrap4.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#tbPaqueterias').DataTable({
+                language: {
+                    "decimal": "",
+                    "emptyTable": "No hay información",
+                    "info": "",
+                    "infoEmpty": "Mostrando 0 to 0 of 0 Entradas",
+                    "infoFiltered": "(Filtrado de _MAX_ total entradas)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "lengthMenu": "Mostrar _MENU_ ",
+                    "loadingRecords": "Cargando...",
+                    "processing": "Procesando...",
+                    "search": "Buscar:",
+                    "zeroRecords": "Sin resultados encontrados",
+                    "paginate": {
+                        "first": "Primero",
+                        "last": "Ultimo",
+                        "next": "Siguiente",
+                        "previous": "Anterior"
+                    }
+                },
+                pageLength: 5,
+                lengthMenu: [[5, 10, 20, -1], [5, 10, 20, 'Todos']],
+                "scrollX": false,
+                "scrollY": true
+            });
+        });
+    </script>
+}
+
