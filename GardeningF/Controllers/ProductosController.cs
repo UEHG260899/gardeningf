@@ -22,7 +22,7 @@ namespace GardeningF.Controllers
             return View(producto.ToList());
         }
 
-
+        [AllowAnonymous]
         public ActionResult Vista_producto(int? id)
         {
             if (id == null)
