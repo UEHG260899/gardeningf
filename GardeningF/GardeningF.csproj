@@ -455,6 +455,7 @@
     <Content Include="Views\Envios\Index.cshtml" />
     <Content Include="Views\Shared\_LoginPartial1.cshtml" />
     <Content Include="Views\Orden\Index1.cshtml" />
+    <Content Include="Views\Orden\Edit1.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
