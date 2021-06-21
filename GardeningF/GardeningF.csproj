@@ -262,6 +262,8 @@
     <Content Include="Content\Imagenes\Paqueterias\adminPqt.png" />
     <Content Include="Content\Imagenes\Paqueterias\cajas.png" />
     <Content Include="Content\Imagenes\Paqueterias\deletePqt.png" />
+    <Content Include="Content\Imagenes\Paqueterias\entrega.png" />
+    <Content Include="Content\Imagenes\Paqueterias\envPend.png" />
     <Content Include="Content\Imagenes\Paqueterias\updatePqt.png" />
     <Content Include="Content\StylesPaqueteria.css" />
     <Content Include="favicon.ico" />
