@@ -47,17 +47,11 @@ namespace GardeningF.Controllers
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id_categoria,nombre_categoria,descripcion_categoria")] Categoria categoria)
+        public ActionResult Create([Bind(Include = "nombre_categoria,descripcion_categoria")] Categoria categoria)
         {
             if (ModelState.IsValid)
             {
                 db.Categoria.Add(categoria);
-                int id = categoria.id_categoria;
-                var prod = db.Producto.Find(id);
-                DateTime hoy = DateTime.Now;
-                prod.ultima_actualizacion = hoy;
-
-
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

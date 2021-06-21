@@ -1,10 +1,9 @@
 ﻿@model GardeningF.Models.Producto
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Create";
     Layout = "~/Views/Shared/_LayoutCompras.cshtml";
 }
-
 
 <style>
     textarea {
@@ -17,7 +16,7 @@
     @Html.AntiForgeryToken()
 
     <div class="container mt-5">
-        <h2>Actualizar Producto</h2>
+        <h2>Crear Producto</h2>
         <div class="card">
             <h5 class="card-header">Datos nuevo Producto</h5>
             <div class="card-body">
@@ -97,7 +96,7 @@
                             @Html.LabelFor(model => model.descuento, htmlAttributes: new { @class = "control-label" })
                             <div class="input-group">
                                 <span class="input-group-text"><i class="fa fa-percentage"></i></span>
-                                @Html.EditorFor(model => model.descuento, new { htmlAttributes = new { type = "text", @class = "form-control", placeholder = "Ingrese descuento" } })
+                                @Html.EditorFor(model => model.descuento, new { htmlAttributes = new { type = "text", @class = "form-control", placeholder="Ingrese descuento" } })
                                 @Html.ValidationMessageFor(model => model.stock, "", new { @class = "text-danger" })
 
                             </div>
@@ -119,8 +118,6 @@
     </div>
 
 }
-
-
 
 
 @section Scripts {

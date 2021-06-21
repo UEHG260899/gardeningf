@@ -22,7 +22,7 @@ namespace GardeningF.Controllers
             return View(producto.ToList());
         }
 
-
+        [AllowAnonymous]
         public ActionResult Vista_producto(int? id)
         {
             if (id == null)
@@ -115,7 +115,13 @@ namespace GardeningF.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(producto).State = EntityState.Modified;
+                db.Producto.Add(producto);
+                int id = producto.id_producto;
+                var prod = db.Producto.Find(id);
+                DateTime hoy = DateTime.Now;
+                prod.ultima_actualizacion = hoy;
+
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
