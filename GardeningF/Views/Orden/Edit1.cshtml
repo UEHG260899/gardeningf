@@ -225,33 +225,32 @@
     function save() {
         var token = $("[name='__RequestVerificationToken']").val();
         var ordenModel = {
-            Id: $("#@Html.IdFor(m => m.id_orden)").val(),
+            id_orden: $("#@Html.IdFor(m => m.id_orden)").val(),
             fecha_creacion: $("#@Html.IdFor(m => m.fecha_creacion)").val(),
             num_confirmacion: $("#@Html.IdFor(m => m.num_confirmacion)").val(),
             total: $("#@Html.IdFor(m => m.total)").val(),
             id_cliente: $("#@Html.IdFor(m => m.id_cliente)").val(),
             id_dir_entrega: $("#@Html.IdFor(m => m.id_dir_entrega)").val(),
             id_paqueteria: $("#@Html.IdFor(m => m.id_paqueteria)").val(),
-            id_num_guia: $("#@Html.IdFor(m => m.num_guia)").val(),
+            num_guia: $("#@Html.IdFor(m => m.num_guia)").val(),
             fecha_envio: $("#@Html.IdFor(m => m.fecha_envio)").val(),
             fecha_entrega: $("#@Html.IdFor(m => m.fecha_entrega)").val(),
-            cliente: $("#@Html.IdFor(m => m.Cliente)").val(),
-            paqueteria: $("#@Html.IdFor(m => m.Paqueteria)").val(),
+
             __RequestVerificationToken: token
         };
 
         $.ajax({
             type: "POST",
-            url: "/Orden/Edit1/" + ordenModel.Id,
+            url: "/Orden/Edit1",
             data: ordenModel,
             async: false,
-            dataType: "json",
+            dataType: "html",
             success: function (result) {
                 $("form").attr('action', '/Orden/Index1');
                 $("form").submit();
             },
             error: function (err, result) {
-
+                alert(err.responseText);
             }
         });
     }

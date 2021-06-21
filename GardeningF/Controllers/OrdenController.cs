@@ -14,7 +14,7 @@ namespace GardeningF.Controllers
     {
         private contextoGardeningF db = new contextoGardeningF();
 
-        // GET: Orden
+        // GET: OrdenClientes
         public ActionResult Index()
         {
             var orden_cliente = db.OrdenCliente.Where(o => o.fecha_envio == null).OrderByDescending(o => o.fecha_creacion).Include(o => o.Cliente).Include(o => o.Paqueteria);
@@ -27,7 +27,7 @@ namespace GardeningF.Controllers
             return View(orden.ToList());
         }
 
-        // GET: Orden/Details/5
+        // GET: OrdenClientes/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -42,7 +42,7 @@ namespace GardeningF.Controllers
             return View(ordenCliente);
         }
 
-        // GET: Orden/Create
+        // GET: OrdenClientes/Create
         public ActionResult Create()
         {
             ViewBag.id_cliente = new SelectList(db.Cliente, "id_cliente", "nombre_cliente");
@@ -51,7 +51,7 @@ namespace GardeningF.Controllers
             return View();
         }
 
-        // POST: Orden/Create
+        // POST: OrdenClientes/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
@@ -71,7 +71,7 @@ namespace GardeningF.Controllers
             return View(ordenCliente);
         }
 
-        // GET: Orden/Edit/5
+        // GET: OrdenClientes/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -89,12 +89,30 @@ namespace GardeningF.Controllers
             return View(ordenCliente);
         }
 
-        // POST: Orden/Edit/5
+        // GET: OrdenClientes/Edit/5
+        public ActionResult Edit1(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            OrdenCliente ordenCliente = db.OrdenCliente.Find(id);
+            if (ordenCliente == null)
+            {
+                return HttpNotFound();
+            }
+            ViewBag.id_cliente = new SelectList(db.Cliente, "id_cliente", "nombre_cliente", ordenCliente.id_cliente);
+            ViewBag.id_dir_entrega = new SelectList(db.Direccion, "id_direccion", "calle", ordenCliente.id_dir_entrega);
+            ViewBag.id_paqueteria = new SelectList(db.Paqueteria, "id_paqueteria", "nombre_paqueteria", ordenCliente.id_paqueteria);
+            return View(ordenCliente);
+        }
+
+        // POST: OrdenClientes/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que desea enlazarse. Para obtener 
         // más información vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id_orden,id_paqueteria,num_guia,fecha_envio")] OrdenCliente ordenCliente)
+        public ActionResult Edit([Bind(Include = "id_orden,fecha_creacion,num_confirmacion,total,id_cliente,id_dir_entrega,id_paqueteria,num_guia,fecha_envio,fecha_entrega")] OrdenCliente ordenCliente)
         {
             if (ModelState.IsValid)
             {
@@ -128,7 +146,7 @@ namespace GardeningF.Controllers
             return View(ordenCliente);
         }
 
-        // GET: Orden/Delete/5
+        // GET: OrdenClientes/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -143,7 +161,7 @@ namespace GardeningF.Controllers
             return View(ordenCliente);
         }
 
-        // POST: Orden/Delete/5
+        // POST: OrdenClientes/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
