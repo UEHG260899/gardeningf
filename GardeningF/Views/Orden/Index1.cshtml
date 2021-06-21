@@ -1,0 +1,71 @@
+﻿@model IEnumerable<GardeningF.Models.OrdenCliente>
+@{
+    ViewBag.Title = "Index1";
+    Layout = "~/Views/Shared/_LayoutEnvios.cshtml";
+}
+
+<h2>Index</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.id_orden)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_creacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.num_confirmacion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.total)
+        </th>
+        <th>
+            Dirección de entrega
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.fecha_envio)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        string val;
+        if (item.fecha_entrega.HasValue)
+        {
+            val = item.fecha_envio.GetValueOrDefault().ToShortDateString();
+        }
+        else
+        {
+            val = "";
+        }
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.id_orden)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_creacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.num_confirmacion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion.calle),
+                @Html.DisplayFor(modelItem => item.Direccion.colonia),
+                @Html.DisplayFor(modelItem => item.Direccion.estado)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.fecha_envio, new { @class = "form-control", @value = @val, @readonly = "readonly" })
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit1", new { id = item.id_orden }) |
+                @Html.ActionLink("Details", "Details", new { id = item.id_orden })
+            </td>
+        </tr>
+    }
+</table>
+
