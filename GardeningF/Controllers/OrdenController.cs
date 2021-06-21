@@ -23,7 +23,7 @@ namespace GardeningF.Controllers
 
         public ActionResult Index1()
         {
-            var orden = db.OrdenCliente.Where(o => o.fecha_entrega == null && o.fecha_envio != null).OrderByDescending(o => o.fecha_creacion).Include(o => o.cliente).Include(o => o.paqueteria);
+            var orden = db.OrdenCliente.Where(o => o.fecha_entrega == null && o.fecha_envio != null).OrderByDescending(o => o.fecha_creacion).Include(o => o.Cliente).Include(o => o.Paqueteria);
             return View(orden.ToList());
         }
 

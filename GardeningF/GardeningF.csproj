@@ -452,10 +452,10 @@
     <Content Include="Views\Orden\Details.cshtml" />
     <Content Include="Views\Orden\Edit.cshtml" />
     <Content Include="Views\Orden\Index.cshtml" />
+    <Content Include="Views\Envios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Envios\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
