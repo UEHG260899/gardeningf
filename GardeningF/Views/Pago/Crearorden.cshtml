@@ -5,6 +5,7 @@
     string c = Session["usr"].ToString();
     string calle = Session["calle"].ToString();
     string estado = Session["estado"].ToString();
+    string municipio = Session["municipio"].ToString();
     string cp = Session["cp"].ToString();
     string colonia = Session["colonia"].ToString();
     string fechaOrden = Session["fechaOrden"].ToString();
@@ -103,17 +104,6 @@
 
 
                                 <div class="row">
-                                    <div class="form-group col-sm-6">
-                                        <label>Estado</label>
-                                        <select name="" class="form-control" disabled>
-                                            <option value="">@estado</option>
-
-                                        </select>
-                                    </div>
-                                    <div class="form-group col-sm-6">
-                                        <label>Colonia</label>
-                                        <input type="text" placeholder="Type here" class="form-control" value="@colonia" disabled>
-                                    </div>
                                     <div class="form-group col-sm-8">
                                         <label>Calle</label>
                                         <input type="text" placeholder="Type here" class="form-control col-md-12" value="@calle" disabled>
@@ -121,6 +111,21 @@
                                     <div class="form-group col-sm-4">
                                         <label>Código postal</label>
                                         <input type="text" placeholder="Type here" class="form-control" value="@cp" disabled>
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label>Colonia</label>
+                                        <input type="text" placeholder="Type here" class="form-control col-md-12" value="@colonia" disabled>
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label>Municipio</label>
+                                        <input type="text" placeholder="Type here" class="form-control col-md-12" value="@municipio" disabled>
+                                    </div>
+                                    <div class="form-group col-sm-4">
+                                        <label>Estado</label>
+                                        <select name="" class="form-control col-md-12" disabled>
+                                            <option value="">@estado</option>
+
+                                        </select>
                                     </div>
                                     <div class="form-group col-sm-6">
                                         <label>Fecha de orden</label>

@@ -44,6 +44,7 @@ namespace GardeningF.Controllers
             Session["colonia"] = direccion.colonia;
             Session["cp"] = direccion.cp;
             Session["estado"] = direccion.estado;
+            Session["municipio"] = direccion.municipio;
             Session["fechaOrden"] = fechaCreacion;
             Session["fpEntrega"] = fechaProbEntrega;
             Session["usr"] = cliente.nombre_cliente+" "+cliente.app_cliente+" "+cliente.apm_cliente;

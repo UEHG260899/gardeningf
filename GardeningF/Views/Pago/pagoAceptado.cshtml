@@ -32,14 +32,18 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-md-4">
+                        <label>Municipio</label>
+                        <input type="text" placeholder="Type here" class="form-control col-md-12" value="@Session["municipio"]" disabled>
+                    </div>
+                    <div class="form-group col-md-4">
                         <label>Estado</label>
                         <input type="text" placeholder="Type here" class="form-control col-md-12" value="@Session["estado"]" disabled>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                         <label>Código postal</label>
                         <input type="text" placeholder="Type here" class="form-control col-md-12" value="@Session["cp"]" disabled>
                     </div>
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                         <label>Fecha orden</label>
                         <input type="text" placeholder="Type here" class="form-control col-md-12" value="@Session["fechaOrden"]" disabled>
                     </div>
