@@ -70,8 +70,7 @@
                             </p>
                             <div class="row">
                                 <div class="col-sm-12 col-md-12 col-lg-6">
-                                    <!--TODO: Cambiar a redirigir a la pagina de producto-->
-                                    @Html.ActionLink("Ver producto", "", "", routeValues: null, htmlAttributes: new { @class = "btn boton" })
+                                    @Html.ActionLink("Ver producto", "Vista_producto", "Productos", routeValues: new { id = @prod.id_producto }, htmlAttributes: new { @class = "btn boton" })
                                 </div>
                                 <div class="col-sm-12 col-md-12 col-lg-6">
                                     @Html.ActionLink("Agregar al carrito", "Agregar", "Carro", routeValues: new { id = @prod.id_producto }, htmlAttributes: new { @class = "btn boton" })
